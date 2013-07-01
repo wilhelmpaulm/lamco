@@ -12,7 +12,7 @@ class CreateProductionQueuesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('queues', function(Blueprint $table) {
+        Schema::create('production_queues', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('pq_no')->nullable();
 			$table->integer('so_no')->nullable();
@@ -30,7 +30,7 @@ class CreateProductionQueuesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('queues');
+        Schema::drop('production_queues');
     }
 
 }

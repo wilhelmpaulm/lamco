@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDeliveryQueueasTable extends Migration {
+class CreateDeliveryQueuesTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateDeliveryQueueasTable extends Migration {
      */
     public function up()
     {
-        Schema::create('queueas', function(Blueprint $table) {
+        Schema::create('delivery_queues', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('dq_no')->nullable();
 			$table->integer('truck')->nullable();
@@ -32,7 +32,7 @@ class CreateDeliveryQueueasTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('queueas');
+        Schema::drop('delivery_queues');
     }
 
 }

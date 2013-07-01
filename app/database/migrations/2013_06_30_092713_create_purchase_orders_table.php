@@ -12,7 +12,7 @@ class CreatePurchaseOrdersTable extends Migration {
      */
     public function up()
     {
-        Schema::create('orders', function(Blueprint $table) {
+        Schema::create('purchase_orders', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('po_no')->nullable();
 			$table->float('quantity');
@@ -38,7 +38,7 @@ class CreatePurchaseOrdersTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('orders');
+        Schema::drop('purchase_orders');
     }
 
 }

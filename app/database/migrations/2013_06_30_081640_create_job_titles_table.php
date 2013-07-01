@@ -12,7 +12,7 @@ class CreateJobTitlesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('titles', function(Blueprint $table) {
+        Schema::create('job_titles', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
 			$table->string('department')->nullable();
@@ -27,7 +27,7 @@ class CreateJobTitlesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('titles');
+        Schema::drop('job_titles');
     }
 
 }

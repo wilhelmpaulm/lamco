@@ -12,7 +12,7 @@ class CreateSystemLogsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('logs', function(Blueprint $table) {
+        Schema::create('system_logs', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user')->nullable();
 			$table->string('department')->nullable();

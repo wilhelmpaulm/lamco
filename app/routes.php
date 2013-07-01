@@ -62,8 +62,6 @@ Route::resource('production_queues', 'Production_queuesController');
 
 Route::resource('production_records', 'Production_recordsController');
 
-Route::resource('delivery_queueas', 'Delivery_queueasController');
+Route::resource('delivery_queues', 'Delivery_queuesController');
 
 Route::resource('terms', 'TermsController');
-
-Route::resource('units', 'UnitsController');

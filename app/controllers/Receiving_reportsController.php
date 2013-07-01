@@ -1,6 +1,6 @@
 <?php
 
-class Recieving_reportsController extends BaseController {
+class Receiving_reportsController extends BaseController {
 
     /**
      * Display a listing of the resource.

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateRecievingReportsTable extends Migration {
+class CreateReceivingReportsTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRecievingReportsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('reports', function(Blueprint $table) {
+        Schema::create('receiving_reports', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('rr_no')->nullable();
             $table->integer('po_no')->nullable();
@@ -37,7 +37,7 @@ class CreateRecievingReportsTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('reports');
+        Schema::drop('receiving_reports');
     }
 
 }

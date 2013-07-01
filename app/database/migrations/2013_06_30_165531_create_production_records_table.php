@@ -12,7 +12,7 @@ class CreateProductionRecordsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('records', function(Blueprint $table) {
+        Schema::create('production_records', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('pr_no')->nullable();
 			$table->float('quantity')->nullable();
@@ -39,7 +39,7 @@ class CreateProductionRecordsTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('records');
+        Schema::drop('production_records');
     }
 
 }

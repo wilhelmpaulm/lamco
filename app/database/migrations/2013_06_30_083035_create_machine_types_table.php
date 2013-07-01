@@ -12,7 +12,7 @@ class CreateMachineTypesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('types', function(Blueprint $table) {
+        Schema::create('machine_types', function(Blueprint $table) {
             $table->increments('id');
             $table->string('type')->nullable();
             $table->timestamps();
@@ -26,7 +26,7 @@ class CreateMachineTypesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('types');
+        Schema::drop('machine_types');
     }
 
 }

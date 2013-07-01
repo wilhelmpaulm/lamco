@@ -1,6 +1,6 @@
 <?php
 
-class Delivery_queueasController extends BaseController {
+class Delivery_queuesController extends BaseController {
 
     /**
      * Display a listing of the resource.

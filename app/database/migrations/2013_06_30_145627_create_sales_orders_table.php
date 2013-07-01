@@ -12,7 +12,7 @@ class CreateSalesOrdersTable extends Migration {
      */
     public function up()
     {
-        Schema::create('orders', function(Blueprint $table) {
+        Schema::create('sales_orders', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('so_no')->nullable();
 			$table->integer('product')->nullable();
@@ -40,7 +40,7 @@ class CreateSalesOrdersTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('orders');
+        Schema::drop('sales_orders');
     }
 
 }

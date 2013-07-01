@@ -12,7 +12,7 @@ class CreateProductionLogsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('logs', function(Blueprint $table) {
+        Schema::create('production_logs', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user')->nullable();
 			$table->string('department')->nullable();
@@ -30,7 +30,7 @@ class CreateProductionLogsTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('logs');
+        Schema::drop('production_logs');
     }
 
 }
