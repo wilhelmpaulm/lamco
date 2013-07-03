@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMachinesTable extends Migration {
+class Statuses extends Migration {
 
     /**
      * Run the migrations.
@@ -12,10 +12,9 @@ class CreateMachinesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('machines', function(Blueprint $table) {
+        Schema::create('statuses', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
-            $table->string('type')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -27,7 +26,7 @@ class CreateMachinesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('machines');
+        Schema::drop('statuses');
     }
 
 }

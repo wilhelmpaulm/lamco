@@ -7,7 +7,7 @@ class Delivery_queuesTableSeeder extends Seeder {
     	// Uncomment the below to wipe the table clean before populating
     	// DB::table('delivery_queues')->delete();
 
-        $delivery_queueas = array(
+        $delivery_queues = array(
 
         );
 
