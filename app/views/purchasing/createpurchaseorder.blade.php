@@ -2,24 +2,28 @@
 @section('main')
 
 
-
-<form id="mamamia"  class="form-actions" action="" method="get">
+<ul class="breadcrumb balon">
+                <li>
+                    <a href="#">Home</a> <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="#">Purchasing</a> <span class="divider">/</span>
+                </li>
+                <li class="active">
+                    Create Purchase Order
+                </li>
+            </ul>
+<form id="mamamia"  class="" action="" method="get">
     <div class="row-fluid">
         <div class="span3">
             <!--<input class="btn " disabled="true" type="text" name="vendor" value="PO no. 879" />-->
-            <input class="btn btn-info btn-block" disabled="true" type="button" name="terms" value="Pending" />
-            <br>
-            <br>
+          
             <!--<input class="input-medium" type="text" name="vendor" value="" placeholder="Vendor Papers"/>-->
             <select class="input-large" name="vendor">
                 @foreach($vendors as $vendor)
                 <option value="{{$vendor->name}}">{{$vendor->name}}</option>
                 @endforeach
             </select>
-
-            <!--<input class="input-medium" type="text" name="address" value="" placeholder="1671 Pedro Gil St."/>-->
-            <!--<input class="input-medium" type="date" name="date" value="" placeholder="date today"/>-->
-            <!--<input class="input-medium" type="text" name="terms" value="" placeholder="30 days"/>-->
             <br><br>
 
         </div>
@@ -31,14 +35,13 @@
                     <div id="poop" class="row-fluid">
                         <div class="span3">
                             <label for="paper_type">Paper Type</label> 
-                            <!--<input class="input-block-level" type="text" name="terms" value="" placeholder="Vendor Papers"/>-->
-                            <select class="input-block-level" name="paper_type[]">
+                            <select id="paper_type" class="input-block-level" name="paper_type[]">
                                 @foreach($paper_types as $paper_type)
                                 <option value="{{$paper_type->type}}">{{$paper_type->type}}</option>
                                 @endforeach
                             </select>
                             <label for="calliper">Calliper</label> 
-                            <select class="input-block-level" name="calliper[]">
+                            <select id="calliper" class="input-block-level" name="calliper[]">
                                 @foreach($callipers as $calliper)
                                 <option value="{{$calliper->calliper}}">{{$calliper->calliper}}</option>
                                 @endforeach
@@ -47,32 +50,28 @@
                         </div>
                         <div class="span3">
                             <label for="weight">Weight</label> 
-                            <select class="input-block-level" name="weight[]">
+                            <select id="weight" class="input-block-level" name="weight[]">
                                 @foreach($weights as $weight)
                                 <option value="{{$weight->weight}}">{{$weight->weight}}</option>
                                 @endforeach
                             </select>
                             <label for="dimension">Dimensions</label> 
-                            <select class="input-block-level" name="dimension[]">
+                            <select id="dimension" class="input-block-level" name="dimension[]">
                                 @foreach($dimensions as $dimension)
                                 <option value="{{$dimension->dimension}}">{{$dimension->dimension}}</option>
                                 @endforeach
                             </select>
-                            <!--                            <label for="vendor">Weight</label> 
-                                                        <input class="input-block-level" type="text" name="terms" value="" placeholder="Vendor Papers"/>
-                                                        <label for="vendor">Dimensions</label> 
-                                                        <input class="input-block-level" type="text" name="terms" value="" placeholder="Vendor Papers"/>-->
-
+                          
                         </div>
                         <div class="span2">
                         </div>
-                        <div id="calc"  class="span3">
-                            <label for="quantity">Quantity</label> 
+                        <div class="span3">
+                            <label  for="quantity">Quantity</label> 
                             <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000.00"/>
                             <label for="price">Price</label> 
                             <input id="price" class="input-block-level" type="text" name="price[]" placeholder="000.00"/>
                             <hr>
-                            <label for="total">Subtotal</label> 
+                            <label for="subtotal">Subtotal</label> 
                             <input id="subtotal" class="input-block-level btn btn-inverse " disabled="true" type="text" name="total[]"  placeholder="0000000.00"/>
                         </div>
 
@@ -86,14 +85,14 @@
                     <input id="total" class="btn btn-block btn-warning" disabled="true" type="button" value="Total" />
                 </div>
                 <div class="span3">
-
+                    <input class="btn btn-inverse btn-block" disabled="true" type="button" name="terms" value="Pending" />
                 </div>
                 <div class="span3">
-                    <button id="removerow" class="btn btn-danger " type="button"><i class="icon-minus-sign-alt"></i></button>
-                    <button id="addrow" class="btn btn-success" type="button" ><i class="icon-plus-sign-alt"></i></button>
+                    <button id="removerow" class="btn btn-danger pull-left" type="button"><i class="icon-minus-sign-alt"></i></button>
+                    <button id="addrow" class="btn btn-success pull-right" type="button" ><i class="icon-plus-sign-alt"></i></button>
                 </div>
                 <div class="span3">
-                    <input  class="btn btn-info pull-right" type="submit" value="Submit" />
+                    <input  class="btn btn-info btn-block" type="submit" value="Submit" />
                 </div>
             </div>
         </div>

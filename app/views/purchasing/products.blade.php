@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <ul class="breadcrumb">
+            <ul class="breadcrumb balon">
                 <li>
                     <a href="#">Home</a> <span class="divider">/</span>
                 </li>
@@ -61,10 +61,6 @@
                                             <td>
                                                 Default
                                             </td>
-                                            <td>
-                                                <a id="modal-771123" href="#modal-container-771123" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
-                                            </td>
                                         </tr>
                                         <tr class="success">
                                             <td>
@@ -78,10 +74,6 @@
                                             </td>
                                             <td>
                                                 Approved
-                                            </td>
-                                            <td>
-                                                <a id="modal-771123" href="#modal-container-771123" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
                                             </td>
                                         </tr>
                                         <tr class="error">
@@ -97,12 +89,35 @@
                                             <td>
                                                 Declined
                                             </td>
+                                        </tr>
+                                        <tr class="warning">
                                             <td>
-                                                <a id="modal-771123" href="#modal-container-771123" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
+                                                3
+                                            </td>
+                                            <td>
+                                                TB - Monthly
+                                            </td>
+                                            <td>
+                                                03/04/2012
+                                            </td>
+                                            <td>
+                                                Pending
                                             </td>
                                         </tr>
-                                        
+                                        <tr class="info">
+                                            <td>
+                                                4
+                                            </td>
+                                            <td>
+                                                TB - Monthly
+                                            </td>
+                                            <td>
+                                                04/04/2012
+                                            </td>
+                                            <td>
+                                                Call in to confirm
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
 
@@ -126,6 +141,7 @@
 
 </div>
 
+<a id="modal-771123" href="#modal-container-771123" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 
 <div id="modal-container-771123" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">

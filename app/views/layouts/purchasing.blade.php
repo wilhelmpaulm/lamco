@@ -28,12 +28,18 @@
         background: url('{{URL::asset("bg/diagmonds.png")}}')
       }
       .hero-unit {
-               background: url('{{URL::asset("bg/project_paper.png")}}')
+               background: url('{{URL::asset("bg/.png")}}')
 
           /*background: url('{{URL::asset("bg/paper_3.png")}}')*/
       }
+      
+      .balon{
+               background: url('{{URL::asset("bg/diagmonds.png")}}')
+          
+      }
+      
       .well{
-          background: url('{{URL::asset("bg/project_papper.png")}}')
+          background: url('{{URL::asset("bg/handmadepaper.png")}}')
       }
       .sidebar-nav {
         padding: 9px 0;
@@ -92,7 +98,7 @@
       <div class="row-fluid">
         
           <div class="span3 ">
-          <div class="well sidebar-nav ">
+          <div class=" sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
               <li><a href="{{URL::to('purchasing/memo')}}">Memos</a></li>
@@ -104,7 +110,7 @@
               <li><a href="{{URL::to('purchasing/approve-purchase-order')}}">Approve Purchase Order</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
-              <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Rolls Summary</a></li>
+              <li><a href="{{URL::to('purchasing/view-rolls')}}">Rolls Summary</a></li>
               <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Manage Rolls</a></li>
               <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Products Summary</a></li>
               <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Manage Products</a></li>

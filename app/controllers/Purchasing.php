@@ -77,5 +77,11 @@ class Purchasing extends BaseController {
 
         return View::make('purchasing.rolls', $data);
     }
+    public function getViewProducts() {
+        $products = Product::all();
+        $data = ['products' => $products];
+
+        return View::make('purchasing.products', $data);
+    }
 
 }
