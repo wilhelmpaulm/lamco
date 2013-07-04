@@ -30,7 +30,7 @@
                 <div id="formrow">
                     <div id="poop" class="row-fluid">
                         <div class="span3">
-                            <label for="paper_type">Peper Type</label> 
+                            <label for="paper_type">Paper Type</label> 
                             <!--<input class="input-block-level" type="text" name="terms" value="" placeholder="Vendor Papers"/>-->
                             <select class="input-block-level" name="paper_type[]">
                                 @foreach($paper_types as $paper_type)
@@ -90,7 +90,7 @@
                 </div>
                 <div class="span3">
                     <button id="removerow" class="btn btn-danger " type="button"><i class="icon-minus-sign-alt"></i></button>
-                    <button id="addrow" class="btn btn-success pull-right" type="button" ><i class="icon-plus-sign-alt"></i></button>
+                    <button id="addrow" class="btn btn-success" type="button" ><i class="icon-plus-sign-alt"></i></button>
                 </div>
                 <div class="span3">
                     <input  class="btn btn-info pull-right" type="submit" value="Submit" />
@@ -107,9 +107,9 @@
     ref();
     function ref() {
         if (counter == 0) {
-            $('#removerow').hide(3000);
+            $('#removerow').hide();
         } else {
-            $('#removerow').show(300);
+            $('#removerow').show();
         }
     };
 
