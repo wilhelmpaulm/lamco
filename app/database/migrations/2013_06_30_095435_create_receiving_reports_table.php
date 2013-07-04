@@ -14,14 +14,14 @@ class CreateReceivingReportsTable extends Migration {
     {
         Schema::create('receiving_reports', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('rr_no')->nullable();
+//            $table->integer('rr_no')->nullable();
             $table->integer('po_no')->nullable();
-            $table->float('quantity');
-            $table->string('paper_type')->nullable();
-            $table->string('dimensions')->nullable();
-            $table->string('weight')->nullable();
-            $table->string('calliper')->nullable();
-            $table->text('instructions')->nullable();
+//            $table->float('quantity');
+//            $table->string('paper_type')->nullable();
+//            $table->string('dimension')->nullable();
+//            $table->string('weight')->nullable();
+//            $table->string('calliper')->nullable();
+//            $table->text('instructions')->nullable();
             $table->integer('vendor')->nullable();
             $table->integer('approved_by')->nullable();
             $table->integer('recieved_by')->nullable();

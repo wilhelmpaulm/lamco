@@ -44,6 +44,12 @@ class DatabaseSeeder extends Seeder {
 		$this->call('Delivery_queuesTableSeeder');
 		$this->call('TermsTableSeeder');
 //		$this->call('UnitsTableSeeder');
+		$this->call('Po_detailsTableSeeder');
+		$this->call('Rr_detailsTableSeeder');
+		$this->call('So_detailsTableSeeder');
+		$this->call('Pq_detailsTableSeeder');
+		$this->call('Pr_detailsTableSeeder');
+//		$this->call('Dq_detailsTableSeeder');
 	}
 
 }

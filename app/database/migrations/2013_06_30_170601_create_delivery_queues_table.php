@@ -14,7 +14,7 @@ class CreateDeliveryQueuesTable extends Migration {
     {
         Schema::create('delivery_queues', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('dq_no')->nullable();
+//            $table->integer('dq_no')->nullable();
 			$table->integer('truck')->nullable();
 			$table->integer('driver')->nullable();
 			$table->integer('client')->nullable();

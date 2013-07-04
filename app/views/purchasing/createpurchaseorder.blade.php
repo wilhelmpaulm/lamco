@@ -6,12 +6,11 @@
 <form id="mamamia"  class="form-actions" action="" method="get">
     <div class="row-fluid">
         <div class="span3">
-            <input class="btn " disabled="true" type="text" name="vendor" value="PO no. 879" />
-            <input class="btn btn-info" disabled="true" type="text" name="terms" value="Pending" />
-            <br>
-            <br>
+            <!--<input class="btn " disabled="true" type="text" name="vendor" value="PO no. 879" />-->
+            
             <!--<input class="input-medium" type="text" name="vendor" value="" placeholder="Vendor Papers"/>-->
-            <select class="input-large" name="vendor">
+            <label for="vendor">Vendor</label> 
+            <select id="vendor" class="input-large" name="vendor">
                 @foreach($vendors as $vendor)
                 <option value="{{$vendor->name}}">{{$vendor->name}}</option>
                 @endforeach
@@ -31,37 +30,31 @@
                     <div id="poop" class="row-fluid">
                         <div class="span3">
                             <label for="paper_type">Paper Type</label> 
-                            <!--<input class="input-block-level" type="text" name="terms" value="" placeholder="Vendor Papers"/>-->
-                            <select class="input-block-level" name="paper_type[]">
+                            <select id="paper_type" class="input-block-level" name="paper_type[]">
                                 @foreach($paper_types as $paper_type)
                                 <option value="{{$paper_type->type}}">{{$paper_type->type}}</option>
                                 @endforeach
                             </select>
                             <label for="calliper">Calliper</label> 
-                            <select class="input-block-level" name="calliper[]">
+                            <select id="calliper" class="input-block-level" name="calliper[]">
                                 @foreach($callipers as $calliper)
                                 <option value="{{$calliper->calliper}}">{{$calliper->calliper}}</option>
                                 @endforeach
                             </select>
-                            <!--<input class="input-block-level" type="text" name="terms" value="" placeholder="Vendor Papers"/>-->
                         </div>
                         <div class="span3">
                             <label for="weight">Weight</label> 
-                            <select class="input-block-level" name="weight[]">
+                            <select id="weight" class="input-block-level" name="weight[]">
                                 @foreach($weights as $weight)
                                 <option value="{{$weight->weight}}">{{$weight->weight}}</option>
                                 @endforeach
                             </select>
                             <label for="dimension">Dimensions</label> 
-                            <select class="input-block-level" name="dimension[]">
+                            <select id="dimension" class="input-block-level" name="dimension[]">
                                 @foreach($dimensions as $dimension)
                                 <option value="{{$dimension->dimension}}">{{$dimension->dimension}}</option>
                                 @endforeach
                             </select>
-                            <!--                            <label for="vendor">Weight</label> 
-                                                        <input class="input-block-level" type="text" name="terms" value="" placeholder="Vendor Papers"/>
-                                                        <label for="vendor">Dimensions</label> 
-                                                        <input class="input-block-level" type="text" name="terms" value="" placeholder="Vendor Papers"/>-->
 
                         </div>
                         <div class="span2">
@@ -83,7 +76,8 @@
             <hr>
             <div class="row-fluid">
                 <div class="span3">
-                    <input id="total" class="btn btn-info" type="button" value="Calculate" />
+                    <!--<input id="total" class="btn btn-info" type="button" value="Calculate" />-->
+                    <input class="btn btn-info" disabled="true" type="text" name="terms" value="Pending" />
                 </div>
                 <div class="span3">
 

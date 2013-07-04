@@ -14,19 +14,19 @@ class CreatePurchaseOrdersTable extends Migration {
     {
         Schema::create('purchase_orders', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('po_no')->nullable();
-			$table->float('quantity');
-			$table->string('paper_type')->nullable();
-			$table->string('dimensions')->nullable();
-			$table->string('weight')->nullable();
-			$table->string('calliper')->nullable();
-			$table->text('instructions')->nullable();
 			$table->integer('created_by')->nullable();
 			$table->integer('approved_by')->nullable();
 			$table->integer('vendor')->nullable();
-			$table->float('total')->nullable();
 			$table->string('status')->nullable();
-			$table->float('price')->nullable();
+//            $table->integer('po_no')->nullable();
+//			$table->float('quantity');
+//			$table->string('paper_type')->nullable();
+//			$table->string('dimensions')->nullable();
+//			$table->string('weight')->nullable();
+//			$table->string('calliper')->nullable();
+//			$table->text('instructions')->nullable();
+//			$table->float('total')->nullable();
+//			$table->float('price')->nullable();
             $table->timestamps();
         });
     }

@@ -88,3 +88,15 @@ Route::controller('purchasing', 'Purchasing');
 Route::controller('sales', 'Sales');
 Route::controller('production', 'Production');
 Route::controller('delivery', 'Delivery');
+
+Route::resource('po_details', 'Po_detailsController');
+
+Route::resource('rr_details', 'Rr_detailsController');
+
+Route::resource('so_details', 'So_detailsController');
+
+Route::resource('pq_details', 'Pq_detailsController');
+
+Route::resource('pr_details', 'Pr_detailsController');
+
+Route::resource('dq_details', 'Dq_detailsController');

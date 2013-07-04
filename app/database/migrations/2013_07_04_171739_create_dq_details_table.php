@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateProductionQueuesTable extends Migration {
+class CreateDqDetailsTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,13 +12,10 @@ class CreateProductionQueuesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('production_queues', function(Blueprint $table) {
+        Schema::create('dq_details', function(Blueprint $table) {
             $table->increments('id');
-//            $table->integer('pq_no')->nullable();
+            $table->integer('dq_no')->nullable();
 			$table->integer('so_no')->nullable();
-			$table->integer('created_by')->nullable();
-			$table->integer('approved_by')->nullable();
-			$table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -30,7 +27,7 @@ class CreateProductionQueuesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('production_queues');
+        Schema::drop('dq_details');
     }
 
 }
