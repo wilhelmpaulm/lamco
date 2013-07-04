@@ -29,7 +29,7 @@ class CreateSystemLogsTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('logs');
+        Schema::drop('system_logs');
     }
 
 }
