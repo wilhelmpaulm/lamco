@@ -50,6 +50,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('Pq_detailsTableSeeder');
 		$this->call('Pr_detailsTableSeeder');
 //		$this->call('Dq_detailsTableSeeder');
+		$this->call('StudentsTableSeeder');
+		$this->call('PostsTableSeeder');
 	}
 
 }

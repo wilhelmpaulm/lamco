@@ -3,27 +3,24 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <ul class="breadcrumb">
+            <ul class="breadcrumb balon">
                 <li>
                     <a href="#">Home</a> <span class="divider">/</span>
                 </li>
                 <li>
-                    <a href="#">Library</a> <span class="divider">/</span>
+                    <a href="#">Vendors</a> <span class="divider">/</span>
                 </li>
                 <li class="active">
-                    Data
+                    View Vendors
                 </li>
             </ul>
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#rolls-inventory" data-toggle="tab">Lamco Rolls</a>
+                        <a href="#rolls-inventory" data-toggle="tab">Local Vendors</a>
                     </li>
                     <li>
-                        <a href="#rolls-reserved" data-toggle="tab">Reserved Rolls</a>
-                    </li>
-                    <li>
-                        <a href="#rolls-danger" data-toggle="tab">Stock Alerter</a>
+                        <a href="#rolls-reserved" data-toggle="tab">Foreign Vendors</a>
                     </li>
                 </ul>
                 <div class="tab-content">

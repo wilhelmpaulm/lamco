@@ -106,18 +106,21 @@
               <li><hr></li>
               <li class="nav-header"><i class="icon-money"></i> Purchasing</li>
               <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Purchase Order</a></li>
-              <li><a href="{{URL::to('purchasing/purchase-order-summary')}}">View Purchase Order Summary</a></li>
+              <li><a href="{{URL::to('purchasing/view-purchase-orders')}}">View Purchase Orders</a></li>
               <li><a href="{{URL::to('purchasing/approve-purchase-order')}}">Approve Purchase Order</a></li>
+              <li><a href="{{URL::to('purchasing/view-receiving-reports')}}">View Receiving Reports</a></li>
+              <li><a href="{{URL::to('purchasing/manage-receiving-reports')}}">Manage Receiving Reports</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
-              <li><a href="{{URL::to('purchasing/view-rolls')}}">Rolls Summary</a></li>
-              <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Manage Rolls</a></li>
-              <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Products Summary</a></li>
-              <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Manage Products</a></li>
+              <li><a href="{{URL::to('purchasing/view-rolls')}}">View Rolls</a></li>
+              <li><a href="{{URL::to('purchasing/manage-rols')}}">Manage Rolls</a></li>
+              <li><a href="{{URL::to('purchasing/view-products')}}">View Products</a></li>
+              <li><a href="{{URL::to('purchasing/manage-products')}}">Manage Products</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-suitcase"></i> Vendors</li>
-              <li><a href="{{URL::to('purchasing/create-purchase-order')}}">View Vendors</a></li>
-              <li><a href="{{URL::to('purchasing/create-purchase-order')}}">View Roll Prices</a></li>
+              <li><a href="{{URL::to('purchasing/view-vendors')}}">View Vendors</a></li>
+              <li><a href="{{URL::to('purchasing/manage-vendors')}}">Manage Vendors</a></li>
+              <li><a href="{{URL::to('purchasing/view-roll-prices')}}">View Roll Prices</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

@@ -17,7 +17,7 @@ class CreatePoDetailsTable extends Migration {
             $table->integer('po_no');
 			$table->integer('quantity');
 			$table->string('paper_type');
-			$table->string('dimensions');
+			$table->string('dimension');
 			$table->string('weight');
 			$table->string('calliper');
 			$table->text('instructions')->nullable();
