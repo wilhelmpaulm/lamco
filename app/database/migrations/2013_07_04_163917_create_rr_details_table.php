@@ -20,7 +20,10 @@ class CreateRrDetailsTable extends Migration {
 			$table->string('dimension');
 			$table->string('weight');
 			$table->string('calliper');
+			$table->string('unit')->nullable();
 			$table->text('instructions')->nullable();
+			$table->string('warehouse')->nullable();
+			$table->string('location')->nullable();
 //			$table->float('total')->nullable();
 //			$table->float('price')->nullable ();
             $table->timestamps();

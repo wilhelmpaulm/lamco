@@ -23,8 +23,8 @@ class CreateReceivingReportsTable extends Migration {
 //            $table->string('calliper')->nullable();
 //            $table->text('instructions')->nullable();
             $table->integer('vendor')->nullable();
+            $table->integer('created_by')->nullable();
             $table->integer('approved_by')->nullable();
-            $table->integer('recieved_by')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

@@ -21,6 +21,7 @@ class Purchasing extends BaseController {
         $caliipers = Calliper::all();
         $statuses = Status::all();
         $vendors = Vendor::all();
+        $units = Unit::all();
 
         $data = [
             'paper_types' => $paper_types,
@@ -28,6 +29,7 @@ class Purchasing extends BaseController {
             'weights' => $weights,
             'callipers' => $caliipers,
             'statuses' => $statuses,
+            'units' => $units,
             'vendors' => $vendors
         ];
         
@@ -43,6 +45,7 @@ class Purchasing extends BaseController {
         $caliipers = Calliper::all();
         $statuses = Status::all();
         $vendors = Vendor::all();
+        $units = Unit::all();
         
         $po = Purchase_order::find($id);
         $po_d = Po_detail::where('po_no' , '=', "$id")->get();
@@ -56,11 +59,44 @@ class Purchasing extends BaseController {
             'weights' => $weights,
             'callipers' => $caliipers,
             'statuses' => $statuses,
+            'units' => $units,
             'vendors' => $vendors
         ];
 
         return View::make('purchasing.editpurchaseorder', $data);
     }
+    
+    public function postEditReceivingReport() {
+        $id = Input::get('id');
+        
+        $paper_types = Paper_type::all();
+        $dimensions = Dimension::all();
+        $weights = Weight::all();
+        $caliipers = Calliper::all();
+        $statuses = Status::all();
+        $vendors = Vendor::all();
+        $units = Unit::all();
+        
+        $rr = Receiving_report::find($id);
+        $rr_d = Rr_detail::where('rr_no' , '=', "$id")->get();
+        
+
+        $data = [
+            'rr' => $rr,
+            'rr_d' => $rr_d,
+            'paper_types' => $paper_types,
+            'dimensions' => $dimensions,
+            'weights' => $weights,
+            'callipers' => $caliipers,
+            'statuses' => $statuses,
+            'units' => $units,
+            'vendors' => $vendors
+        ];
+
+        return View::make('purchasing.editreceivingreport', $data);
+    }
+    
+    
     public function postViewPurchaseOrder() {
         $id = Input::get('id');
         $po = Purchase_order::find($id);
@@ -71,6 +107,17 @@ class Purchasing extends BaseController {
         ];
 
         return View::make('purchasing.viewpurchaseorder', $data);
+    }
+    public function postViewReceivingReport() {
+        $id = Input::get('id');
+        $rr = Receiving_report::find($id);
+        $rr_d = Rr_detail::where('rr_no' , '=', "$id")->get();
+        $data = [
+            'rr' => $rr,
+            'rr_d' => $rr_d,
+        ];
+
+        return View::make('purchasing.viewreceivingreport', $data);
     }
 
     public function postApplyEditPurchaseOrder() {
@@ -93,11 +140,37 @@ class Purchasing extends BaseController {
                         'calliper' => Input::get("calliper")[$index],
                         'instructions' => Input::get("instructions")[$index],
                         'price' => Input::get("price")[$index],
+                        'unit' => Input::get("unit")[$index],
                         'total' => Input::get("subtotal")[$index]
             ]);
         }
 
         return Redirect::to('purchasing/view-purchase-orders');
+    }
+    public function postApplyEditReceivingReport() {
+        $id = Input::get('id');
+//        return $id;
+        $rr = Receiving_report::find($id);
+        $rr->vendor = Input::get('vendor');
+        $rr->created_by = Auth::user()->id;
+        $rr->save();
+        
+        Rr_detail::where('rr_no', '=', $rr->id)->delete();
+        
+        for ($index = 0; $index < count(Input::get('paper_type')); $index++) {
+            $rr_d = Rr_detail::create([
+                        'rr_no' => $rr->id,
+                        'quantity' => Input::get("quantity")[$index],
+                        'paper_type' => Input::get("paper_type")[$index],
+                        'dimension' => Input::get("dimension")[$index],
+                        'weight' => Input::get("weight")[$index],
+                        'calliper' => Input::get("calliper")[$index],
+                        'instructions' => Input::get("instructions")[$index],
+                        'unit' => Input::get("unit")[$index]
+            ]);
+        }
+
+        return Redirect::to('purchasing/view-receiving-reports');
     }
     public function postAddPurchaseOrder() {
         $po = Purchase_order::create([
@@ -115,6 +188,7 @@ class Purchasing extends BaseController {
                         'calliper' => Input::get("calliper")[$index],
                         'instructions' => Input::get("instructions")[$index],
                         'price' => Input::get("price")[$index],
+                        'unit' => Input::get("unit")[$index],
                         'total' => Input::get("subtotal")[$index]
             ]);
         }
@@ -128,6 +202,12 @@ class Purchasing extends BaseController {
         Po_detail::where('po_no','=',$id)->delete();
         return Redirect::to('purchasing/view-purchase-orders');
     }
+    public function postDeleteReceivingReport(){
+        $id = Input::get('id');
+        Receiving_report::find($id)->delete();
+        Rr_detail::where('rr_no','=',$id)->delete();
+        return Redirect::to('purchasing/view-receiving-reports');
+    }
     
     public function postApprovePurchaseOrder(){
         $id = Input::get('id');
@@ -135,6 +215,52 @@ class Purchasing extends BaseController {
         $po->status = "Approved";
         $po->approved_by = Auth::user()->id;
         $po->save();
+        $rr = Receiving_report::create([
+           'po_no' => $id,
+            'vendor' => $po->vendor,
+            'created_by' => Auth::user()->id,
+            'status' => 'Pending'
+        ]);
+        $po_d = Po_detail::where('po_no','=', $id)->get();
+        foreach ($po_d as $po_d) {
+            Rr_detail::create([
+                        'rr_no' => $rr->id,
+                        'quantity' => $po_d->quantity,
+                        'paper_type' => $po_d->paper_type,
+                        'dimension' => $po_d->dimension,
+                        'weight' => $po_d->weight,
+                        'calliper' => $po_d->calliper,
+                        'instructions' => $po_d->instructions,
+                        'unit' => $po_d->unit
+            ]);
+        }
+        return Redirect::to('purchasing/view-purchase-orders');
+    }
+    public function postApproveReceivingReport(){
+        $id = Input::get('id');
+        $po = Purchase_order::find($id);
+        $po->status = "Approved";
+        $po->approved_by = Auth::user()->id;
+        $po->save();
+        $rr = Receiving_report::create([
+           'po_no' => $id,
+            'vendor' => $po->vendor,
+            'created_by' => Auth::user()->id,
+            'status' => 'Pending'
+        ]);
+        $po_d = Po_detail::where('po_no','=', $id)->get();
+        foreach ($po_d as $po_d) {
+            Rr_detail::create([
+                        'rr_no' => $rr->id,
+                        'quantity' => $po_d->quantity,
+                        'paper_type' => $po_d->paper_type,
+                        'dimension' => $po_d->dimension,
+                        'weight' => $po_d->weight,
+                        'calliper' => $po_d->calliper,
+                        'instructions' => $po_d->instructions,
+                        'unit' => $po_d->unit
+            ]);
+        }
         return Redirect::to('purchasing/view-purchase-orders');
     }
 
@@ -152,9 +278,7 @@ class Purchasing extends BaseController {
         return View::make('purchasing.viewpurchaseorders', $data);
     }
 
-    public function getApprovePurchaseOrder() {
-        return View::make('purchasing.reminder');
-    }
+  
 
     public function getViewRolls() {
         $rolls = Roll::all();
@@ -178,14 +302,14 @@ class Purchasing extends BaseController {
     }
 
     public function getViewReceivingReports() {
-       $pos_p = Receiving_report::where('status', '=', 'pending')->get();
-        $pos_a = Receiving_report::where('status', '=', 'approved')->get();
-        $pos_f = Receiving_report::where('status', '=', 'finished')->get();
+       $rr_p = Receiving_report::where('status', '=', 'pending')->get();
+        $rr_a = Receiving_report::where('status', '=', 'approved')->get();
+        $rr_f = Receiving_report::where('status', '=', 'finished')->get();
 //        
         $data = [
-            'pos_p' => $pos_p,
-            'pos_a' => $pos_a,
-            'pos_f' => $pos_f
+            'rr_p' => $rr_p,
+            'rr_a' => $rr_a,
+            'rr_f' => $rr_f
         ];
         
         return View::make('purchasing.viewreceivingreports', $data);

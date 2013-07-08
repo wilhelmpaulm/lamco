@@ -74,8 +74,15 @@
 
                         </div>
                         <div class="span2">
+                            <label for="unit">Units</label> 
+                            <select id="unit" class="input-block-level" name="unit[]">
+                                <option value="{{$po_d->unit}}">{{$po_d->unit}}</option>
+                                @foreach($units as $unit)
+                                <option value="{{$unit->unit}}">{{$unit->unit}}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="span3">
+                        <div class="span2">
                             <label  for="quantity">Quantity</label> 
                             <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000" value="{{$po_d->quantity}}"/>
                             <label for="price">Price</label> 
@@ -83,7 +90,7 @@
                             <hr>
                             <label for="subtotal">Subtotal</label> 
                             <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00" />
-                            <input id="subtotal"  class="btn btn-info" type="text" disabled="true" placeholder="000.00" value="{{$po_d->total}}"/>
+                            <input id="subtotal"  class="input-block-level" type="text" disabled="true" placeholder="000.00" value="{{$po_d->total}}"/>
                             <!--Subtotal: <span id="subtotal">0.00</span>-->
                             <!--<input id="subtotal" class="input-block-level btn btn-inverse " disabled="true" value="0.00" type="text" name="subtotal"/>-->
                         </div>

@@ -18,13 +18,13 @@
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#po-pending" data-toggle="tab">Pending Purchase Orders</a>
+                        <a href="#po-pending" data-toggle="tab">Pending Receiving Reports</a>
                     </li>
                     <li>
-                        <a href="#po-approved" data-toggle="tab">Approved Purchase Orders</a>
+                        <a href="#po-approved" data-toggle="tab">Approved Receiving Reports</a>
                     </li>
                     <li>
-                        <a href="#po-accomplished" data-toggle="tab">Accomplished Purchase Orders</a>
+                        <a href="#po-accomplished" data-toggle="tab">Accomplished Receiving Reports</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -58,42 +58,42 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($pos_p as $pos)
+                                        @foreach($rr_p as $rr)
                                         <tr>
                                             <td>
-                                                {{$pos->id}}
+                                                {{$rr->id}}
                                             </td>
                                             <td>
-                                                {{$pos->vendor}}
+                                                {{$rr->vendor}}
                                             </td>
                                             <td>
-                                                {{$pos->created_at}}
+                                                {{$rr->created_at}}
                                             </td>
                                             <td>
-                                                {{$pos->updated_at}}
+                                                {{$rr->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                <form action="{{URL::to('purchasing/view-receiving-report')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$rr->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/approve-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                <form action="{{URL::to('purchasing/approve-receiving-report')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$rr->id}}" />
                                                     <input class="btn btn-success" type="submit" value="Approve" />
                                                 </form>
                                             
                                             </td>
                                             <td>
-                                                 <form action="{{URL::to('purchasing/edit-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                 <form action="{{URL::to('purchasing/edit-receiving-report')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$rr->id}}" />
                                                     <input class="btn btn-warning" type="submit" value="Edit" />
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/delete-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                <form action="{{URL::to('purchasing/delete-receiving-report')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$rr->id}}" />
                                                     <input class="btn btn-danger" type="submit" value="Delete" />
                                                 </form>
                                             
@@ -132,23 +132,23 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($pos_a as $pos)
+                                        @foreach($rr_a as $rr)
                                         <tr>
                                             <td>
-                                                {{$pos->id}}
+                                                {{$rr->id}}
                                             </td>
                                             <td>
-                                                {{$pos->vendor}}
+                                                {{$rr->vendor}}
                                             </td>
                                             <td>
-                                                {{$pos->created_at}}
+                                                {{$rr->created_at}}
                                             </td>
                                             <td>
-                                                {{$pos->updated_at}}
+                                                {{$rr->updated_at}}
                                             </td>
                                             <td>
                                                  <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                    <input class="" type="hidden" name="id" value="{{$rr->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
                                             </td>
@@ -188,23 +188,23 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($pos_f as $pos)
+                                        @foreach($rr_f as $rr)
                                         <tr>
                                             <td>
-                                                {{$pos->id}}
+                                                {{$rr->id}}
                                             </td>
                                             <td>
-                                                {{$pos->vendor}}
+                                                {{$rr->vendor}}
                                             </td>
                                             <td>
-                                                {{$pos->created_at}}
+                                                {{$rr->created_at}}
                                             </td>
                                             <td>
-                                                {{$pos->updated_at}}
+                                                {{$rr->updated_at}}
                                             </td>
                                            <td>
                                                  <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                    <input class="" type="hidden" name="id" value="{{$rr->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
                                             </td>

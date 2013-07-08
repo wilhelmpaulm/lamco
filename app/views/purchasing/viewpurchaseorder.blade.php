@@ -56,6 +56,8 @@
 
                         </div>
                         <div class="span2">
+                            <label  for="unit">Units</label> 
+                            <input id="quantity" class="input-block-level" disabled="" type="text" name="quantity[]" placeholder="000" value="{{$po_d->unit}}"/>
                         </div>
                         <div class="span3">
                             <label  for="quantity">Quantity</label> 

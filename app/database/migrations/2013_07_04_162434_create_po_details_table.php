@@ -20,9 +20,10 @@ class CreatePoDetailsTable extends Migration {
 			$table->string('dimension');
 			$table->string('weight');
 			$table->string('calliper');
-			$table->text('instructions')->nullable();
-			$table->float('total')->nullable();
+			$table->string('unit')->nullable();
 			$table->float('price')->nullable ();
+			$table->float('total')->nullable();
+			$table->text('instructions')->nullable();
             $table->timestamps();
         });
     }
