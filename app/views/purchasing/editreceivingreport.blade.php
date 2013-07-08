@@ -74,6 +74,22 @@
 
                         </div>
                         <div class="span2">
+                            <label for="warehouse">Warehouse</label> 
+                            <select id="unit" class="input-block-level" name="unit[]">
+                                <option value="{{$rr_d->warehouse}}">{{$rr_d->warehouse}}</option>
+                                @foreach($warehouses as $warehouse)
+                                <option value="{{$warehouse->warehouse}}">{{$warehouse->warehouse}}</option>
+                                @endforeach
+                            </select>
+                            <label for="location">Location</label> 
+                            <select id="unit" class="input-block-level" name="unit[]">
+                                <option value="{{$rr_d->location}}">{{$rr_d->location}}</option>
+                                @foreach($locations as $location)
+                                <option value="{{$location->location}}">{{$location->location}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="span2">
                             <label for="unit">Units</label> 
                             <select id="unit" class="input-block-level" name="unit[]">
                                 <option value="{{$rr_d->unit}}">{{$rr_d->unit}}</option>
@@ -81,8 +97,6 @@
                                 <option value="{{$unit->unit}}">{{$unit->unit}}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="span2">
                             <label  for="quantity">Quantity</label> 
                             <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000" value="{{$rr_d->quantity}}"/>
                           </div>

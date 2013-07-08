@@ -76,6 +76,8 @@ class Purchasing extends BaseController {
         $statuses = Status::all();
         $vendors = Vendor::all();
         $units = Unit::all();
+        $warehouses = warehouse::all();
+        $locations = Location::all();
         
         $rr = Receiving_report::find($id);
         $rr_d = Rr_detail::where('rr_no' , '=', "$id")->get();
@@ -90,6 +92,8 @@ class Purchasing extends BaseController {
             'callipers' => $caliipers,
             'statuses' => $statuses,
             'units' => $units,
+            'warehouses' => $warehouses,
+            'locations' => $locations,
             'vendors' => $vendors
         ];
 
@@ -166,6 +170,8 @@ class Purchasing extends BaseController {
                         'weight' => Input::get("weight")[$index],
                         'calliper' => Input::get("calliper")[$index],
                         'instructions' => Input::get("instructions")[$index],
+                        'warehouse' => Input::get("warehouse")[$index],
+                        'location' => Input::get("location")[$index],
                         'unit' => Input::get("unit")[$index]
             ]);
         }

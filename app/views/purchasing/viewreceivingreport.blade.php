@@ -56,10 +56,14 @@
 
                         </div>
                         <div class="span2">
-                            <label  for="unit">Units</label> 
-                            <input id="quantity" class="input-block-level" disabled="" type="text" name="quantity[]" placeholder="000" value="{{$rr_d->unit}}"/>
+                            <label  for="unit">Warehouse</label> 
+                            <input id="quantity" class="input-block-level" disabled="" type="text" name="quantity[]" placeholder="000" value="{{$rr_d->warehouse}}"/>
+                            <label  for="unit">Location</label> 
+                            <input id="quantity" class="input-block-level" disabled="" type="text" name="quantity[]" placeholder="000" value="{{$rr_d->location}}"/>
                         </div>
                         <div class="span3">
+                            <label  for="unit">Units</label> 
+                            <input id="quantity" class="input-block-level" disabled="" type="text" name="quantity[]" placeholder="000" value="{{$rr_d->unit}}"/>
                             <label  for="quantity">Quantity</label> 
                             <input id="quantity" class="input-block-level" disabled="" type="text" name="quantity[]" placeholder="000" value="{{$rr_d->quantity}}"/>
                            
