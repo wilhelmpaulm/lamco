@@ -12,34 +12,34 @@
 
     <!-- Le styles -->
     {{HTML::style('css/bootstrap.min.css')}}    
-    {{HTML::style('css/flatty-bootstrap.css')}}
+    {{HTML::style('css/cosmo-bootstrap.css')}}
     {{HTML::style('css/bootstrap-responsive.min.css')}}
     {{HTML::style('css/font-awesome.min.css')}}
     {{HTML::style('css/wilhelmpaulm.css')}}
     {{HTML::style('css/parsley.css')}}
+    {{HTML::style('css/dataTables.css')}}
     
     {{HTML::script('js/jquery.js')}}
     {{HTML::script('js/bootstrap.min.js')}}
     {{HTML::script('js/parsley.min.js')}}
+    {{HTML::script('js/dataTables.min.js')}}
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
-        background: url('{{URL::asset("bg/diagmonds.png")}}')
+        
       }
       .hero-unit {
-               background: url('{{URL::asset("bg/.png")}}')
+               background: url('{{URL::asset("bg/paper_3.png")}}');
 
           /*background: url('{{URL::asset("bg/paper_3.png")}}')*/
       }
       
       .balon{
-               background: url('{{URL::asset("bg/diagmonds.png")}}')
           
       }
       
       .well{
-          background: url('{{URL::asset("bg/handmadepaper.png")}}')
       }
       .sidebar-nav {
         padding: 9px 0;
@@ -107,7 +107,6 @@
               <li class="nav-header"><i class="icon-money"></i> Purchasing</li>
               <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Purchase Order</a></li>
               <li><a href="{{URL::to('purchasing/view-purchase-orders')}}">View Purchase Orders</a></li>
-              <li><a href="{{URL::to('purchasing/approve-purchase-order')}}">Approve Purchase Order</a></li>
               <li><a href="{{URL::to('purchasing/view-receiving-reports')}}">View Receiving Reports</a></li>
               <li><a href="{{URL::to('purchasing/manage-receiving-reports')}}">Manage Receiving Reports</a></li>
               <li><hr></li>

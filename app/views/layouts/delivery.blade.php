@@ -11,27 +11,36 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    {{HTML::style('css/bootstrap.min.css')}}
-    {{HTML::style('css/flatty-bootstrap.css')}}
+     {{HTML::style('css/bootstrap.min.css')}}    
+    {{HTML::style('css/cosmo-bootstrap.css')}}
     {{HTML::style('css/bootstrap-responsive.min.css')}}
     {{HTML::style('css/font-awesome.min.css')}}
     {{HTML::style('css/wilhelmpaulm.css')}}
     {{HTML::style('css/parsley.css')}}
+    {{HTML::style('css/dataTables.css')}}
+    
+    {{HTML::script('js/jquery.js')}}
+    {{HTML::script('js/bootstrap.min.js')}}
+    {{HTML::script('js/parsley.min.js')}}
+    {{HTML::script('js/dataTables.min.js')}}
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
-        background: url('{{URL::asset("bg/black-Linen.png")}}')
+        
       }
       .hero-unit {
-        /*background: url('{{URL::asset("bg/paper_3.png")}}')*/
-                background: url('{{URL::asset("bg/project_paper.png")}}')
+               background: url('{{URL::asset("bg/paper_3.png")}}');
 
-      }
-      .well{
-          background: url('{{URL::asset("bg/project_papper.png")}}')
+          /*background: url('{{URL::asset("bg/paper_3.png")}}')*/
       }
       
+      .balon{
+          
+      }
+      
+      .well{
+      }
       .sidebar-nav {
         padding: 9px 0;
       }

@@ -2,46 +2,54 @@
 @section('main')
 
 
-<ul class="breadcrumb ">
+<ul class="breadcrumb balon">
     <li>
         <a href="#">Home</a> <span class="divider">/</span>
     </li>
     <li>
         <a href="#">Purchasing</a> <span class="divider">/</span>
     </li>
+    <li>
+        <a href="#">Edit Purchase Order</a> <span class="divider">/</span>
+    </li>
     <li class="active">
-        Create Purchase Order
+        Purchase Order #{{$po->id}}
     </li>
 </ul>
-<form id="mamamia"  class="" action="{{URL::to('purchasing/add-purchase-order')}}" method="post">
+<form id="mamamia"  class="" action="{{URL::to('purchasing/apply-edit-purchase-order')}}" method="post">
     <div class="row-fluid">
         <div class="span3">
-            <!--<input class="btn " disabled="true" type="text" name="vendor" value="PO no. 879" />-->
-
+            <label>PO number</label> 
+            <input class="btn "  type="hidden" name="id" value="{{$po->id}}" />
+            <input class="btn " disabled="true" type="btn" name="id" value="{{$po->id}}" />
+            <hr>
   <!--<input class="input-medium" type="text" name="vendor" value="" placeholder="Vendor Papers"/>-->
+            <label for="vendor">Vendor</label> 
             <select class="input-large" name="vendor">
+                <option value="{{$po->vendor}}">{{$po->vendor}}</option>
                 @foreach($vendors as $vendor)
                 <option value="{{$vendor->id}}">{{$vendor->name}}</option>
                 @endforeach
             </select>
             <br><br>
-
         </div>
-
-
         <div class="span9">
             <div id="formbody" style="height: 360px; overflow: auto">
+                @foreach($po_d as $po_d)
                 <div id="formrow">
                     <div id="poop" class="row-fluid">
                         <div class="span3">
                             <label for="paper_type">Paper Type</label> 
                             <select id="paper_type" class="input-block-level" name="paper_type[]">
+                                <option value="{{$po_d->paper_type}}">{{$po_d->paper_type}}</option>
                                 @foreach($paper_types as $paper_type)
                                 <option value="{{$paper_type->type}}">{{$paper_type->type}}</option>
                                 @endforeach
                             </select>
                             <label for="calliper">Calliper</label> 
+                            <option value="{{$po_d->calliper}}">{{$po_d->calliper}}</option>
                             <select id="calliper" class="input-block-level" name="calliper[]">
+                                <option value="{{$po_d->calliper}}">{{$po_d->calliper}}</option>
                                 @foreach($callipers as $calliper)
                                 <option value="{{$calliper->calliper}}">{{$calliper->calliper}}</option>
                                 @endforeach
@@ -51,12 +59,14 @@
                         <div class="span3">
                             <label for="weight">Weight</label> 
                             <select id="weight" class="input-block-level" name="weight[]">
+                                <option value="{{$po_d->weight}}">{{$po_d->weight}}</option>
                                 @foreach($weights as $weight)
                                 <option value="{{$weight->weight}}">{{$weight->weight}}</option>
                                 @endforeach
                             </select>
                             <label for="dimension">Dimensions</label> 
                             <select id="dimension" class="input-block-level" name="dimension[]">
+                                <option value="{{$po_d->dimension}}">{{$po_d->dimension}}</option>
                                 @foreach($dimensions as $dimension)
                                 <option value="{{$dimension->dimension}}">{{$dimension->dimension}}</option>
                                 @endforeach
@@ -67,13 +77,13 @@
                         </div>
                         <div class="span3">
                             <label  for="quantity">Quantity</label> 
-                            <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000"/>
+                            <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000" value="{{$po_d->quantity}}"/>
                             <label for="price">Price</label> 
-                            <input id="price" class="input-block-level" type="text" name="price[]" placeholder="000.00"/>
+                            <input id="price" class="input-block-level" type="text" name="price[]" placeholder="000.00" value="{{$po_d->price}}"/>
                             <hr>
                             <label for="subtotal">Subtotal</label> 
-                            <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
-                            <input id="subtotal"  class="btn btn-info" type="text" disabled="true" placeholder="000.00"/>
+                            <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00" />
+                            <input id="subtotal"  class="btn btn-info" type="text" disabled="true" placeholder="000.00" value="{{$po_d->total}}"/>
                             <!--Subtotal: <span id="subtotal">0.00</span>-->
                             <!--<input id="subtotal" class="input-block-level btn btn-inverse " disabled="true" value="0.00" type="text" name="subtotal"/>-->
                         </div>
@@ -81,6 +91,7 @@
                     </div>
                     <hr>
                 </div>
+                @endforeach
             </div>
             <hr>
             <div class="row-fluid">
