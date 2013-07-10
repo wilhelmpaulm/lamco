@@ -108,13 +108,10 @@
               <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Purchase Order</a></li>
               <li><a href="{{URL::to('purchasing/view-purchase-orders')}}">View Purchase Orders</a></li>
               <li><a href="{{URL::to('purchasing/view-receiving-reports')}}">View Receiving Reports</a></li>
-              <li><a href="{{URL::to('purchasing/manage-receiving-reports')}}">Manage Receiving Reports</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
               <li><a href="{{URL::to('purchasing/view-rolls')}}">View Rolls</a></li>
-              <li><a href="{{URL::to('purchasing/manage-rols')}}">Manage Rolls</a></li>
               <li><a href="{{URL::to('purchasing/view-products')}}">View Products</a></li>
-              <li><a href="{{URL::to('purchasing/manage-products')}}">Manage Products</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-suitcase"></i> Vendors</li>
               <li><a href="{{URL::to('purchasing/view-vendors')}}">View Vendors</a></li>

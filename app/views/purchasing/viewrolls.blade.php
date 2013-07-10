@@ -29,80 +29,65 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="rolls-inventory">
                         <div class="row-fluid">
-                            <div class="span12">
-                                <table class="table">
+                            <div class="span12" style="">
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
                                     <thead>
                                         <tr>
                                             <th>
                                                 #
                                             </th>
                                             <th>
-                                                Product
+                                                Quantity
                                             </th>
                                             <th>
-                                                Payment Taken
+                                                Unit
                                             </th>
                                             <th>
-                                                Status
+                                                Paper Type
+                                            </th>
+                                            <th>
+                                                Weight
+                                            </th>
+                                            <th>
+                                                Dimensions
+                                            </th>
+                                            <th>
+                                                Calliper
+                                            </th>
+                                            <th>
+                                                Received at
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody >
+                                         @foreach($lamco_rolls as $roll)
+                                         <tr @if($roll->quantity < 50) class='error' @elseif($roll->quantity < 100  ) class='warning'  @endif>
                                             <td>
-                                                1
+                                                {{$roll->id}}
                                             </td>
                                             <td>
-                                                TB - Monthly
+                                                {{$roll->quantity}}
                                             </td>
                                             <td>
-                                                01/04/2012
+                                                {{$roll->unit}}
                                             </td>
                                             <td>
-                                                Default
+                                                {{$roll->paper_type}}
                                             </td>
                                             <td>
-                                                <a id="modal-771123" href="#modal-container-771123" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
-                                            </td>
-                                        </tr>
-                                        <tr class="success">
-                                            <td>
-                                                1
+                                                {{$roll->weight}}
                                             </td>
                                             <td>
-                                                TB - Monthly
+                                                {{$roll->dimension}}
                                             </td>
                                             <td>
-                                                01/04/2012
+                                                {{$roll->calliper}}
                                             </td>
                                             <td>
-                                                Approved
-                                            </td>
-                                            <td>
-                                                <a id="modal-771123" href="#modal-container-771123" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
+                                                {{$roll->created_at}}
                                             </td>
                                         </tr>
-                                        <tr class="error">
-                                            <td>
-                                                2
-                                            </td>
-                                            <td>
-                                                TB - Monthly
-                                            </td>
-                                            <td>
-                                                02/04/2012
-                                            </td>
-                                            <td>
-                                                Declined
-                                            </td>
-                                            <td>
-                                                <a id="modal-771123" href="#modal-container-771123" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
-                                            </td>
-                                        </tr>
-                                        
+                                        @endforeach
                                     </tbody>
                                 </table>
 
@@ -110,14 +95,143 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="rolls-reserved">
-                        <p>
-                            Howdy, I'm in Section 2.
-                        </p>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Quantity
+                                            </th>
+                                            <th>
+                                                Unit
+                                            </th>
+                                            <th>
+                                                Paper Type
+                                            </th>
+                                            <th>
+                                                Weight
+                                            </th>
+                                            <th>
+                                                Dimensions
+                                            </th>
+                                            <th>
+                                                Calliper
+                                            </th>
+                                            <th>
+                                                Received at
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         @foreach($client_rolls as $roll)
+                                         <tr class="">
+                                            <td>
+                                                {{$roll->id}}
+                                            </td>
+                                            <td>
+                                                {{$roll->quantity}}
+                                            </td>
+                                            <td>
+                                                {{$roll->unit}}
+                                            </td>
+                                            <td>
+                                                {{$roll->paper_type}}
+                                            </td>
+                                            <td>
+                                                {{$roll->weight}}
+                                            </td>
+                                            <td>
+                                                {{$roll->dimension}}
+                                            </td>
+                                            <td>
+                                                {{$roll->calliper}}
+                                            </td>
+                                            <td>
+                                                {{$roll->created_at}}
+                                            </td>
+                                           
+                                           
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                       
                     </div>
                     <div class="tab-pane" id="rolls-danger">
-                        <p>
-                            Howdy, I'm in Section 2.
-                        </p>
+                       <div class="row-fluid">
+                            <div class="span12">
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Quantity
+                                            </th>
+                                            <th>
+                                                Unit
+                                            </th>
+                                            <th>
+                                                Paper Type
+                                            </th>
+                                            <th>
+                                                Weight
+                                            </th>
+                                            <th>
+                                                Dimensions
+                                            </th>
+                                            <th>
+                                                Calliper
+                                            </th>
+                                            <th>
+                                                Received at
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         @foreach($low_rolls as $roll)
+                                         <tr class="error">
+                                            <td>
+                                                {{$roll->id}}
+                                            </td>
+                                            <td>
+                                                {{$roll->quantity}}
+                                            </td>
+                                            <td>
+                                                {{$roll->unit}}
+                                            </td>
+                                            <td>
+                                                {{$roll->paper_type}}
+                                            </td>
+                                            <td>
+                                                {{$roll->weight}}
+                                            </td>
+                                            <td>
+                                                {{$roll->dimension}}
+                                            </td>
+                                            <td>
+                                                {{$roll->calliper}}
+                                            </td>
+                                            <td>
+                                                {{$roll->created_at}}
+                                            </td>
+                                           
+                                           
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,6 +257,13 @@
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> <button class="btn btn-primary">Save changes</button>
     </div>
 </div>
+
+<script >
+//    $('#example').dataTable();
+$(document).ready(function() {
+    $('.dtable').dataTable();
+} );
+</script>
 
 
 @stop

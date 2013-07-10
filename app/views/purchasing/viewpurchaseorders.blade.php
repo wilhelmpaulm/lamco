@@ -238,7 +238,7 @@
             One fine body…
         </p>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" style="">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> <button class="btn btn-primary">Save changes</button>
     </div>
 </div>

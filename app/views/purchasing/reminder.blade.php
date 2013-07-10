@@ -1,8 +1,6 @@
 @extends('layouts.purchasing')
 @section('main')
-@extends('layouts.purchasing')
 
-@section('main')
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
@@ -130,5 +128,4 @@
 	</div>
 </div>
 
-@stop
 @stop

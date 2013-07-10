@@ -16,6 +16,7 @@ class CreateRollsTable extends Migration {
             $table->increments('id');
             $table->string('paper_type')->nullable();
 			$table->float('quantity')->nullable();
+			$table->string('unit')->nullable();
 			$table->string('dimension')->nullable();
 			$table->string('weight')->nullable();
 			$table->string('calliper')->nullable();

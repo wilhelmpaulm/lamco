@@ -75,14 +75,14 @@
                         </div>
                         <div class="span2">
                             <label for="warehouse">Warehouse</label> 
-                            <select id="unit" class="input-block-level" name="unit[]">
+                            <select id="warehouse" class="input-block-level" name="warehouse[]">
                                 <option value="{{$rr_d->warehouse}}">{{$rr_d->warehouse}}</option>
                                 @foreach($warehouses as $warehouse)
                                 <option value="{{$warehouse->warehouse}}">{{$warehouse->warehouse}}</option>
                                 @endforeach
                             </select>
                             <label for="location">Location</label> 
-                            <select id="unit" class="input-block-level" name="unit[]">
+                            <select id="location" class="input-block-level" name="location[]">
                                 <option value="{{$rr_d->location}}">{{$rr_d->location}}</option>
                                 @foreach($locations as $location)
                                 <option value="{{$location->location}}">{{$location->location}}</option>
