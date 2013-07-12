@@ -16,12 +16,14 @@
 <form id="mamamia"  class="" action="{{URL::to('sales/add-sales-order')}}" method="post">
     <div class="row-fluid">
         <div class="span3">
-            <!--<input class="btn " disabled="true" type="text" name="vendor" value="PO no. 879" />-->
-
-  <!--<input class="input-medium" type="text" name="vendor" value="" placeholder="Vendor Papers"/>-->
             <select class="input-large" name="client">
                 @foreach($clients as $client)
                 <option value="{{$client->id}}">{{$client->name}}</option>
+                @endforeach
+            </select>
+            <select class="input-large" name="terms">
+                @foreach($terms as $term)
+                <option value="{{$term->term}}">{{$term->term}}</option>
                 @endforeach
             </select>
             <br><br>
@@ -52,7 +54,10 @@
 
                 </div>
                 <div class="span3">
-                    <input  class="btn btn-info btn-block" type="submit" value="Submit" />
+                    <!--<input  class="btn btn-info btn-block" type="submit" value="Submit" />-->
+                       <button class="ladda-button btn btn-info expand-right" type="submit"><span class="ladda-label">Submit</span><span class="ladda-spinner"></span></button>
+
+
                 </div>
             </div>
         </div>
@@ -99,9 +104,9 @@
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
-                <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000"/>
+                <input id="quantity" class="input-block-level" type="text" name="quantity[]" required="" placeholder="000"/>
                 <label for="price">Price</label> 
-                <input id="price" class="input-block-level" type="text" name="price[]" placeholder="000.00"/>
+                <input id="price" class="input-block-level" type="text" name="price[]" required="" placeholder="000.00"/>
                 <hr>
                 <label for="subtotal">Subtotal</label> 
                 <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
@@ -109,6 +114,8 @@
                 <hr>
                 <!--Subtotal: <span id="subtotal">0.00</span>-->
                 <!--<input id="subtotal" class="input-block-level btn btn-inverse " disabled="true" value="0.00" type="text" name="subtotal"/>-->
+                 <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
+                 <input id=""  class="" type="hidden"  name="roll[]" placeholder="000.00"/>
             </div>
         </div>
     </div>
@@ -122,13 +129,18 @@
                     <option value="{{$product->id}}">{{$product->paper_type}} {{$product->dimension}} {{$product->weight}} {{$product->calliper}}</option>
                     @endforeach
                 </select>
-                
+                <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="roll[]" placeholder="000.00"/>
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
-                <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000"/>
+                <input id="quantity" class="input-block-level" type="text" name="quantity[]" required="" placeholder="000"/>
                 <label for="price">Price</label> 
-                <input id="price" class="input-block-level" type="text" name="price[]" placeholder="000.00"/>
+                <input id="price" class="input-block-level" type="text" name="price[]" required="" placeholder="000.00"/>
                 <hr>
                 <label for="subtotal">Subtotal</label> 
                 <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
@@ -145,16 +157,21 @@
                 <label >Roll</label> 
                 <select id="roll" class="input-block-level" name="roll[]">
                     @foreach($rolls as $roll)
-                    <option value="{{$roll->id}}">{{$roll->paper_type}} {{$roll->dimensions}} {{$roll->weight}} {{$roll->calliper}}</option>
+                    <option value="{{$roll->id}}" data-max="{{$roll->quantity}}">{{$roll->paper_type}} {{$roll->dimensions}} {{$roll->weight}} {{$roll->calliper}}</option>
                     @endforeach
                 </select>
-                
+                <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
-                <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000"/>
+                <input id="quantity" class="input-block-level quantity" type="number" name="quantity[]"  required="" placeholder="000"/>
                 <label for="price">Price</label> 
-                <input id="price" class="input-block-level" type="text" name="price[]" placeholder="000.00"/>
+                <input id="price" class="input-block-level" type="number" name="price[]" required="" placeholder="000.00"/>
                 <hr>
                 <label for="subtotal">Subtotal</label> 
                 <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
@@ -171,6 +188,22 @@
 <!--container hidded-->
 </div>
 <script>
+    $('body').on('change','#formrow select',function(){
+        var max = $(this).find('option:selected').data('max');
+//        $('#formrow  .quantity').attr('max',max);
+        $(this).parent().siblings('div').children('.quantity').attr('max',max);
+       console.log($(this).find('option:selected').data('max'));
+    }); 
+       
+    
+    
+    
+    var l = Ladda.create(document.querySelector('.ladda-button'));
+    $('form').submit(function() {
+        $.notify('Creating a new sales order pleasse wait...', 'info');
+        l.start();
+    });
+
 //    $('#poop').hide();
 
 
@@ -229,6 +262,8 @@
         ref();
         $('#total').val(sumjq('input#subtotal'));
         $('input#subtotal').text('0.00');
+        
+        
     });
     $('body').on('click', '#addreserve', function() {
         $('#formrow').append($('#f_reserve').html());

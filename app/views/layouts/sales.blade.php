@@ -12,19 +12,26 @@
 
     <!-- Le styles -->
     
-    {{HTML::style('css/dataTables.css')}}
-    {{HTML::style('css/bootstrap.min.css')}}    
-    {{HTML::style('css/cosmo-bootstrap.css')}}
-    {{HTML::style('css/bootstrap-responsive.min.css')}}
-    {{HTML::style('css/font-awesome.min.css')}}
-    {{HTML::style('css/wilhelmpaulm.css')}}
-    {{HTML::style('css/parsley.css')}}
-    
-    {{HTML::script('js/jquery.js')}}
-    {{HTML::script('js/pulsate.js')}}
-    {{HTML::script('js/bootstrap.min.js')}}
-    {{HTML::script('js/parsley.min.js')}}
-    {{HTML::script('js/dataTables.min.js')}}
+     {{HTML::style('css/dataTables.css')}}
+        {{HTML::style('css/bootstrap.min.css')}}    
+        <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
+        {{HTML::style('css/bootstrap-responsive.min.css')}}
+        {{HTML::style('css/font-awesome.min.css')}}
+        {{HTML::style('css/wilhelmpaulm.css')}}
+        {{HTML::style('css/parsley.css')}}
+        {{HTML::style('css/ladda.css')}}
+        {{HTML::style('css/select2.css')}}
+
+
+        {{HTML::script('js/jquery.js')}}
+        {{HTML::script('js/bootstrap.min.js')}}
+        {{HTML::script('js/parsley.min.js')}}
+        {{HTML::script('js/dataTables.min.js')}}
+        {{HTML::script('js/notify.min.js')}}
+        {{HTML::script('js/pulsate.min.js')}}
+        <!--    {{HTML::script('js/spin.min.js')}}-->
+        {{HTML::script('js/ladda.js')}}
+        {{HTML::script('js/select2.min.js')}}
    
     <style type="text/css">
       body {
@@ -57,7 +64,7 @@
         }
       }
     </style>
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -110,8 +117,7 @@
               <li><hr></li>
               <li class="nav-header"><i class="icon-tags"></i> Sales</li>
               <li><a href="{{URL::to('sales/create-sales-order')}}">Create Sales Order</a></li>
-              <li><a href="{{URL::to('sales/purchase-sales-summary')}}">View Sales Order Summary</a></li>
-              <li><a href="{{URL::to('sales/approve-sales-order')}}">Approve Sales Order</a></li>
+              <li><a href="{{URL::to('sales/view-sales-orders')}}">View Sales Orders</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
               <li><a href="{{URL::to('sales/view-rolls')}}">View Rolls</a></li>

@@ -75,26 +75,34 @@
                                             <td>
                                                 <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                    <!--<input class="btn btn-info" type="submit" value="View" />-->
+                                                     <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="{{URL::to('purchasing/approve-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                    <input class="btn btn-success" type="submit" value="Approve" />
+                                                    <!--<input class="btn btn-success" type="submit" value="Approve" />-->
+                                                     <button class="ladda-button btn expand-right btn-success" type="submit"><span class="ladda-label">Approve</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             
                                             </td>
                                             <td>
                                                  <form action="{{URL::to('purchasing/edit-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                    <input class="btn btn-warning" type="submit" value="Edit" />
+                                                    <!--<input class="btn btn-warning" type="submit" value="Edit" />-->
+                                                     <button class="ladda-button btn  expand-right btn-warning" type="submit"><span class="ladda-label">Edit</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="{{URL::to('purchasing/delete-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                    <input class="btn btn-danger" type="submit" value="Delete" />
+                                                     <button class="ladda-button btn  expand-right btn-danger" type="submit"><span class="ladda-label">Delete</span><span class="ladda-spinner"></span></button>
+
+                                                    <!--<input class="btn btn-danger" type="submit" value="Delete" />-->
                                                 </form>
                                             
                                             </td>
@@ -149,7 +157,8 @@
                                             <td>
                                                  <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                                                                         <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             </td>
                                            
@@ -205,7 +214,8 @@
                                            <td>
                                                  <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                                                                        <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             </td>
                                         </tr>
@@ -226,25 +236,22 @@
 
 
 
-<div id="modal-container-771123" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">
-            Modal header
-        </h3>
-    </div>
-    <div class="modal-body">
-        <p>
-            One fine body…
-        </p>
-    </div>
-    <div class="modal-footer" style="">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> <button class="btn btn-primary">Save changes</button>
-    </div>
-</div>
-
 
 <script >
+   
+     
+//    var l = Ladda.create(document.querySelector('.ladda-button'));
+//    $('.ladda-button').click(function(){
+//       Ladda.create($(this)[0]).start();
+//       
+//    });  
+        
+        
+    $('form').submit(function() {
+//        $.notify('Applying the changes please wait...', 'info');
+        Ladda.create($(this).children('button')[0]).start();
+//        l.start();
+    });
 //    $('#example').dataTable();
 $(document).ready(function() {
     $('.dtable').dataTable();

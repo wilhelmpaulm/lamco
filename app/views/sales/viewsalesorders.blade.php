@@ -1,4 +1,4 @@
-@extends('layouts.purchasing')
+@extends('layouts.sales')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">
@@ -18,13 +18,13 @@
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#po-pending" data-toggle="tab">Pending Purchase Orders</a>
+                        <a href="#po-pending" data-toggle="tab">Pending Sales Orders ({{$so_p->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-approved" data-toggle="tab">Approved Purchase Orders</a>
+                        <a href="#po-approved" data-toggle="tab">Approved Sales Orders</a>
                     </li>
                     <li>
-                        <a href="#po-accomplished" data-toggle="tab">Accomplished Purchase Orders</a>
+                        <a href="#po-accomplished" data-toggle="tab">Accomplished Sales Orders</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -58,42 +58,42 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($pos_p as $pos)
+                                        @foreach($so_p as $so)
                                         <tr>
                                             <td>
-                                                {{$pos->id}}
+                                                {{$so->id}}
                                             </td>
                                             <td>
-                                                {{$pos->supplier}}
+                                                {{$so->client}}
                                             </td>
                                             <td>
-                                                {{$pos->created_at}}
+                                                {{$so->created_at}}
                                             </td>
                                             <td>
-                                                {{$pos->updated_at}}
+                                                {{$so->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/approve-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                <form action="{{URL::to('sales/approve-sales-order')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-success" type="submit" value="Approve" />
                                                 </form>
                                             
                                             </td>
                                             <td>
-                                                 <form action="{{URL::to('purchasing/edit-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                 <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-warning" type="submit" value="Edit" />
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/delete-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                <form action="{{URL::to('sales/delete-sales-order')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-danger" type="submit" value="Delete" />
                                                 </form>
                                             
@@ -132,23 +132,23 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($pos_a as $pos)
+                                        @foreach($so_a as $so)
                                         <tr>
                                             <td>
-                                                {{$pos->id}}
+                                                {{$so->id}}
                                             </td>
                                             <td>
-                                                {{$pos->supplier}}
+                                                {{$so->supplier}}
                                             </td>
                                             <td>
-                                                {{$pos->created_at}}
+                                                {{$so->created_at}}
                                             </td>
                                             <td>
-                                                {{$pos->updated_at}}
+                                                {{$so->updated_at}}
                                             </td>
                                             <td>
-                                                 <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                 <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
                                             </td>
@@ -188,23 +188,23 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($pos_f as $pos)
+                                        @foreach($so_f as $so)
                                         <tr>
                                             <td>
-                                                {{$pos->id}}
+                                                {{$so->id}}
                                             </td>
                                             <td>
-                                                {{$pos->supplier}}
+                                                {{$so->supplier}}
                                             </td>
                                             <td>
-                                                {{$pos->created_at}}
+                                                {{$so->created_at}}
                                             </td>
                                             <td>
-                                                {{$pos->updated_at}}
+                                                {{$so->updated_at}}
                                             </td>
                                            <td>
-                                                 <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
+                                                 <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
                                             </td>

@@ -74,9 +74,9 @@
                         </div>
                         <div class="span2">
                             <label  for="quantity">Quantity</label> 
-                            <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000" data-trigger="change" data-required="true" data-type="number"/>
+                            <input id="quantity" class="input-block-level" type="text" name="quantity[]" placeholder="000"  required=""/>
                             <label for="price">Price</label> 
-                            <input id="price" class="input-block-level" type="text" name="price[]" placeholder="000.00" data-trigger="change" data-required="true" data-type="number" />
+                            <input id="price" class="input-block-level" type="text" name="price[]" placeholder="000.00"  required=""/>
                             <hr>
                             <label for="subtotal">Subtotal</label> 
                             <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="span3">
                     <button class="ladda-button btn btn-info expand-right" type="submit"><span class="ladda-label">Submit</span><span class="ladda-spinner"></span></button>
-                    <!--<input  class="btn btn-info btn-block" type="submit" value="Submit" />-->
+                    <!--<input  class="ladda-button btn btn-info expand-right" type="submit" value="Submit" /><span class="ladda-spinner"></span>-->
                 </div>
             </div>
         </div>
@@ -112,22 +112,22 @@
 </form>
 
 <script>
-//    Ladda.bind( 'input[   type=submit]' );
-//    $('select').select2();
-//    Ladda.bind( 'button' );
-    
-//    Ladda.bind( 'input[type=submit]' );
-    
+
+    var l = Ladda.create(document.querySelector('.ladda-button'));
+    $('form').submit(function() {
+        $.notify('Creating your purchase order please wait...', 'info');
+        l.start();
+    });
+
+
     var sum = 0;
     var counter = 0;
     ref();
     function ref() {
         if (counter == 0) {
             $('#removerow').hide();
-//            $('input#subtotal').text('0.00');
         } else {
             $('#removerow').show();
-//            $('input#subtotal').text('0.00');
         }
     }
     ;
@@ -161,18 +161,13 @@
     });
 
 
-
     $('#addrow').click(function() {
-//        $('#formbody').append($('#formrow').html());
         $('#formbody').append($('#formrow').html());
         counter++;
         ref();
         $('#total').val(sumjq('input#subtotal'));
         $('input#subtotal').text('0.00');
-//        $('body#formrow').parsley();
-        $( 'form' ).parsley( 'addItem', 'form input' );
-//        $('body').parsley('validate');
-//        alert($('#var').html());
+        $("#mamamia").parsley('addItem', '#poop');
     });
     $('#removerow').click(function() {
 
@@ -181,13 +176,6 @@
         counter--;
         ref();
         $('#total').val(sumjq('input#subtotal'));
-//        $('body').find($('#formbody')).children($('#formrow')).last().remove();
-//        alert($('#var').html());
     });
 </script>
-
-
-
-
-
 @stop

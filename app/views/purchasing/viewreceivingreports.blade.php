@@ -75,26 +75,31 @@
                                             <td>
                                                 <form action="{{URL::to('purchasing/view-receiving-report')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                                                                     <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="{{URL::to('purchasing/approve-receiving-report')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
-                                                    <input class="btn btn-success" type="submit" value="Approve" />
+                                                                                                     <button class="ladda-button btn btn-success expand-right " type="submit"><span class="ladda-label">Approve</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             
                                             </td>
                                             <td>
                                                  <form action="{{URL::to('purchasing/edit-receiving-report')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
-                                                    <input class="btn btn-warning" type="submit" value="Edit" />
+                                                                                                    <button class="ladda-button btn btn-warning expand-right " type="submit"><span class="ladda-label">Edit</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="{{URL::to('purchasing/delete-receiving-report')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
-                                                    <input class="btn btn-danger" type="submit" value="Delete" />
+                                                    <!--<input class="btn btn-danger" type="submit" value="Delete" />-->
+                                                                                                <button class="ladda-button btn btn-danger expand-right " type="submit"><span class="ladda-label">Delete</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             
                                             </td>
@@ -149,7 +154,10 @@
                                             <td>
                                                  <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                    <!--<input class="btn btn-info" type="submit" value="View" />                                                                                                        <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>-->
+                                                 <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
+
+                                                    
                                                 </form>
                                             </td>
                                            
@@ -205,7 +213,8 @@
                                            <td>
                                                  <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                                                                     <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
+
                                                 </form>
                                             </td>
                                         </tr>
@@ -245,6 +254,11 @@
 
 
 <script >
+     $('form').submit(function() {
+//        $.notify('Applying the changes please wait...', 'info');
+        Ladda.create($(this).children('button')[0]).start();
+//        l.start();
+    });
 //    $('#example').dataTable();
 $(document).ready(function() {
     $('.dtable').dataTable();

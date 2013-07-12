@@ -119,7 +119,9 @@
                     <button id="addrow" class="btn btn-success pull-right" type="button" ><i class="icon-plus-sign-alt"></i></button>-->
                 </div>
                 <div class="span3">
-                    <input  class="btn btn-info btn-block" type="submit" value="Submit" />
+                    <!--<input  class="btn btn-info btn-block" type="submit" value="Submit" />-->
+                     <button class="ladda-button btn btn-info expand-right" type="submit"><span class="ladda-label">Submit</span><span class="ladda-spinner"></span></button>
+
                 </div>
             </div>
         </div>
@@ -128,6 +130,12 @@
 </form>
 
 <script>
+    
+    var l = Ladda.create(document.querySelector('.ladda-button'));
+    $('form').submit(function() {
+        $.notify('Applying changes to receiving report...', 'info');
+        l.start();
+    });
     var sum = 0;
     var counter = 0;
     ref();

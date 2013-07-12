@@ -1,6 +1,15 @@
 <?php
 
 class Sales extends BaseController {
+//    
+//    The body of this shit
+//    
+//    createsalesorder - done
+//    addsalesorder - done
+//    editsalesorder - done
+//    applyeditsalesorder - done
+//    
+    
     
     public function getCreateSalesOrder(){
         $clients = Client::all();
@@ -26,15 +35,29 @@ class Sales extends BaseController {
         return View::make('sales.createsalesorder', $data);
     }
     
+    public function getViewSalesOrders(){
+        $so_p = Sales_order::where('status','=','pending')->get();
+        $so_a = Sales_order::where('status','=','approved')->get();
+        $so_f = Sales_order::where('status','=','finished')->get();
+        
+        $data = [
+            'so_p' => $so_p,
+            'so_a' => $so_a,
+            'so_f' => $so_f
+        ];
+        
+        return View::make('sales.viewsalesorders', $data);
+    }
+    
     public function postAddSalesOrder(){
         $so = Sales_order::create([
             'client' => Input::get('client'),
-            'terms' => Input::get('term'),
+            'terms' => Input::get('terms'),
             'created_by' => Auth::user()->id,
             'status' => 'pending'
         ]);
         
-        for ($index = 0; $index < count(Input::get('subtotal')); $index++) {
+        for ($index = 0; $index < count(Input::get('transaction_type')); $index++) {
             So_detail::create([
                 'so_no' => $so->id,
                 'transaction_type' => Input::get('transaction_type')[$index],
@@ -49,19 +72,19 @@ class Sales extends BaseController {
                 'roll' => Input::get('roll')[$index]
             ]);
         }
-        return Redirect::to('sales/view-sales-order');
+        return Redirect::to('sales/view-sales-orders');
     }
     public function postApplyEditSalesOrder(){
         $id = Input::get('id');
-        $so = Sales_order::find($id);
-       
+        
+        $so = Sales_order::find("$id");
         $so->client = Input::get('client');
         $so->terms = Input::get('terms');
         $so->created_by = Auth::user()->id;
         $so->save();
         
-        $so_d = So_d::where('so_no', '=', $id)->delete();
-        for ($index = 0; $index < count(Input::get('paper_type')); $index++) {
+        $so_d = So_detail::where('so_no', '=', $id)->delete();
+        for ($index = 0; $index < count(Input::get('transaction_type')); $index++) {
             So_detail::create([
                 'so_no' => $so->id,
                 'transaction_type' => Input::get('transaction_type')[$index],
@@ -77,7 +100,7 @@ class Sales extends BaseController {
             ]);
         }
         
-        return Redirect::to('sales/view-sales-order');
+        return Redirect::to('sales/view-sales-orders');
     }
     
     public function postEditSalesOrder(){
@@ -85,13 +108,13 @@ class Sales extends BaseController {
         $clients = Client::all();
         $terms = Term::all();
         $paper_types = Paper_type::all();
-        $dimensions = Diemnsion::all();
+        $dimensions = Dimension::all();
         $weights = Weight::all();
         $callipers = Calliper::all();
         $products = Product::all();
         $rolls = Roll::all();
-        $so = Sales_order::find($id)->delete();
-        $so_d = So_detail::where('so_no','=','$id')->delete();
+        $so = Sales_order::find($id);
+        $so_d = So_detail::where('so_no','=',$id)->get();
         
         $data = [
             'clients' => $clients,
@@ -108,10 +131,62 @@ class Sales extends BaseController {
         return View::make('sales.editsalesorder', $data);
     }
     
+    public function postApproveSalesOrder(){
+        $id =  Input::get('id');
+        $so = Sales_order::find($id);
+        $so->status = "approved";
+        $so->approved_by = Auth::user()->id;
+        $so->save();
+        
+        $so_ds = So_detail::where('so_no','=',$id)->get();
+        foreach($so_ds as $so_d){
+            if($so_d->transaction_type == 'reserve'){
+                Roll::where('id','=',$so_d->roll )->decrement('quantity', $so_d->quantity);
+                $r =  Roll::find($so_d->roll);
+                Roll::create([
+                   'quantity' => $so_d->quantity,
+                    'paper_type' => $r->paper_type,
+                    'weight' => $r->weight,
+                    'calliper' => $r->calliper,
+                    'dimension' => $r->dimension,
+                    'supplier' => $r->supplier,
+                    'unit' => $r->unit,
+                    'warehouse' => $r->warehouse,
+                    'location' => $r->location,
+                    'owner' => $so->client
+                ]);
+            }
+            elseif($so_d->transaction_type == 'ordinary'){
+                Product::where('id','=',$so_d->product )->decrement('quantity', $so_d->quantity);
+                $p =  Product::find($so_d->product);
+                Product::create([
+                   'quantity' => $so_d->quantity,
+                    'paper_type' => $p->paper_type,
+                    'weight' => $p->weight,
+                    'calliper' => $p->calliper,
+                    'dimension' => $p->dimension,
+                    'warehouse' => $p->warehouse,
+                    'price' => $so_d->price,
+                    'location' => $p->location,
+                    'owner' => $so->client
+                ]);
+            }
+            elseif($so_d->transaction_type == 'special'){
+//                
+            }
+           
+            
+        }
+        
+        
+        
+        return Redirect::to('sales/view-sales-orders');
+    }
+    
     public function postDeleteSalesOrder(){
         $id =  Input::get('id');
         Sales_order::find($id)->delete();
-        So_detail::where('so_no','=','$id')->delete();
+        So_detail::where('so_no','=',$id)->delete();
         return Redirect::to('sales/view-sales-orders');
     }
     
@@ -125,11 +200,7 @@ class Sales extends BaseController {
     {
         return View::make('sales.memo');
     }
-    public function getViewSalesOrder()
-    {
-        dd(So_detail::all());
-//        return View::make('sales.reminder');
-    }
+   
     
     public function getViewRolls() {
         $lamco_rolls = Roll::where('owner', '=', 'lamco')->get();
