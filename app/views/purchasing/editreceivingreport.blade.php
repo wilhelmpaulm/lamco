@@ -26,7 +26,7 @@
   <!--<input class="input-medium" type="text" name="vendor" value="" placeholder="Vendor Papers"/>-->
             <label for="vendor">Vendor</label> 
             <select class="input-large" name="vendor">
-                <option value="{{$rr->vendor}}">{{$rr->vendor}}</option>
+                <option value="{{$rr->supplier}}">{{$rr->supplier}}</option>
                 @foreach($vendors as $vendor)
                 <option value="{{$vendor->id}}">{{$vendor->name}}</option>
                 @endforeach

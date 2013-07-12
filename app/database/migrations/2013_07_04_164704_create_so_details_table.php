@@ -15,11 +15,11 @@ class CreateSoDetailsTable extends Migration {
         Schema::create('so_details', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('so_no');
-			$table->integer('quantity');
-			$table->string('paper_type');
-			$table->string('dimension');
-			$table->string('weight');
-			$table->string('calliper');
+			$table->integer('quantity')->nullable();
+			$table->string('paper_type')->nullable();
+			$table->string('dimension')->nullable();
+			$table->string('weight')->nullable();
+			$table->string('calliper')->nullable();
 			$table->text('instructions')->nullable();
 			$table->float('total')->nullable();
 			$table->float('price')->nullable();

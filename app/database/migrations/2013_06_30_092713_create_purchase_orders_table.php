@@ -16,7 +16,7 @@ class CreatePurchaseOrdersTable extends Migration {
             $table->increments('id');
 			$table->integer('created_by')->nullable();
 			$table->integer('approved_by')->nullable();
-			$table->integer('vendor')->nullable();
+			$table->integer('supplier')->nullable();
 			$table->string('status')->nullable();
 //            $table->integer('po_no')->nullable();
 //			$table->float('quantity');

@@ -11,18 +11,29 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
+    
+    {{HTML::style('css/dataTables.css')}}
     {{HTML::style('css/bootstrap.min.css')}}    
-    {{HTML::style('css/cosmo-bootstrap.css')}}
+    <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
     {{HTML::style('css/bootstrap-responsive.min.css')}}
     {{HTML::style('css/font-awesome.min.css')}}
     {{HTML::style('css/wilhelmpaulm.css')}}
     {{HTML::style('css/parsley.css')}}
-    {{HTML::style('css/dataTables.css')}}
+    {{HTML::style('css/ladda.css')}}
+    {{HTML::style('css/select2.css')}}
+   
     
-    {{HTML::script('js/jquery.js')}}
+     {{HTML::script('js/jquery.js')}}
     {{HTML::script('js/bootstrap.min.js')}}
     {{HTML::script('js/parsley.min.js')}}
     {{HTML::script('js/dataTables.min.js')}}
+    {{HTML::script('js/notify.min.js')}}
+    {{HTML::script('js/pulsate.min.js')}}
+<!--    {{HTML::script('js/spin.min.js')}}-->
+    {{HTML::script('js/ladda.js')}}
+    {{HTML::script('js/select2.min.js')}}
+    
+    
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -71,7 +82,7 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -82,8 +93,11 @@
           <a class="brand" href="#">Purchasing Department</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
+                
              Logged in as {{Auth::user()->first_name}} | <a href="{{URL::to('logout')}}" class="navbar-link">Logout</a>
             </p>
+            <p class="navbar-text">
+                <a href="{{URL::to('purchasing/view-rolls')}}" style="color: white ; text-decoration: none"><p class="btn btn-danger"><i class="icon-flag"></i>  {{Roll::where('quantity','<','50')->count();}}</p></a>
             <ul class="nav">
 <!--              <li class="active"><a href="#">Home</a></li>
               <li><a href="#about">About</a></li>
@@ -143,6 +157,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
   
+   
+    
+    
   </body>
 
 <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->

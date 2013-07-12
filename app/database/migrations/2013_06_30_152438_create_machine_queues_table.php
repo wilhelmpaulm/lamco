@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMachineTypesTable extends Migration {
+class CreateMachineQueuesTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,9 +12,13 @@ class CreateMachineTypesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('machine_types', function(Blueprint $table) {
+        Schema::create('machine_queues', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('type')->nullable();
+//            $table->integer('pq_no')->nullable();
+			$table->integer('so_no')->nullable();
+			$table->integer('created_by')->nullable();
+			$table->integer('approved_by')->nullable();
+			$table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -26,7 +30,7 @@ class CreateMachineTypesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('machine_types');
+        Schema::drop('machine_queues');
     }
 
 }

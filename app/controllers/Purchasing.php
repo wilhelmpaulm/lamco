@@ -7,6 +7,8 @@ class Purchasing extends BaseController {
     }
 
     public function getMemo() {
+        
+        
         return View::make('purchasing.memo');
     }
 
@@ -20,7 +22,7 @@ class Purchasing extends BaseController {
         $weights = Weight::all();
         $caliipers = Calliper::all();
         $statuses = Status::all();
-        $vendors = Vendor::all();
+        $vendors = Supplier::all();
         $units = Unit::all();
 
         $data = [
@@ -44,7 +46,7 @@ class Purchasing extends BaseController {
         $weights = Weight::all();
         $caliipers = Calliper::all();
         $statuses = Status::all();
-        $vendors = Vendor::all();
+        $vendors = Supplier::all();
         $units = Unit::all();
 
         $po = Purchase_order::find($id);
@@ -74,7 +76,7 @@ class Purchasing extends BaseController {
         $weights = Weight::all();
         $caliipers = Calliper::all();
         $statuses = Status::all();
-        $vendors = Vendor::all();
+        $vendors = Supplier::all();
         $units = Unit::all();
         $warehouses = warehouse::all();
         $locations = Location::all();
@@ -128,7 +130,7 @@ class Purchasing extends BaseController {
         $id = Input::get('id');
 //        return $id;
         $po = Purchase_order::find($id);
-        $po->vendor = Input::get('vendor');
+        $po->supplier = Input::get('vendor');
         $po->created_by = Auth::user()->id;
         $po->save();
 
@@ -156,7 +158,7 @@ class Purchasing extends BaseController {
         $id = Input::get('id');
 //        return $id;
         $rr = Receiving_report::find($id);
-        $rr->vendor = Input::get('vendor');
+        $rr->supplier = Input::get('vendor');
         $rr->created_by = Auth::user()->id;
         $rr->save();
 
@@ -182,7 +184,7 @@ class Purchasing extends BaseController {
 
     public function postAddPurchaseOrder() {
         $po = Purchase_order::create([
-                    'vendor' => Input::get('vendor'),
+                    'supplier' => Input::get('vendor'),
                     'created_by' => Auth::user()->id,
                     'status' => 'Pending'
         ]);
@@ -226,7 +228,7 @@ class Purchasing extends BaseController {
         $po->save();
         $rr = Receiving_report::create([
                     'po_no' => $id,
-                    'vendor' => $po->vendor,
+                    'supplier' => $po->supplier,
                     'created_by' => Auth::user()->id,
                     'status' => 'Pending'
         ]);
@@ -256,7 +258,7 @@ class Purchasing extends BaseController {
         $rr_d = Rr_detail::where('rr_no', '=', $id)->get();
         foreach ($rr_d as $rr_d) {
             Roll::create([
-                'vendor' => $rr->vendor,
+                'supplier' => $rr->supplier,
                 'quantity' => $rr_d->quantity,
                 'paper_type' => $rr_d->paper_type,
                 'dimension' => $rr_d->dimension,
@@ -271,7 +273,7 @@ class Purchasing extends BaseController {
         }
 
 
-        return Redirect::to('purchasing/view-purchase-orders');
+        return Redirect::to('purchasing/view-receiving-reports');
     }
 
     public function getViewPurchaseOrders() {
@@ -307,7 +309,7 @@ class Purchasing extends BaseController {
         $low_products = Product::where('quantity','<',50)->get();
         $client_products = Product::where('owner', '!=', 'lamco')->get();
         $data = [
-            'lamco_proiducts' => $lamco_products,
+            'lamco_products' => $lamco_products,
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
@@ -345,7 +347,7 @@ class Purchasing extends BaseController {
         $weights = Weight::all();
         $caliipers = Calliper::all();
         $statuses = Status::all();
-        $vendors = Vendor::all();
+        $vendors = Supplier::all();
 //        $t = Vendor::all();
 
         $data = [

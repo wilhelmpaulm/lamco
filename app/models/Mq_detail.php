@@ -1,6 +1,6 @@
 <?php
 
-class Production_queue extends Eloquent {
+class Mq_detail extends Eloquent {
     protected $guarded = array();
 
     public static $rules = array();

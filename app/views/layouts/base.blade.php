@@ -12,11 +12,16 @@
 
     <!-- Le styles -->
     {{HTML::style('css/bootstrap.min.css')}}
-    {{HTML::style('css/cosmo-bootstrap.css')}}
+    <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
     {{HTML::style('css/bootstrap-responsive.min.css')}}
     {{HTML::style('css/font-awesome.min.css')}}
     {{HTML::style('css/wilhelmpaulm.css')}}
     {{HTML::style('css/parsley.css')}}
+    
+       
+    {{HTML::script('js/jquery.js')}}
+    {{HTML::script('js/bootstrap.min.js')}}
+    {{HTML::script('js/parsley.min.js')}}
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -59,9 +64,7 @@
       @yield('main')
             </div>
       </div>
-    {{HTML::script('js/jquery.js')}}
-    {{HTML::script('js/bootstrap.min.js')}}
-    {{HTML::script('js/parsley.min.js')}}
+    
   </body>
 
 <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->

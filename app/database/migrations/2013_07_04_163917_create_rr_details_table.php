@@ -24,6 +24,7 @@ class CreateRrDetailsTable extends Migration {
 			$table->text('instructions')->nullable();
 			$table->string('warehouse')->nullable();
 			$table->string('location')->nullable();
+			$table->integer('supplier')->nullable();
 //			$table->float('total')->nullable();
 //			$table->float('price')->nullable ();
             $table->timestamps();

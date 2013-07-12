@@ -9,17 +9,17 @@
         <hr>
         
     
-<form class="form-horizontal" action='{{URL::to("login")}}' method="POST">
+<form class="form-horizontal" action='{{URL::to("login")}}' data-validate="parsley"  method="POST">
   <div class="control-group">
       <label class="control-label" for="inputID"><i class="icon-user"></i> Employee ID</label>
     <div class="controls">
-        <input name="id" type="text" id="inputID" placeholder="00264" value="">
+        <input name="id" type="text" id="inputID" placeholder="00264" value="" data-type="digits" data-trigger="change" data-required="true">
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="inputPassword"><i class="icon-lock"></i> Password</label>
     <div class="controls">
-        <input type="password" name="password" id="inputPassword" placeholder="Password" value="">
+        <input type="password" name="password" id="inputPassword" placeholder="Password" value="" data-type="alphanum" data-required="true">
     </div>
   </div>
   <div class="control-group">

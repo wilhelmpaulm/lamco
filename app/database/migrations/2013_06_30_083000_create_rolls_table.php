@@ -20,7 +20,7 @@ class CreateRollsTable extends Migration {
 			$table->string('dimension')->nullable();
 			$table->string('weight')->nullable();
 			$table->string('calliper')->nullable();
-			$table->string('vendor')->nullable();
+			$table->string('supplier')->nullable();
 			$table->string('warehouse')->nullable();
 			$table->string('location')->nullable();
 			$table->string('owner')->nullable();

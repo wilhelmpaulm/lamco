@@ -1,11 +1,11 @@
 <?php
 
-class Machine_typesTableSeeder extends Seeder {
+class Production_typesTableSeeder extends Seeder {
 
     public function run()
     {
     	// Uncomment the below to wipe the table clean before populating
-    	 DB::table('machine_types')->delete();
+    	 DB::table('production_types')->delete();
 
         $machine_types = array(
             ['type' => 'cutting'],
@@ -15,7 +15,7 @@ class Machine_typesTableSeeder extends Seeder {
         );
 
         // Uncomment the below to run the seeder
-         DB::table('machine_types')->insert($machine_types);
+         DB::table('production_types')->insert($machine_types);
     }
 
 }

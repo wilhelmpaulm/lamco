@@ -64,7 +64,7 @@
                                                 {{$rr->id}}
                                             </td>
                                             <td>
-                                                {{$rr->vendor}}
+                                                {{$rr->supplier}}
                                             </td>
                                             <td>
                                                 {{$rr->created_at}}
@@ -138,7 +138,7 @@
                                                 {{$rr->id}}
                                             </td>
                                             <td>
-                                                {{$rr->vendor}}
+                                                {{$rr->supplier}}
                                             </td>
                                             <td>
                                                 {{$rr->created_at}}
@@ -194,7 +194,7 @@
                                                 {{$rr->id}}
                                             </td>
                                             <td>
-                                                {{$rr->vendor}}
+                                                {{$rr->supplier}}
                                             </td>
                                             <td>
                                                 {{$rr->created_at}}

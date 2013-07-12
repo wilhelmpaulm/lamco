@@ -14,9 +14,8 @@ class CreateProductionRecordsTable extends Migration {
     {
         Schema::create('production_records', function(Blueprint $table) {
             $table->increments('id');
-//            $table->integer('pr_no')->nullable();
+            $table->integer('so_no')->nullable();
 //			$table->float('quantity')->nullable();
-//			$table->string('paper_type')->nullable();
 //			$table->string('dimension')->nullable();
 //			$table->string('weight')->nullable();
 //			$table->string('calliper')->nullable();
@@ -25,7 +24,9 @@ class CreateProductionRecordsTable extends Migration {
 //			$table->string('warehouse')->nullable();
 //			$table->string('location')->nullable();
 //			$table->integer('owner')->nullable();
-			$table->integer('created_by')->nullable();
+			$table->string('production_type')->nullable();
+			$table->integer('checker_a')->nullable();
+			$table->integer('checker_b')->nullable();
 			$table->integer('approved_by')->nullable();
 			$table->string('status')->nullable();
             $table->timestamps();

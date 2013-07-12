@@ -15,13 +15,14 @@ class CreatePrDetailsTable extends Migration {
         Schema::create('pr_details', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('pr_no');
-			$table->integer('pq_no')->nullable();
+			$table->integer('mq_no')->nullable();
 			$table->integer('quantity');
 			$table->string('paper_type');
 			$table->string('dimension');
 			$table->string('weight');
 			$table->string('calliper');
 			$table->text('instructions')->nullable();
+			$table->string('unit')->nullable();
 			$table->string('owner')->nullable();
 			$table->integer('roll')->nullable();
                         $table->string('warehouse')->nullable();

@@ -8,11 +8,13 @@ class DepartmentsTableSeeder extends Seeder {
     	 DB::table('departments')->delete();
 
         $departments = array(
-            ['department' => 'purchasing' ],
-            ['department' => 'sales' ],
-            ['department' => 'production' ],
-            ['department' => 'delivery' ],
-            ['department' => 'admin' ]
+            ['code' => 'SAL','department' => 'Sales' ],
+            ['code' => 'BIL','department' => 'Billing' ],
+            ['code' => 'IMP','department' => 'Importation' ],
+            ['code' => 'PRD','department' => 'Production' ],
+            ['code' => 'WRH','department' => 'Warehousing' ],
+            ['code' => 'MGT','department' => 'Management' ],
+            ['code' => 'ADM','department' => 'Admin' ]
         );
 
         // Uncomment the below to run the seeder

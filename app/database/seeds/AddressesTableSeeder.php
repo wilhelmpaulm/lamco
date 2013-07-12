@@ -1,18 +1,18 @@
 <?php
 
-class Pq_detailsTableSeeder extends Seeder {
+class AddressesTableSeeder extends Seeder {
 
     public function run()
     {
     	// Uncomment the below to wipe the table clean before populating
-    	// DB::table('pq_details')->delete();
+    	// DB::table('addresses')->delete();
 
-        $pq_details = array(
+        $addresses = array(
 
         );
 
         // Uncomment the below to run the seeder
-        // DB::table('pq_details')->insert($pq_details);
+        // DB::table('addresses')->insert($addresses);
     }
 
 }

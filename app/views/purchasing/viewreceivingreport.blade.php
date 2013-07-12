@@ -25,7 +25,7 @@
             
   <!--<input class="input-medium" type="text" name="vendor" value="" placeholder="Vendor Papers"/>-->
             <label for="vendor">Vendor</label> 
-             <input class="input-block-level" disabled="true" type="text" name="id" value="{{$rr->vendor}}" />
+             <input class="input-block-level" disabled="true" type="text" name="id" value="{{$rr->supplier}}" />
             
             <br><br>
 

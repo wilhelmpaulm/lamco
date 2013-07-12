@@ -5,29 +5,44 @@
 <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->
 <head>
     <meta charset="utf-8">
-    <title>Lamco Sales</title>
+    <title>Lamco Purchasing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    {{HTML::style('css/bootstrap.min.css')}}
-    {{HTML::style('css/flatty-bootstrap.css')}}
+    
+    {{HTML::style('css/dataTables.css')}}
+    {{HTML::style('css/bootstrap.min.css')}}    
+    {{HTML::style('css/cosmo-bootstrap.css')}}
     {{HTML::style('css/bootstrap-responsive.min.css')}}
     {{HTML::style('css/font-awesome.min.css')}}
     {{HTML::style('css/wilhelmpaulm.css')}}
     {{HTML::style('css/parsley.css')}}
+    
+    {{HTML::script('js/jquery.js')}}
+    {{HTML::script('js/pulsate.js')}}
+    {{HTML::script('js/bootstrap.min.js')}}
+    {{HTML::script('js/parsley.min.js')}}
+    {{HTML::script('js/dataTables.min.js')}}
+   
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
-        background: url('{{URL::asset("bg/black-Linen.png")}}')
+        
       }
       .hero-unit {
-        background: url('{{URL::asset("bg/project_paper.png")}}')
+               background: url('{{URL::asset("bg/paper_3.png")}}');
+
+          /*background: url('{{URL::asset("bg/paper_3.png")}}')*/
       }
+      
+      .balon{
+          
+      }
+      
       .well{
-          background: url('{{URL::asset("bg/project_papper.png")}}')
       }
       .sidebar-nav {
         padding: 9px 0;
@@ -56,6 +71,7 @@
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
+
 
   <body>
 
@@ -86,7 +102,7 @@
       <div class="row-fluid">
         
           <div class="span3 ">
-          <div class="well sidebar-nav ">
+          <div class=" sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
               <li><a href="{{URL::to('sales/memo')}}">Memos</a></li>
@@ -98,10 +114,10 @@
               <li><a href="{{URL::to('sales/approve-sales-order')}}">Approve Sales Order</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
-              <li><a href="#">View Rolls</a></li>
-              <li><a href="#">Rolls Summary</a></li>
-              <li><a href="#">View Products</a></li>
-              <li><a href="#">Products Summary</a></li>
+              <li><a href="{{URL::to('sales/view-rolls')}}">View Rolls</a></li>
+              <!--<li><a href="#">Rolls Summary</a></li>-->
+              <li><a href="{{URL::to('sales/view-products')}}">View Products</a></li>
+              <!--<li><a href="#">Products Summary</a></li>-->
               <li><hr></li>
               <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
               <li><a href="#">View Clients</a></li>
@@ -130,9 +146,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    {{HTML::script('js/jquery.js')}}
-    {{HTML::script('js/bootstrap.min.js')}}
-    {{HTML::script('js/parsley.min.js')}}
+     
   </body>
 
 <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->

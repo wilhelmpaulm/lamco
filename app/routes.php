@@ -89,3 +89,6 @@ Route::controller('sales', 'Sales');
 Route::controller('production', 'Production');
 Route::controller('delivery', 'Delivery');
 
+
+
+Route::resource('addresses', 'AddressesController');

@@ -16,13 +16,14 @@ class CreateReceivingReportsTable extends Migration {
             $table->increments('id');
 //            $table->integer('rr_no')->nullable();
             $table->integer('po_no')->nullable();
+            $table->integer('dr_no')->nullable();
 //            $table->float('quantity');
 //            $table->string('paper_type')->nullable();
 //            $table->string('dimension')->nullable();
 //            $table->string('weight')->nullable();
 //            $table->string('calliper')->nullable();
 //            $table->text('instructions')->nullable();
-            $table->integer('vendor')->nullable();
+            $table->integer('supplier')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('approved_by')->nullable();
             $table->string('status')->nullable();

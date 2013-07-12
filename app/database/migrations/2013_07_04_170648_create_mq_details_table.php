@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePqDetailsTable extends Migration {
+class CreateMqDetailsTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreatePqDetailsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('pq_details', function(Blueprint $table) {
+        Schema::create('mq_details', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('pq_no')->nullable();
+            $table->integer('mq_no')->nullable();
 			$table->integer('so_no');
 			$table->integer('quantity');
 			$table->integer('roll')->nullable();
@@ -36,7 +36,7 @@ class CreatePqDetailsTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('pq_details');
+        Schema::drop('mq_details');
     }
 
 }
