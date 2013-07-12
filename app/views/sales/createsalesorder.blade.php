@@ -192,7 +192,7 @@
         var max = $(this).find('option:selected').data('max');
 //        $('#formrow  .quantity').attr('max',max);
         $(this).parent().siblings('div').children('.quantity').attr('max',max);
-       console.log($(this).find('option:selected').data('max'));
+//       console.log($(this).find('option:selected').data('max'));
     }); 
        
     
