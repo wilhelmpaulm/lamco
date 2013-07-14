@@ -5,7 +5,7 @@ class Sales_ordersTableSeeder extends Seeder {
     public function run()
     {
     	// Uncomment the below to wipe the table clean before populating
-    	// DB::table('sales_orders')->delete();
+    	 DB::table('sales_orders')->delete();
 
         $sales_orders = array(
 

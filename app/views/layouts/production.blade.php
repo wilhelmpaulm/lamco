@@ -12,7 +12,7 @@
 
     <!-- Le styles -->
    
-        {{HTML::style('css/dataTables.css')}}
+         {{HTML::style('css/dataTables.css')}}
         {{HTML::style('css/bootstrap.min.css')}}    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         {{HTML::style('css/bootstrap-responsive.min.css')}}
@@ -29,6 +29,7 @@
         {{HTML::script('js/dataTables.min.js')}}
         {{HTML::script('js/notify.min.js')}}
         {{HTML::script('js/pulsate.min.js')}}
+        {{HTML::script('js/timer.js')}}
         <!--    {{HTML::script('js/spin.min.js')}}-->
         {{HTML::script('js/ladda.js')}}
         {{HTML::script('js/select2.min.js')}}
@@ -110,21 +111,17 @@
           <div class="well sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
-              <li><a href="{{URL::to('purchasing/memo')}}">Memos</a></li>
-              <li><a href="{{URL::to('purchasing/reminder')}}">Reminders</a></li>
+              <li><a href="{{URL::to('production/memo')}}">Memos</a></li>
+              <li><a href="{{URL::to('production/reminder')}}">Reminders</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-cogs"></i> Production</li>
-              <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Production Queue</a></li>
-              <li><a href="{{URL::to('purchasing/purchase-order-summary')}}">View Production Queue Summary</a></li>
-              <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Production Record</a></li>
-              <li><a href="{{URL::to('purchasing/purchase-order-summary')}}">View Production Record Summary</a></li>
-              <li><a href="{{URL::to('purchasing/approve-purchase-order')}}">Approve Purchase Record</a></li>
+              <!--<li><a href="{{URL::to('production/assign-machine-to-queue')}}">Assign Machine to Queue</a></li>-->
+              <li><a href="{{URL::to('production/view-machine-queues')}}">View Machine Queues</a></li>
+              <li><a href="{{URL::to('production/view-machine-queues')}}">View Production Records</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
-              <li><a href="#">View Rolls</a></li>
-              <li><a href="#">Rolls Summary</a></li>
-              <li><a href="#">View Products</a></li>
-              <li><a href="#">Products Summary</a></li>
+              <li><a href="{{URL::to('production/view-rolls')}}">View Rolls</a></li>
+              <li><a href="{{URL::to('production/view-products')}}">View Products</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
               <li><a href="#">View Clients</a></li>

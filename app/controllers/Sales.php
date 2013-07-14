@@ -172,7 +172,20 @@ class Sales extends BaseController {
                 ]);
             }
             elseif($so_d->transaction_type == 'special'){
-//                
+                $mq = Machine_queue::create([
+                    'so_no' => $so->id,
+                    'status' => 'pending',
+                    'created_by' => Auth::user()->id
+                ]);
+                Mq_detail::create([
+                   'mq_no' => $mq->id,
+                    'quantity' => $so_d->quantity,
+//                    'roll' => $so_d->roll,
+                    'dimension' => $so_d->dimension,
+                    'paper_type' => $so_d->paper_type,
+                    'calliper' => $so_d->calliper,
+                    'transaction_type' => 'product'
+                ]);
             }
            
             

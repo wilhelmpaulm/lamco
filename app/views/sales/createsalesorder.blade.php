@@ -104,9 +104,9 @@
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
-                <input id="quantity" class="input-block-level" type="text" name="quantity[]" required="" placeholder="000"/>
+                <input id="quantity" class="input-block-level" type="number" name="quantity[]" required="" placeholder="000"/>
                 <label for="price">Price</label> 
-                <input id="price" class="input-block-level" type="text" name="price[]" required="" placeholder="000.00"/>
+                <input id="price" class="input-block-level" type="number" name="price[]" required="" placeholder="000.00"/>
                 <hr>
                 <label for="subtotal">Subtotal</label> 
                 <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
@@ -126,7 +126,7 @@
                 <label >Product</label> 
                 <select id="product" class="input-block-level" name="product[]">
                     @foreach($products as $product)
-                    <option value="{{$product->id}}">{{$product->paper_type}} {{$product->dimension}} {{$product->weight}} {{$product->calliper}}</option>
+                    <option value="{{$product->id}}" data-max="{{$product->quantity}}">{{$product->paper_type}} {{$product->dimension}} {{$product->weight}} {{$product->calliper}}</option>
                     @endforeach
                 </select>
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
@@ -138,9 +138,9 @@
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
-                <input id="quantity" class="input-block-level" type="text" name="quantity[]" required="" placeholder="000"/>
+                <input id="quantity" class="input-block-level" type="number" name="quantity[]" required="" placeholder="000"/>
                 <label for="price">Price</label> 
-                <input id="price" class="input-block-level" type="text" name="price[]" required="" placeholder="000.00"/>
+                <input id="price" class="input-block-level" type="number" name="price[]" required="" placeholder="000.00"/>
                 <hr>
                 <label for="subtotal">Subtotal</label> 
                 <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
@@ -191,7 +191,7 @@
     $('body').on('change','#formrow select',function(){
         var max = $(this).find('option:selected').data('max');
 //        $('#formrow  .quantity').attr('max',max);
-        $(this).parent().siblings('div').children('.quantity').attr('max',max);
+        $(this).parent().siblings('div').children('#quantity').attr('max',max);
 //       console.log($(this).find('option:selected').data('max'));
     }); 
        

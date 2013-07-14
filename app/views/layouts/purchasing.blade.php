@@ -29,6 +29,7 @@
         {{HTML::script('js/dataTables.min.js')}}
         {{HTML::script('js/notify.min.js')}}
         {{HTML::script('js/pulsate.min.js')}}
+        {{HTML::script('js/timer.js')}}
         <!--    {{HTML::script('js/spin.min.js')}}-->
         {{HTML::script('js/ladda.js')}}
         {{HTML::script('js/select2.min.js')}}
@@ -65,7 +66,7 @@
                 }
             }
         </style>
-      
+
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -98,11 +99,11 @@
                         </p>
                         <p class="navbar-text">
                             @if(Roll::where('quantity','<','50')->count() != 0)
-                            <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-danger notif" ><i class="icon-flag"></i>  {{Roll::where('quantity','<','50')->count();}}</p></a>
+                            <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num">  {{Roll::where('quantity','<','50')->count();}}</span></p></a>
                             @endif
-    <!--                            @if(Roll::where('quantity','<=','100')->count() != 0)
-                                <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-warning " ><i class="icon-flag"></i>  {{Roll::where('quantity','<=','100')->count();}}</p></a>
-                                @endif-->
+                            <!--                            @if(Roll::where('quantity','<=','100')->count() != 0)
+                                                        <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-warning " ><i class="icon-flag"></i>  {{Roll::where('quantity','<=','100')->count();}}</p></a>
+                                                        @endif-->
                         <ul class="nav">
                             <!--              <li class="active"><a href="#">Home</a></li>
                                           <li><a href="#about">About</a></li>
@@ -162,6 +163,7 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script>
+            var war = 5;
 //            $('.notif').pulsate();
             $('.notif').pulsate({
 //                color: '#000', // set the color of the pulse
@@ -172,6 +174,25 @@
                 repeat: true, // will repeat forever if true, if given a number will repeat for that many times
                 onHover: false                          // if true only pulsate if user hovers over the element
             });
+
+//            alert();
+            var num = "";
+            $.timer(function() {
+                $.get("{{URL::to('purchasing/notif')}}", function(data) {
+//                                          alert(data);
+//                      num =  ""+data;
+//                    num = data;
+                        console.log( " "+data);
+                        $('#num').text(" "+data);
+////                    alert(data);
+                });
+//                alert(num);
+//                    $('#num').text(num);
+                
+            }, 2000, true);
+//          
+
+
         </script>
 
 

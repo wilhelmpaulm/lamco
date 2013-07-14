@@ -16,8 +16,10 @@ class CreateMachineQueuesTable extends Migration {
             $table->increments('id');
 //            $table->integer('pq_no')->nullable();
 			$table->integer('so_no')->nullable();
+			$table->integer('machine')->nullable();
 			$table->integer('created_by')->nullable();
 			$table->integer('approved_by')->nullable();
+			$table->string('production_type')->nullable();
 			$table->string('status')->nullable();
             $table->timestamps();
         });

@@ -2,6 +2,10 @@
 
 class Purchasing extends BaseController {
 
+    public function getNotif(){
+        return Roll::where('quantity','<','50')->count();
+    }
+    
     public function getIndex() {
         return View::make('purchasing.index');
     }
@@ -254,9 +258,25 @@ class Purchasing extends BaseController {
         $rr->status = "Approved";
         $rr->approved_by = Auth::user()->id;
         $rr->save();
-
+//
         $rr_d = Rr_detail::where('rr_no', '=', $id)->get();
         foreach ($rr_d as $rr_d) {
+            $sr = Roll::where('paper_type','=',$rr_d->paper_type)
+                    ->where('weight','=',$rr_d->weight)
+                    ->where('dimension','=',$rr_d->dimension)
+                    ->where('calliper','=',$rr_d->calliper)
+                    ->where('unit','=',$rr_d->unit)
+                    ->where('supplier','=',$rr->supplier)
+                    ->where('owner','=','lamco')
+                    ->where('warehouse','=',$rr_d->warehouse)
+                    ->where('location','=',$rr_d->location)
+                    ->first();
+            if(isset($sr)){
+               $sr->increment('quantity',$rr_d->quantity);
+               $sr->save();
+            }
+            else{
+                
             Roll::create([
                 'supplier' => $rr->supplier,
                 'quantity' => $rr_d->quantity,
@@ -270,6 +290,10 @@ class Purchasing extends BaseController {
                 'unit' => $rr_d->unit,
                 'owner' => 'lamco'
             ]);
+            }
+            
+            
+//            dd($sr);        
         }
 
 

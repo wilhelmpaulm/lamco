@@ -15,7 +15,7 @@ class CreateMqDetailsTable extends Migration {
         Schema::create('mq_details', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('mq_no')->nullable();
-			$table->integer('so_no');
+//			$table->integer('so_no');
 			$table->integer('quantity');
 			$table->integer('roll')->nullable();
 			$table->string('paper_type');
