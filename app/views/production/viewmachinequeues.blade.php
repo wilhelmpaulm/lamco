@@ -10,7 +10,6 @@
                 <li>
                     <a href="#">Production</a> <span class="divider">/</span>
                 </li>
-                
                 <li class="active">
                 View Machine Queues
                 </li>
@@ -70,7 +69,7 @@
                                                 {{$mq->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/view-machine-queue')}}" method="POST">
+                                                <form action="{{URL::to('production/view-machine-queue')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$mq->id}}" />
                                                     <!--<input class="btn btn-info" type="submit" value="View" />-->
                                                      <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
@@ -78,7 +77,7 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/approve-machine-queue')}}" method="POST">
+                                                <form action="{{URL::to('production/approve-machine-queue')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$mq->id}}" />
                                                     <!--<input class="btn btn-success" type="submit" value="Approve" />-->
                                                      <button class="ladda-button btn expand-right btn-success" type="submit"><span class="ladda-label">Approve</span><span class="ladda-spinner"></span></button>
@@ -87,7 +86,7 @@
                                             
                                             </td>
                                             <td>
-                                                 <form action="{{URL::to('purchasing/edit-machine-queue')}}" method="POST">
+                                                 <form action="{{URL::to('production/edit-machine-queue')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$mq->id}}" />
                                                     <!--<input class="btn btn-warning" type="submit" value="Edit" />-->
                                                      <button class="ladda-button btn  expand-right btn-warning" type="submit"><span class="ladda-label">Edit</span><span class="ladda-spinner"></span></button>
@@ -95,7 +94,7 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/delete-machine-queue')}}" method="POST">
+                                                <form action="{{URL::to('production/delete-machine-queue')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$mq->id}}" />
                                                      <button class="ladda-button btn  expand-right btn-danger" type="submit"><span class="ladda-label">Delete</span><span class="ladda-spinner"></span></button>
 
@@ -152,7 +151,7 @@
                                                 {{$mq->updated_at}}
                                             </td>
                                             <td>
-                                                 <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
+                                                 <form action="{{URL::to('production/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$mq->id}}" />
                                                                                                          <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
 
@@ -209,7 +208,7 @@
                                                 {{$mq->updated_at}}
                                             </td>
                                            <td>
-                                                 <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
+                                                 <form action="{{URL::to('production/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$mq->id}}" />
                                                                                                         <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
 

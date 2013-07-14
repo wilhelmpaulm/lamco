@@ -3,7 +3,7 @@
 class Purchasing extends BaseController {
 
     public function getNotif(){
-        return Roll::where('quantity','<','50')->count();
+        return Roll::where('quantity','<','50')->get()->toJson();
     }
     
     public function getIndex() {

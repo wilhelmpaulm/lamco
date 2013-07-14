@@ -1,19 +1,13 @@
 
 
-@font-face {
-  font-family: 'suil';
-  src: url('../font/poop.ttf');
-  src: url('../font/poop.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+
 
 root { 
     display: block;
 }
 
 body{
-    font-family: 'suil', "Segoe UI";
+    font-family:  "Segoe UI";
     /*font-family: "Segoe UI";*/
 }
 

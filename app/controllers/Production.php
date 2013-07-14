@@ -21,17 +21,19 @@ class Production extends BaseController {
         $so = Sales_order::find($mq->so_no);
         $rolls  = Roll::where('owner','=',$so->client)->get();
         $machines = Machine::all();
+        $production_types = Production_type::all();
         
         $data = [
           'rolls' => $rolls,
             'machines' => $machines,
+            'production_types' => $production_types,
             'mq' => $mq,
             'mq_d' => $mq_d
         ];
         
         
         
-        return View::make('production.editmachinequeues',$data);
+        return View::make('production.editmachinequeue',$data);
     }
     public function postApplyEditMachineQueue(){
         $id = Input::get('id');

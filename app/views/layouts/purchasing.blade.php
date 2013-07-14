@@ -98,9 +98,9 @@
                             Logged in as {{Auth::user()->first_name}} | <a href="{{URL::to('logout')}}" class="navbar-link">Logout</a>
                         </p>
                         <p class="navbar-text">
-                            @if(Roll::where('quantity','<','50')->count() != 0)
-                            <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num">  {{Roll::where('quantity','<','50')->count();}}</span></p></a>
-                            @endif
+                           
+                        <div id="lownotif" ><a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none" ><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num" > {{Roll::where('quantity','<','50')->count();}}</span></p></a></div>
+                            
                             <!--                            @if(Roll::where('quantity','<=','100')->count() != 0)
                                                         <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-warning " ><i class="icon-flag"></i>  {{Roll::where('quantity','<=','100')->count();}}</p></a>
                                                         @endif-->
@@ -176,20 +176,29 @@
             });
 
 //            alert();
-            var num = "";
+            var num;
+//            alert($('#num').text());    
+             if($('#num').text() == 0){
+                    $('#lownotif').hide();
+                }
+//            $('#lownotif').hide();
             $.timer(function() {
-                $.get("{{URL::to('purchasing/notif')}}", function(data) {
-//                                          alert(data);
-//                      num =  ""+data;
-//                    num = data;
-                        console.log( " "+data);
-                        $('#num').text(" "+data);
-////                    alert(data);
-                });
-//                alert(num);
-//                    $('#num').text(num);
                 
-            }, 2000, true);
+                $.get("{{URL::to('purchasing/notif')}}", function(data) {
+                   num = JSON.parse(data);
+                    $('#num').text(" "+num.length);
+//                    console.log(num.length);
+                        
+                    if(num.length != 0){
+                        $('#lownotif').show();
+                    }else{
+                        $('#lownotif').hide();
+                    }
+//                    num
+//                    console.log($('#num').text());
+                });
+                
+            }, 7000, true);
 //          
 
 
