@@ -1,7 +1,7 @@
 <?php
 
 class Production extends BaseController {
-    public function getViewMachineQueues(){
+    public function getViewJobOrders(){
         $mq_p = Machine_queue::where('status', '=', 'pending')->get();
         $mq_a = Machine_queue::where('status','=','approved')->get();
         $mq_f = Machine_queue::where('status', '=', 'finished')->get();
@@ -11,49 +11,54 @@ class Production extends BaseController {
             'mq_f' => $mq_f
         ];
 
-        return View::make('production.viewmachinequeues',$data);
+        return View::make('production.viewjoborders',$data);
     }
 
-    public function postEditMachineQueue(){
+    public function postEditJobOrder(){
         $id = Input::get('id');
         $mq = Machine_queue::find($id);
         $mq_d = Mq_detail::where('mq_no','=',$id)->get();
         $so = Sales_order::find($mq->so_no);
         $rolls  = Roll::where('owner','=',$so->client)->get();
-        $machines = Machine::all();
-        $production_types = Production_type::all();
+        $machines = Machine::where('type', '=', $mq->production_type )->get();
+//        $production_types = Production_type::all();
         
         $data = [
           'rolls' => $rolls,
             'machines' => $machines,
-            'production_types' => $production_types,
+            'so' => $so,
+//            'production_types' => $production_types,
             'mq' => $mq,
             'mq_d' => $mq_d
         ];
         
         
         
-        return View::make('production.editmachinequeue',$data);
+        return View::make('production.editjoborder',$data);
     }
-    public function postApplyEditMachineQueue(){
+    public function postApplyEditJobOrder(){
         $id = Input::get('id');
         $mq = Machine_queue::find($id);
         $mq->machine = Input::get('machine');
-        $mq->production_type = Input::get('production_type');
         $mq->save();
         
         Mq_detail::where('mq_no','=',$id)->delete();
         for ($index = 0; $index < count(Input::get('transaction_type')); $index++) {
             Mq_detail::create([
                'mq_no' => $id,
-                'quantity' => Input::get('quantity'),
-                'roll' => Input::get('roll')
+                'quantity' => Input::get('quantity')[$index],
+                'roll' => Input::get('roll')[$index],
+                'paper_type' => Input::get('paper_type')[$index],
+                'weight' => Input::get('weight')[$index],
+                'calliper' => Input::get('calliper')[$index],
+                'dimension' => Input::get('dimension')[$index],
+                'transaction_type' => Input::get('transaction_type')[$index]
             ]);
         }
         
-        return View::make('production.editmachinequeues',$data);
+        return Redirect::to('production/view-job-orders');
     }
-    public function postApproveMachineQueue(){
+    public function postApproveJobOrder(){
         $id = Input::get('id');
         $mq = Machine_queue::find($id);
         $mq->status = 'approved';
@@ -68,7 +73,7 @@ class Production extends BaseController {
             
         }
         
-        return View::make('production.editmachinequeues',$data);
+        return View::make('production.editjoborders');
     }
     
     public function getIndex()

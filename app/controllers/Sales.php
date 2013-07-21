@@ -19,6 +19,7 @@ class Sales extends BaseController {
         $weights = Weight::all();
         $callipers = Calliper::all();
         $products = Product::all();
+        $production_types = Production_type::all();
         $rolls = Roll::all();
         
         $data = [
@@ -29,6 +30,7 @@ class Sales extends BaseController {
             'weights' => $weights,
             'callipers' => $callipers,
             'products' => $products,
+            'production_types' => $production_types,
             'rolls' => $rolls
         ];
         
@@ -69,6 +71,7 @@ class Sales extends BaseController {
                 'total' => Input::get('subtotal')[$index],
                 'price' => Input::get('price')[$index],
                 'product' => Input::get('product')[$index],
+                'production_type' => Input::get('production_type')[$index],
                 'roll' => Input::get('roll')[$index]
             ]);
         }
@@ -96,6 +99,7 @@ class Sales extends BaseController {
                 'total' => Input::get('total')[$index],
                 'price' => Input::get('price')[$index],
                 'product' => Input::get('product')[$index],
+                'production_type' => Input::get('production_type')[$index],
                 'roll' => Input::get('roll')[$index]
             ]);
         }
@@ -112,6 +116,7 @@ class Sales extends BaseController {
         $weights = Weight::all();
         $callipers = Calliper::all();
         $products = Product::all();
+        $production_types = Production_type::all();
         $rolls = Roll::all();
         $so = Sales_order::find($id);
         $so_d = So_detail::where('so_no','=',$id)->get();
@@ -124,6 +129,7 @@ class Sales extends BaseController {
             'weights' => $weights,
             'callipers' => $callipers,
             'products' => $products,
+            'production_types' => $production_types,
             'rolls' => $rolls,
             'so' => $so,
             'so_d' => $so_d
@@ -175,6 +181,7 @@ class Sales extends BaseController {
                 $mq = Machine_queue::create([
                     'so_no' => $so->id,
                     'status' => 'pending',
+                    'production_type' => $so_d->production_type,
                     'created_by' => Auth::user()->id
                 ]);
                 Mq_detail::create([
@@ -183,6 +190,7 @@ class Sales extends BaseController {
 //                    'roll' => $so_d->roll,
                     'dimension' => $so_d->dimension,
                     'paper_type' => $so_d->paper_type,
+                    'weight' => $so_d->weight,
                     'calliper' => $so_d->calliper,
                     'transaction_type' => 'product'
                 ]);

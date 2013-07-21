@@ -116,7 +116,8 @@
               <li><hr></li>
               <li class="nav-header"><i class="icon-cogs"></i> Production</li>
               <!--<li><a href="{{URL::to('production/assign-machine-to-queue')}}">Assign Machine to Queue</a></li>-->
-              <li><a href="{{URL::to('production/view-machine-queues')}}">View Machine Queues</a></li>
+              <li><a href="{{URL::to('production/view-job-orders')}}">View Job Orders</a></li>
+              <li><a href="{{URL::to('production/view-machine-queues')}}">View Machine Queue</a></li>
               <li><a href="{{URL::to('production/view-machine-queues')}}">View Production Records</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>

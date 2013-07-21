@@ -101,6 +101,12 @@
                 </select>
             </div>
             <div class="span2">
+                <label for="production_type">Production Type</label> 
+                <select id="production_type" class="input-block-level" name="production_type[]">
+                    @foreach($production_types as $production_type)
+                    <option value="{{$production_type->type}}">{{$production_type->type}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
@@ -135,6 +141,7 @@
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="roll[]" placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
@@ -166,6 +173,7 @@
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 

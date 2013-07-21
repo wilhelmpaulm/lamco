@@ -75,6 +75,12 @@
                             </select>
                         </div>
                         <div class="span2">
+                              <label for="production_type">Production Type</label> 
+                                <select id="production_type" class="input-block-level" name="production_type[]">
+                                    @foreach($production_types as $production_type)
+                                    <option value="{{$production_type->type}}" @if($production_type->type == $so_d->production_type)selected=''@endif >{{$production_type->type}}</option>
+                                    @endforeach
+                                </select>
                         </div>
                         <div class="span3">
                             <label  for="quantity">Quantity</label> 

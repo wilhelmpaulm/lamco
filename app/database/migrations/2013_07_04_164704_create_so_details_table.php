@@ -17,6 +17,7 @@ class CreateSoDetailsTable extends Migration {
             $table->integer('so_no');
 			$table->integer('quantity')->nullable();
 			$table->string('paper_type')->nullable();
+			$table->string('production_type')->nullable();
 			$table->string('dimension')->nullable();
 			$table->string('weight')->nullable();
 			$table->string('calliper')->nullable();
