@@ -93,14 +93,19 @@
                     </button>
                     <a class="brand" href="#">Purchasing Department</a>
                     <div class="nav-collapse collapse">
-                        <p class="navbar-text pull-right">
+                       
+                        <div class="navbar-text pull-right">
+                            Logged in as {{Auth::user()->first_name}} |
 
-                            Logged in as {{Auth::user()->first_name}} | <a href="{{URL::to('logout')}}" class="navbar-link">Logout</a>
-                        </p>
-                        <p class="navbar-text">
-                           
-                        <div id="lownotif" ><a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none" ><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num" > {{Roll::where('quantity','<','50')->count();}}</span></p></a></div>
-                            
+                            <a id="toggleNotif" class="navbar-link">Notification</a> |
+
+                            <a href="{{URL::to('logout')}}" class="navbar-link ">Logout</a>
+                        </div>
+                        <div class="navbar-text">
+                            <div id="notification" >
+                            <span id="lownotif" ><a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none" ><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num" > {{Roll::where('quantity','<','50')->count();}}</span></p></a></span>
+                            </div>
+                        </div>
                             <!--                            @if(Roll::where('quantity','<=','100')->count() != 0)
                                                         <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-warning " ><i class="icon-flag"></i>  {{Roll::where('quantity','<=','100')->count();}}</p></a>
                                                         @endif-->
@@ -163,6 +168,12 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script>
+            $('#toggleNotif').click (function(){
+                $('#notification').toggleClass('hidden');
+            });
+        
+            
+            
             var war = 5;
 //            $('.notif').pulsate();
             $('.notif').pulsate({
