@@ -139,7 +139,6 @@
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
-                <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="roll[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
             </div>
@@ -170,7 +169,6 @@
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
-                <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>

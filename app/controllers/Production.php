@@ -94,28 +94,29 @@ class Production extends BaseController {
     
     
     public function postApproveJobOrder(){
-      echo "helllo paul";
-            $id = Input::get('id');
-        $mq = Machine_queue::find($id);
-        $mq_d = Mq_detail::where('mq_no','=',$id)->get();
-               
-        $pr = Production_record::create([
-            'so_no' => $mq->so_no,
-            'production_type' => $mq->production_type,
-            'status' => 'pending'
-        ]);
-        
-        foreach($mq_d as $mq_d){
-            Production_record::create([
-                
-            ]);
-        };
-        
-        $mq->approved_by = Auth::user()->id;
-        $mq->status = 'approved';
-        $mq->save();
-        
-        return Redirect::to('production/view-job-orders');
+      var_dump($_POST);  
+//      echo "helllo paul";
+//            $id = Input::get('id');
+//        $mq = Machine_queue::find($id);
+//        $mq_d = Mq_detail::where('mq_no','=',$id)->get();
+//               
+//        $pr = Production_record::create([
+//            'so_no' => $mq->so_no,
+//            'production_type' => $mq->production_type,
+//            'status' => 'pending'
+//        ]);
+//        
+//        foreach($mq_d as $mq_d){
+//            Production_record::create([
+//                
+//            ]);
+//        };
+//        
+//        $mq->approved_by = Auth::user()->id;
+//        $mq->status = 'approved';
+//        $mq->save();
+//        
+//        return Redirect::to('production/view-job-orders');
     }
     
     public function getIndex()
