@@ -26,6 +26,58 @@ class Production extends BaseController {
         return View::make('production.viewproductionrecords',$data);
     }
 
+    public function postViewProductionRecord(){
+        $id = Input::get('id');
+        $pr = Production_record::find($id);
+        $mq = Machine_queue::find($pr->mq_no);
+        $pr_d = Pr_detail::where('pr_no','=',$id)->get();
+        $so = Sales_order::find($pr->so_no);
+       
+        
+        $data = [
+       
+            'mq' => $mq,
+            'so' => $so,
+            'pr' => $pr,
+            'pr_d' => $pr_d
+        ];
+        
+        return View::make('production.viewproductionrecord',$data);
+    }
+    public function postViewApproveProductionRecord(){
+        $id = Input::get('id');
+        $pr = Production_record::find($id);
+        $mq = Machine_queue::find($pr->mq_no);
+        $pr_d = Pr_detail::where('pr_no','=',$id)->get();
+        $so = Sales_order::find($pr->so_no);
+        $rolls  = Roll::where('owner','=',$so->client)->get();
+        $machines = Machine::where('type', '=', $pr->production_type )->get();
+        
+        $warehouses = Warehouse::all();
+        $locations = Location::all();
+        $units = Unit::all();
+        $paper_types = Paper_type::all();
+        $weights = Weight::all();
+        $callipers = Calliper::all();
+        
+        $data = [
+          'rolls' => $rolls,
+          'units' => $units,
+          'paper_types' => $paper_types,
+          'weights' => $weights,
+          'callipers' => $callipers,
+          'warehouses' => $warehouses,
+          'locations' => $locations,
+          'rolls' => $rolls,
+            'machines' => $machines,
+            'mq' => $mq,
+            'so' => $so,
+            'pr' => $pr,
+            'pr_d' => $pr_d
+        ];
+        
+        return View::make('production.approveproductionrecord',$data);
+    }
     public function postEditProductionRecord(){
         $id = Input::get('id');
         $pr = Production_record::find($id);
@@ -151,7 +203,7 @@ class Production extends BaseController {
                 'weight' => Input::get('weight')[$index],
                 'calliper' => Input::get('calliper')[$index],
                 'unit' => Input::get('unit')[$index],
-                'owner' => Client::find($pr->so_no)->name,
+                'owner' => $pr->so_no,
                 'roll' => Input::get('roll')[$index],
                 'warehouse' => Input::get('warehouse')[$index],
                 'location' => Input::get('location')[$index],
@@ -207,6 +259,51 @@ class Production extends BaseController {
         $mq->save();
         
         return Redirect::to('production/view-job-orders');
+    }
+    public function postApproveProductionRecord(){
+//      var_dump($_POST);  
+            $id = Input::get('id');
+        $pr = Production_record::find($id);
+        $pr_d = Pr_detail::where('pr_no','=',$id)->get();
+               
+       
+        
+        foreach($pr_d as $pr_d){
+           if($pr_d->transaction_type == "product"){
+               Product::create([
+                   'paper_type' => $pr_d->paper_type, 
+                   'quantity' => $pr_d->quantity, 
+                   'unit' => $pr_d->unit, 
+                   'dimension' => $pr_d->dimension, 
+                   'weight' => $pr_d->weight, 
+                   'calliper' => $pr_d->calliper, 
+                   'price' => $pr_d->price, 
+                   'warehouse' => $pr_d->warehouse, 
+                   'location' => $pr_d->location, 
+                   'owner' => $pr_d->owner 
+               ]);
+           }
+           if($pr_d->transaction_type == "balance"){
+               Roll::create([
+                  'paper_type' => $pr_d->paper_type, 
+                   'quantity' => $pr_d->quantity, 
+                   'unit' => $pr_d->unit, 
+                   'dimension' => $pr_d->dimension, 
+                   'weight' => $pr_d->weight, 
+                   'calliper' => $pr_d->calliper, 
+//                   'price' => $pr_d->price, 
+                   'warehouse' => $pr_d->warehouse, 
+                   'location' => $pr_d->location, 
+                   'owner' => $pr_d->owner  
+               ]);
+           }
+        };
+        
+        $pr->approved_by = Auth::user()->id;
+        $pr->status = 'approved';
+        $pr->save();
+        
+        return Redirect::to('production/view-production-records');
     }
     
     public function getIndex()

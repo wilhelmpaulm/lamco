@@ -194,7 +194,7 @@
                                                 {{Client::find(Sales_order::find($pr->so_no)->client)->name}}
                                             </td>
                                             <td>
-                                                {{Machine::find($pr->machine)->name}}
+                                                {{Machine::find(Machine_queue::find($pr->mq_no)->machine)->name}}
                                             </td>
                                             <td>
                                                 {{$pr->production_type}}
@@ -206,7 +206,7 @@
                                                 {{$pr->updated_at}}
                                             </td>
                                              <td>
-                                                <form action="{{URL::to('production/view-approve-job-order')}}" method="POST">
+                                                <form action="{{URL::to('production/view-approve-production-record')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pr->id}}" />
                                                     <!--<input class="btn btn-success" type="submit" value="Approve" />-->
                                                      <button class="ladda-button btn expand-right btn-success" type="submit"><span class="ladda-label">View / Mark as Completed</span><span class="ladda-spinner"></span></button>
