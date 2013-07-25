@@ -203,7 +203,7 @@ class Production extends BaseController {
                 'weight' => Input::get('weight')[$index],
                 'calliper' => Input::get('calliper')[$index],
                 'unit' => Input::get('unit')[$index],
-                'owner' => $pr->so_no,
+                'owner' => Sales_order::find($pr->so_no)->client,
                 'roll' => Input::get('roll')[$index],
                 'warehouse' => Input::get('warehouse')[$index],
                 'location' => Input::get('location')[$index],

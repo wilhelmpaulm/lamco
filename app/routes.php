@@ -88,7 +88,8 @@ Route::controller('purchasing', 'Purchasing');
 Route::controller('sales', 'Sales');
 Route::controller('production', 'Production');
 Route::controller('delivery', 'Delivery');
+Route::controller('billing', 'Billing');
 
 
 
-Route::resource('addresses', 'AddressesController');
+//Route::resource('addresses', 'AddressesController');
