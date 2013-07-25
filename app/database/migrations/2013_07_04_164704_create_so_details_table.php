@@ -16,7 +16,7 @@ class CreateSoDetailsTable extends Migration {
             $table->increments('id');
             $table->integer('so_no');
 			$table->integer('quantity')->nullable();
-			$table->integer('unit')->nullable();
+			$table->string('unit')->nullable();
 			$table->string('paper_type')->nullable();
 			$table->string('production_type')->nullable();
 			$table->string('dimension')->nullable();

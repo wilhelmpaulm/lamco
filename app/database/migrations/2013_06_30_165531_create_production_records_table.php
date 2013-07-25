@@ -15,6 +15,7 @@ class CreateProductionRecordsTable extends Migration {
         Schema::create('production_records', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('so_no')->nullable();
+            $table->integer('mq_no')->nullable();
 //			$table->float('quantity')->nullable();
 //			$table->string('dimension')->nullable();
 //			$table->string('weight')->nullable();

@@ -102,7 +102,7 @@
             </div>
             <div class="span2">
                 <label for="unit">Unit</label> 
-                            <select id="dimension" class="input-block-level" name="unit[]" data-trigger="change" data-required="true">
+                            <select id="dimension" class="input-block-level" name="unit[]" >
                                 @foreach($units as $unit)
                                 <option class="" value="{{$unit->unit}}">{{$unit->unit}}</option>
                                 @endforeach
@@ -141,7 +141,7 @@
                     <option value="{{$product->id}}" data-max="{{$product->quantity}}">{{$product->paper_type}} {{$product->dimension}} {{$product->weight}} {{$product->calliper}}</option>
                     @endforeach
                 </select>
-                <input id=""  class="" type="hidden"  name="unit[]" placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="unit[]" />
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>

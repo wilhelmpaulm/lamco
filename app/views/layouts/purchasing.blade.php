@@ -122,8 +122,8 @@
         <div class="container-fluid">
             <div class="row-fluid">
 
-                <div class="span3 ">
-                    <div class=" sidebar-nav ">
+                <div class="span2 ">
+                    <div class="well sidebar-nav ">
                         <ul class="nav nav-list">
                             <li class="nav-header"><i class="icon-home"></i> Home</li>
                             <li><a href="{{URL::to('purchasing/memo')}}">Memos</a></li>
@@ -149,7 +149,7 @@
                 <!--this is the margin--> 
 
 
-                <div class="span9 well">
+                <div class="span10 well">
 
                     @yield('main')
 

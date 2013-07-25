@@ -58,6 +58,9 @@
                             <input class="input-block-level" disabled="" type="text"  name="dimension[]" value="{{$mq_d->dimension}}" />
                         </div>
                         <div class="span2">
+                            <label for="unit">Unit</label> 
+                            <input class="input-block-level" type="hidden"  name="unit[]" value="{{$mq_d->unit}}" />
+                            <input class="input-block-level" disabled="" type="text"  name="unit[]" value="{{$mq_d->unit}}" />
                         </div>
                         <div class="span3">
                             <label  for="quantity">Quantity</label> 

@@ -15,7 +15,7 @@ class CreatePrDetailsTable extends Migration {
         Schema::create('pr_details', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('pr_no');
-			$table->integer('mq_no')->nullable();
+//			$table->integer('mq_no')->nullable();
 			$table->integer('quantity');
 			$table->string('paper_type');
 			$table->string('dimension');

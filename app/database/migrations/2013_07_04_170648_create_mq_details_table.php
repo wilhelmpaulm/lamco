@@ -17,7 +17,7 @@ class CreateMqDetailsTable extends Migration {
             $table->integer('mq_no')->nullable();
 //			$table->integer('so_no');
 			$table->integer('quantity');
-			$table->integer('unit')->nullable();
+			$table->string('unit')->nullable();
 			$table->integer('roll')->nullable();
 			$table->string('paper_type')->nullable();
 			$table->string('dimension')->nullable();

@@ -194,6 +194,7 @@ class Sales extends BaseController {
                 Mq_detail::create([
                    'mq_no' => $mq->id,
                     'quantity' => $so_d->quantity,
+                    'unit' => $so_d->unit,
 //                    'roll' => $so_d->roll,
                     'unit' => $so_d->unit,
                     'dimension' => $so_d->dimension,

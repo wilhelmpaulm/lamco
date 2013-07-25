@@ -14,18 +14,51 @@ class Production extends BaseController {
         return View::make('production.viewjoborders',$data);
     }
     public function getViewProductionRecords(){
-        $mq_p = Machine_queue::where('status', '=', 'pending')->get();
-        $mq_a = Machine_queue::where('status','=','approved')->get();
-        $mq_i = Machine_queue::where('status', '=', 'in production')->get();
+        $pr_p = Production_record::where('status', '=', 'pending')->get();
+        $pr_a = Production_record::where('status','=','approved')->get();
+        $pr_i = Production_record::where('status', '=', 'in production')->get();
         $data = [
-            'mq_p' => $mq_p,
-            'mq_a' => $mq_a,
-            'mq_i' => $mq_i
+            'pr_p' => $pr_p,
+            'pr_a' => $pr_a,
+            'pr_i' => $pr_i
         ];
 
-        return View::make('production.viewjoborders',$data);
+        return View::make('production.viewproductionrecords',$data);
     }
 
+    public function postEditProductionRecord(){
+        $id = Input::get('id');
+        $pr = Production_record::find($id);
+        $mq = Machine_queue::find($pr->mq_no);
+        $pr_d = Pr_detail::where('pr_no','=',$id)->get();
+        $so = Sales_order::find($pr->so_no);
+        $rolls  = Roll::where('owner','=',$so->client)->get();
+        $machines = Machine::where('type', '=', $pr->production_type )->get();
+        
+        $warehouses = Warehouse::all();
+        $locations = Location::all();
+        $units = Unit::all();
+        $paper_types = Paper_type::all();
+        $weights = Weight::all();
+        $callipers = Calliper::all();
+        
+        $data = [
+          'rolls' => $rolls,
+          'units' => $units,
+          'paper_types' => $paper_types,
+          'weights' => $weights,
+          'callipers' => $callipers,
+          'warehouses' => $warehouses,
+          'locations' => $locations,
+          'rolls' => $rolls,
+            'machines' => $machines,
+            'so' => $so,
+            'pr' => $pr,
+            'pr_d' => $pr_d
+        ];
+        
+        return View::make('production.editproductionrecord',$data);
+    }
     public function postEditJobOrder(){
         $id = Input::get('id');
         $mq = Machine_queue::find($id);
@@ -43,8 +76,6 @@ class Production extends BaseController {
             'mq' => $mq,
             'mq_d' => $mq_d
         ];
-        
-        
         
         return View::make('production.editjoborder',$data);
     }
@@ -81,6 +112,7 @@ class Production extends BaseController {
         for ($index = 0; $index < count(Input::get('transaction_type')); $index++) {
             Mq_detail::create([
                'mq_no' => $id,
+                'unit' => Input::get('unit')[$index],
                 'quantity' => Input::get('quantity')[$index],
                 'roll' => Input::get('roll')[$index],
                 'paper_type' => Input::get('paper_type')[$index],
@@ -115,6 +147,7 @@ class Production extends BaseController {
         $pr = Production_record::create([
             'so_no' => $mq->so_no,
             'production_type' => $mq->production_type,
+            'mq_no' => $id,
             'checker_a' => Auth::user()->id,
             'status' => 'pending'
         ]);
@@ -122,7 +155,6 @@ class Production extends BaseController {
         foreach($mq_d as $mq_d){
             Pr_detail::create([
                 'pr_no' => $pr->id,
-                'mq_no' => $id,
                 'quantity' => $mq_d->quantity,
                 'paper_type' => $mq_d->paper_type,
                 'dimension' => $mq_d->dimension,

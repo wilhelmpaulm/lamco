@@ -14,7 +14,7 @@
    
          {{HTML::style('css/dataTables.css')}}
         {{HTML::style('css/bootstrap.min.css')}}    
-        <!--{{HTML::style('css/flatty-bootstrap.css')}}-->
+        <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         {{HTML::style('css/bootstrap-responsive.min.css')}}
         {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::style('css/wilhelmpaulm.css')}}
@@ -38,11 +38,11 @@
         padding-top: 60px;
         padding-bottom: 40px;
         
+          background: url('{{URL::asset("bg/triangles.png")}}')
       }
       .hero-unit {
                background: url('{{URL::asset("bg/paper_3.png")}}');
 
-          /*background: url('{{URL::asset("bg/paper_3.png")}}')*/
       }
       
       .balon{
@@ -50,6 +50,7 @@
       }
       
       .well{
+          
       }
       .sidebar-nav {
         padding: 9px 0;
@@ -107,7 +108,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         
-          <div class="span3 ">
+          <div class="span2 ">
           <div class="well sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
@@ -117,8 +118,8 @@
               <li class="nav-header"><i class="icon-cogs"></i> Production</li>
               <!--<li><a href="{{URL::to('production/assign-machine-to-queue')}}">Assign Machine to Queue</a></li>-->
               <li><a href="{{URL::to('production/view-job-orders')}}">View Job Orders</a></li>
-              <li><a href="{{URL::to('production/view-machine-queues')}}">View Machine Queue</a></li>
-              <li><a href="{{URL::to('production/view-machine-queues')}}">View Production Records</a></li>
+              <li><a href="{{URL::to('production/view-production-records')}}">View Production Records</a></li>
+              <!--<li><a href="{{URL::to('production/view-machine-queues')}}">View Production Records</a></li>-->
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
               <li><a href="{{URL::to('production/view-rolls')}}">View Rolls</a></li>
@@ -133,7 +134,7 @@
         <!--this is the margin--> 
         
         
-        <div class="span9 well">
+        <div class="span10 well">
           
             @yield('main')
             

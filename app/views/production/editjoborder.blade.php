@@ -68,18 +68,22 @@
                             <input class="input-block-level" disabled="" type="text"  name="dimension[]" value="{{$mq_d->dimension}}" />
                         </div>
                         <div class="span2">
+                            <label for="unit">Unit</label> 
+                            <input class="input-block-level" type="hidden"  name="unit[]" value="{{$mq_d->unit}}" />
+                            <input class="input-block-level" disabled="" type="text"  name="unit[]" value="{{$mq_d->unit}}" />
+                            
                         </div>
                         <div class="span3">
                             <label  for="quantity">Quantity</label> 
                             <input id="quantity" class="input-block-level" type="hidden" name="quantity[]" value="{{$mq_d->quantity}}" placeholder="000"/>
                             <input id="quantity" class="input-block-level" disabled="" type="text" name="quantity[]" value="{{$mq_d->quantity}}" placeholder="000"/>
-                            <label for="price">Price</label> 
+                            <!--<label for="price">Price</label>--> 
                             <input id="price" class="input-block-level" type="hidden" name="price[]" value="{{$mq_d->price}}" placeholder="000.00"/>
-                            <input id="price" class="input-block-level" disabled="" type="text" name="price[]" value="{{$mq_d->price}}" placeholder="000.00"/>
+                            <!--<input id="price" class="input-block-level" disabled="" type="text" name="price[]" value="{{$mq_d->price}}" placeholder="000.00"/>-->
                             <hr>
-                            <label for="subtotal">Subtotal</label> 
+                            <!--<label for="subtotal">Subtotal</label>--> 
                             <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
-                            <input id="subtotal"  class="input-block-level  " type="text" disabled="true" placeholder="000.00"/>
+                            <!--<input id="subtotal"  class="input-block-level  " type="text" disabled="true" placeholder="000.00"/>-->
                             <hr>
                             <!--Subtotal: <span id="subtotal">0.00</span>-->
                             <!--<input id="subtotal" class="input-block-level btn btn-inverse " disabled="true" value="0.00" type="text" name="subtotal"/>-->
@@ -172,6 +176,7 @@
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="unit[]"  placeholder="000.00"/>
 
                 <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
 
