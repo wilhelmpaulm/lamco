@@ -18,6 +18,7 @@
         <div class="span3">
             <!--<input class="btn " disabled="true" type="text" name="vendor" value="PO no. 879" />-->
 
+            <input id=""  class="" type="hidden"  name="production_type" value="{{$mq->production_type}}"/>
             <input type="hidden" name="id" value="{{$mq->id}}" />
             <label for="client">Client</label> 
             <input class="input-block-level" type="text" disabled="" name="client" value="{{$so->client}}" />
@@ -97,13 +98,14 @@
                                 <option value="{{$roll->id}}" data-max="{{$roll->quantity}}"  @if($mq_d->roll == $roll->id)selected=''@endif >{{$roll->paper_type}} {{$roll->dimensions}} {{$roll->weight}} {{$roll->calliper}}</option>
                                 @endforeach
                             </select>
+
+                            <input id=""  class="" type="hidden"  name="subtotal[]" placeholder="000.00"/>
+                            <input id=""  class="" type="hidden"  name="price[]" placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
-                            <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
-                            <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
                         </div>
                         <div class="span3">
                             <label  for="quantity">Quantity</label> 
@@ -164,13 +166,15 @@
                     <option value="{{$roll->id}}" data-max="{{$roll->quantity}}">{{$roll->paper_type}} {{$roll->dimensions}} {{$roll->weight}} {{$roll->calliper}}</option>
                     @endforeach
                 </select>
+                <input id=""  class="" type="hidden"  name="subtotal[]" placeholder="000.00"/>
+                <input id=""  class="" type="hidden"  name="price[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
-                <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
+
                 <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
-                <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
+
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
@@ -201,10 +205,8 @@
     function ref() {
         if (counter == 0) {
             $('#removerow').hide();
-//            $('input#subtotal').text('0.00');
         } else {
             $('#removerow').show();
-//            $('input#subtotal').text('0.00');
         }
     }
     ;
@@ -221,7 +223,6 @@
     $('#mamamia').on('keyup', '#quantity', function() {
         pri = $(this).siblings('#price').val();
         qua = $(this).val();
-
         $(this).siblings('#subtotal').val((qua * pri).toFixed(2));
         $(this).siblings('#subtotal').text((qua * pri).toFixed(2));
         $('#total').val(sumjq('input#subtotal'));
@@ -230,11 +231,9 @@
     $('#mamamia').on('keyup', '#price', function() {
         qua = $(this).siblings('#quantity').val();
         pri = $(this).val();
-
         $(this).siblings('#subtotal').val((qua * pri).toFixed(2));
         $(this).siblings('#subtotal').text((qua * pri).toFixed(2));
         $('#total').val(sumjq('input#subtotal'));
-
     });
 
 
@@ -247,17 +246,10 @@
     });
 
     $('body').on('click', '#removerow', function() {
-
-//        $('#formbody').children($('#formrow#poop')).last().remove();
-//        $('#formrow').last().remove();
-//        $('#formbody').children($('#formrow')).children($('#poop')).last().remove();
         $('#formrow').children().last().remove();
-//        $('#formrow')
         counter--;
         ref();
         $('#total').val(sumjq('input#subtotal'));
-//        $('body').find($('#formbody')).children($('#formrow')).last().remove();
-//        alert($('#var').html());
     });
 </script>
 

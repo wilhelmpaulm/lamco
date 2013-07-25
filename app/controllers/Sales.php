@@ -21,6 +21,7 @@ class Sales extends BaseController {
         $products = Product::all();
         $production_types = Production_type::all();
         $rolls = Roll::all();
+        $units = Unit::all();
         
         $data = [
             'clients' => $clients,
@@ -31,6 +32,7 @@ class Sales extends BaseController {
             'callipers' => $callipers,
             'products' => $products,
             'production_types' => $production_types,
+            'units' => $units,
             'rolls' => $rolls
         ];
         
@@ -52,6 +54,7 @@ class Sales extends BaseController {
     }
     
     public function postAddSalesOrder(){
+        
         $so = Sales_order::create([
             'client' => Input::get('client'),
             'terms' => Input::get('terms'),
@@ -62,6 +65,7 @@ class Sales extends BaseController {
         for ($index = 0; $index < count(Input::get('transaction_type')); $index++) {
             So_detail::create([
                 'so_no' => $so->id,
+                'unit' => Input::get('unit')[$index],
                 'transaction_type' => Input::get('transaction_type')[$index],
                 'quantity' => Input::get('quantity')[$index],
                 'paper_type' => Input::get('paper_type')[$index],
@@ -90,6 +94,7 @@ class Sales extends BaseController {
         for ($index = 0; $index < count(Input::get('transaction_type')); $index++) {
             So_detail::create([
                 'so_no' => $so->id,
+                'unit' => Input::get('unit')[$index],
                 'transaction_type' => Input::get('transaction_type')[$index],
                 'quantity' => Input::get('quantity')[$index],
                 'paper_type' => Input::get('paper_type')[$index],
@@ -118,10 +123,12 @@ class Sales extends BaseController {
         $products = Product::all();
         $production_types = Production_type::all();
         $rolls = Roll::all();
+        $units = Unit::all();
         $so = Sales_order::find($id);
         $so_d = So_detail::where('so_no','=',$id)->get();
         
         $data = [
+            'units' => $units,
             'clients' => $clients,
             'terms' => $terms,
             'paper_types' => $paper_types,
@@ -188,6 +195,7 @@ class Sales extends BaseController {
                    'mq_no' => $mq->id,
                     'quantity' => $so_d->quantity,
 //                    'roll' => $so_d->roll,
+                    'unit' => $so_d->unit,
                     'dimension' => $so_d->dimension,
                     'paper_type' => $so_d->paper_type,
                     'weight' => $so_d->weight,

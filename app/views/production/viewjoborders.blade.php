@@ -23,7 +23,7 @@
                         <a href="#po-inproduction" data-toggle="tab">Job Orders in production</a>
                     </li>
                     <li>
-                        <a href="#po-completed" data-toggle="tab">Rejected Job Orders</a>
+                        <a href="#po-completed" data-toggle="tab">Completed Job Orders</a>
                     </li>
                     
                 </ul>

@@ -75,6 +75,12 @@
                             </select>
                         </div>
                         <div class="span2">
+                            <label for="unit">Units</label> 
+                            <select id="unit" class="input-block-level" name="unit[]">
+                                @foreach($units as $unit)
+                                <option value="{{$unit->unit}}" @if($unit->unit == $so_d->unit)selected=''@endif >{{$unit->unit}}</option>
+                                @endforeach
+                            </select>
                               <label for="production_type">Production Type</label> 
                                 <select id="production_type" class="input-block-level" name="production_type[]">
                                     @foreach($production_types as $production_type)
@@ -108,6 +114,8 @@
                                 <option value="{{$product->id}}" @if($product->id == $so_d->product)selected=""@endif >{{$product->paper_type}} {{$product->dimension}} {{$product->weight}} {{$product->calliper}}</option>
                                 @endforeach
                             </select>
+                            <input id=""  class="" type="hidden"  name="unit[]" placeholder="000.00"/>
+                            <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
@@ -136,21 +144,25 @@
                                 <option value="{{$roll->id}}" @if($roll->id == $so_d->roll)selected=''@endif >{{$roll->paper_type}} {{$roll->dimensions}} {{$roll->weight}} {{$roll->calliper}}</option>
                                 @endforeach
                             </select>
+                            <input id=""  class="" type="hidden"  name="unit[]" placeholder="000.00"/>
+                            <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
+                            <input id=""  class="" type="hidden"  name="price[]" placeholder="000.00"/>
+                            <input id=""  class="" type="hidden"  name="subtotal[]" placeholder="000.00"/>
                         </div>
                         <div class="span3">
                             <label  for="quantity">Quantity</label> 
                             <input id="quantity" class="input-block-level" type="text" name="quantity[]" value="{{$so_d->quantity}}" placeholder="000"/>
-                            <label for="price">Price</label> 
+<!--                            <label for="price">Price</label> 
                             <input id="price" class="input-block-level" type="text" name="price[]" value="{{$so_d->price}}" placeholder="000.00"/>
                             <hr>
                             <label for="subtotal">Subtotal</label> 
                             <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
-                            <input id="subtotal"  class="input-block-level  " type="text" disabled="true" placeholder="000.00"/>
+                            <input id="subtotal"  class="input-block-level  " type="text" disabled="true" placeholder="000.00"/>-->
                             <hr>
                         </div>
                     </div>
@@ -246,6 +258,7 @@
                     <option value="{{$product->id}}">{{$product->paper_type}} {{$product->dimension}} {{$product->weight}} {{$product->calliper}}</option>
                     @endforeach
                 </select>
+                <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
@@ -276,6 +289,7 @@
                     <option value="{{$roll->id}}">{{$roll->paper_type}} {{$roll->dimensions}} {{$roll->weight}} {{$roll->calliper}}</option>
                     @endforeach
                 </select>
+                <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>

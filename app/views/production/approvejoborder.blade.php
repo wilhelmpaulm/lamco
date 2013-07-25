@@ -17,21 +17,17 @@
     <div class="row-fluid">
         <div class="span3">
             <!--<input class="btn " disabled="true" type="text" name="vendor" value="PO no. 879" />-->
-
-            <input type="hidden" name="id" value="{{$mq->id}}" />
+            <input id=""  class="" type="hidden"  name="production_type" value="{{$mq->production_type}}"/>
             <label for="client">Client</label> 
+            <input class="input-block-level" type="hidden" name="client" value="{{$so->client}}" />
             <input class="input-block-level" type="text" disabled="" name="client" value="{{$so->client}}" />
             <label for="machine">Job Order ID</label> 
+            <input type="hidden" name="id" value="{{$mq->id}}" />
             <input class="input-block-level" type="text" disabled="" name="id" value="{{$mq->id}}" />
-
             <label for="machine">Machine</label> 
+            <input class="input-block-level" type="hidden"  name="machine" value="{{$mq->machine}}" />
             <input class="input-block-level" type="text" disabled="" name="machine" value="{{$mq->machine}}" />
             <br><br>
-<!--            <button id="addordinary" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i> Add Ordinary </button>
-            <button id="addspecial" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i>   Add Special </button>
-            <button id="addreserve" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i> Reserve Roll</button>
-            <button id="removerow" class="btn btn-danger btn-block pull-left" type="button"><i class="icon-minus-sign-alt"></i></button>-->
-
         </div>
 
 
@@ -86,12 +82,12 @@
                     <div class="formitem span12 row-fluid" >
                         <input id="transaction_type"  class="" type="hidden"  name="transaction_type[]" value="roll"/>
                         <div class="span8">
-                           
+
                             <label for="roll">Roll</label> 
                             <input class="input-block-level" type="hidden"  name="roll[]" value="{{$mq_d->roll}}" />
                             <input class="input-block-level" type="text" disabled=""  name="roll[]" value="{{$mq_d->roll}}" />
-                            
-                            
+
+
                             <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                             <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>

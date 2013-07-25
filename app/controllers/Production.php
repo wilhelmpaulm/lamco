@@ -13,6 +13,18 @@ class Production extends BaseController {
 
         return View::make('production.viewjoborders',$data);
     }
+    public function getViewProductionRecords(){
+        $mq_p = Machine_queue::where('status', '=', 'pending')->get();
+        $mq_a = Machine_queue::where('status','=','approved')->get();
+        $mq_i = Machine_queue::where('status', '=', 'in production')->get();
+        $data = [
+            'mq_p' => $mq_p,
+            'mq_a' => $mq_a,
+            'mq_i' => $mq_i
+        ];
+
+        return View::make('production.viewjoborders',$data);
+    }
 
     public function postEditJobOrder(){
         $id = Input::get('id');
@@ -46,7 +58,7 @@ class Production extends BaseController {
 //        $production_types = Production_type::all();
         
         $data = [
-          'rolls' => $rolls,
+            'rolls' => $rolls,
             'machines' => $machines,
             'so' => $so,
 //            'production_types' => $production_types,
@@ -94,29 +106,43 @@ class Production extends BaseController {
     
     
     public function postApproveJobOrder(){
-      var_dump($_POST);  
+//      var_dump($_POST);  
 //      echo "helllo paul";
-//            $id = Input::get('id');
-//        $mq = Machine_queue::find($id);
-//        $mq_d = Mq_detail::where('mq_no','=',$id)->get();
-//               
-//        $pr = Production_record::create([
-//            'so_no' => $mq->so_no,
-//            'production_type' => $mq->production_type,
-//            'status' => 'pending'
-//        ]);
-//        
-//        foreach($mq_d as $mq_d){
-//            Production_record::create([
-//                
-//            ]);
-//        };
-//        
-//        $mq->approved_by = Auth::user()->id;
-//        $mq->status = 'approved';
-//        $mq->save();
-//        
-//        return Redirect::to('production/view-job-orders');
+            $id = Input::get('id');
+        $mq = Machine_queue::find($id);
+        $mq_d = Mq_detail::where('mq_no','=',$id)->get();
+               
+        $pr = Production_record::create([
+            'so_no' => $mq->so_no,
+            'production_type' => $mq->production_type,
+            'checker_a' => Auth::user()->id,
+            'status' => 'pending'
+        ]);
+        
+        foreach($mq_d as $mq_d){
+            Pr_detail::create([
+                'pr_no' => $pr->id,
+                'mq_no' => $id,
+                'quantity' => $mq_d->quantity,
+                'paper_type' => $mq_d->paper_type,
+                'dimension' => $mq_d->dimension,
+                'weight' => $mq_d->weight,
+                'calliper' => $mq_d->calliper,
+                'instructions' => $mq_d->instructions,
+                'unit' => $mq_d->unit,
+                'owner' => $mq_d->owner,
+                'roll' => $mq_d->roll,
+//                'warehouse' => $mq_d->warehouse,
+//                'location' => $mq_d->location,
+                'transaction_type' => $mq_d->transaction_type,
+            ]);
+        };
+        
+        $mq->approved_by = Auth::user()->id;
+        $mq->status = 'approved';
+        $mq->save();
+        
+        return Redirect::to('production/view-job-orders');
     }
     
     public function getIndex()

@@ -101,6 +101,12 @@
                 </select>
             </div>
             <div class="span2">
+                <label for="unit">Unit</label> 
+                            <select id="dimension" class="input-block-level" name="unit[]" data-trigger="change" data-required="true">
+                                @foreach($units as $unit)
+                                <option class="" value="{{$unit->unit}}">{{$unit->unit}}</option>
+                                @endforeach
+                            </select>
                 <label for="production_type">Production Type</label> 
                 <select id="production_type" class="input-block-level" name="production_type[]">
                     @foreach($production_types as $production_type)
@@ -135,6 +141,7 @@
                     <option value="{{$product->id}}" data-max="{{$product->quantity}}">{{$product->paper_type}} {{$product->dimension}} {{$product->weight}} {{$product->calliper}}</option>
                     @endforeach
                 </select>
+                <input id=""  class="" type="hidden"  name="unit[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
@@ -166,22 +173,25 @@
                     <option value="{{$roll->id}}" data-max="{{$roll->quantity}}">{{$roll->paper_type}} {{$roll->dimensions}} {{$roll->weight}} {{$roll->calliper}}</option>
                     @endforeach
                 </select>
+                <input id=""  class="" type="hidden"  name="unit[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="dimension[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="weight[]"  placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="product[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
+                 <input id=""  class="" type="hidden"  name="price[]" placeholder="000.00"/>
+                            <input id=""  class="" type="hidden"  name="subtotal[]" placeholder="000.00"/>
             </div>
             <div class="span3">
                 <label  for="quantity">Quantity</label> 
                 <input id="quantity" class="input-block-level quantity" type="number" name="quantity[]"  required="" placeholder="000"/>
-                <label for="price">Price</label> 
+<!--                <label for="price">Price</label> 
                 <input id="price" class="input-block-level" type="number" name="price[]" required="" placeholder="000.00"/>
                 <hr>
                 <label for="subtotal">Subtotal</label> 
                 <input id="subtotal"  class="" type="hidden"  name="subtotal[]"  placeholder="000.00"/>
-                <input id="subtotal"  class="input-block-level  " type="text" disabled="true" placeholder="000.00"/>
+                <input id="subtotal"  class="input-block-level  " type="text" disabled="true" placeholder="000.00"/>-->
                 <hr>
             </div>
         </div>
