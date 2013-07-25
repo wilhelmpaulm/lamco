@@ -17,13 +17,13 @@
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#po-pending" data-toggle="tab">Pending Job Orders</a>
+                        <a href="#po-pending" data-toggle="tab">Pending Production Records</a>
                     </li>
                     <li>
-                        <a href="#po-inproduction" data-toggle="tab">Job Orders in production</a>
+                        <a href="#po-inproduction" data-toggle="tab">Processed Production Records</a>
                     </li>
                     <li>
-                        <a href="#po-completed" data-toggle="tab">Completed Job Orders</a>
+                        <a href="#po-completed" data-toggle="tab">Completed Production Records</a>
                     </li>
                     
                 </ul>

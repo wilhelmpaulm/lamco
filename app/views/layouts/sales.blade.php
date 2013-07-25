@@ -37,12 +37,12 @@
       body {
         padding-top: 60px;
         padding-bottom: 40px;
+          background: url('{{URL::asset("bg/triangles.png")}}')
         
       }
       .hero-unit {
                background: url('{{URL::asset("bg/paper_3.png")}}');
 
-          /*background: url('{{URL::asset("bg/paper_3.png")}}')*/
       }
       
       .balon{
@@ -108,8 +108,8 @@
     <div class="container-fluid">
       <div class="row-fluid">
         
-          <div class="span3 ">
-          <div class=" sidebar-nav ">
+          <div class="span2 ">
+          <div class="well sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
               <li><a href="{{URL::to('sales/memo')}}">Memos</a></li>
@@ -134,7 +134,7 @@
         <!--this is the margin--> 
         
         
-        <div class="span9 well">
+        <div class="span10 well">
           
             @yield('main')
             

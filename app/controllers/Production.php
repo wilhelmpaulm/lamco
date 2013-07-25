@@ -16,7 +16,7 @@ class Production extends BaseController {
     public function getViewProductionRecords(){
         $pr_p = Production_record::where('status', '=', 'pending')->get();
         $pr_a = Production_record::where('status','=','approved')->get();
-        $pr_i = Production_record::where('status', '=', 'in production')->get();
+        $pr_i = Production_record::where('status', '=', 'processed')->get();
         $data = [
             'pr_p' => $pr_p,
             'pr_a' => $pr_a,
@@ -52,6 +52,7 @@ class Production extends BaseController {
           'locations' => $locations,
           'rolls' => $rolls,
             'machines' => $machines,
+            'mq' => $mq,
             'so' => $so,
             'pr' => $pr,
             'pr_d' => $pr_d
@@ -134,6 +135,37 @@ class Production extends BaseController {
         
         
         return Redirect::to('production/view-job-orders');
+    }
+    public function postApplyEditProductionRecord(){
+//        var_dump($_POST);
+        $id = Input::get('id');
+        $pr = Production_record::find($id);
+        
+        Pr_detail::where('pr_no','=',$id)->delete();
+        for ($index = 0; $index < count(Input::get('transaction_type')); $index++) {
+            Pr_detail::create([
+               'pr_no' => $id,
+                'quantity' => Input::get('quantity')[$index],
+                'paper_type' => Input::get('paper_type')[$index],
+                'dimension' => Input::get('dimension')[$index],
+                'weight' => Input::get('weight')[$index],
+                'calliper' => Input::get('calliper')[$index],
+                'unit' => Input::get('unit')[$index],
+                'owner' => Client::find($pr->so_no)->name,
+                'roll' => Input::get('roll')[$index],
+                'warehouse' => Input::get('warehouse')[$index],
+                'location' => Input::get('location')[$index],
+                'transaction_type' => Input::get('transaction_type')[$index]
+            ]);
+        };
+
+        $pr->checker_b = Auth::user()->id;
+        $pr->status = 'processed';
+        $pr->save();
+        
+        
+        
+        return Redirect::to('production/view-production-records');
     }
     
     

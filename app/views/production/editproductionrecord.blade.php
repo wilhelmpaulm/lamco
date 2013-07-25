@@ -15,9 +15,14 @@
 
 <form id="mamamia"  class="" action="{{URL::to('production/apply-edit-production-record')}}" method="post">
     <div class="row-fluid">
-        <div class="span12">
+        <input type="hidden" name="id" value="{{$pr->id}}" />
+                
+        
+        <div class="span9">
+            <h3>Machine : {{Machine::find($mq->machine)->name}}</h3>
+        </div>
+        <div class="span3">
             <h4>Production Record No. {{$pr->id}}</h4>
-            <h4>{{$mq->machine}}</h4>
         </div>
     </div>
 
@@ -43,6 +48,17 @@
 
                     @foreach($pr_d as $p_d)
                     @if($p_d->transaction_type == "product")
+                 <input type="hidden" name="quantity[]" value="{{$p_d->quantity}}" />
+                <input type="hidden" name="paper_type[]" value="{{$p_d->paper_type}}" />
+                <input type="hidden" name="dimension[]" value="{{$p_d->dimension}}" />
+                <input type="hidden" name="weight[]" value="{{$p_d->weight}}" />
+                <input type="hidden" name="calliper[]" value="{{$p_d->calliper}}" />
+                <input type="hidden" name="instructions[]" value="{{$p_d->instructions}}" />
+                <input type="hidden" name="unit[]" value="{{$p_d->unit}}" />
+                <input type="hidden" name="roll[]" value="{{$p_d->roll}}" />
+                <input type="hidden" name="transaction_type[]" value="product" />
+              
+                
                     <tr>
                         <td >{{$p_d->quantity}}</td>
                         <td >{{$p_d->unit}}</td>
@@ -51,14 +67,14 @@
                         <td>{{$p_d->weight}}</td>
                         <td>{{$p_d->calliper}}</td>
                         <td >
-                            <select name="warehouse" class="input-block-level">
+                            <select name="warehouse[]" class="input-block-level">
                                 @foreach($warehouses as $warehouse)
                                 <option>{{$warehouse->warehouse}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td >
-                            <select name="location" class="input-block-level">
+                            <select name="location[]" class="input-block-level">
                                 @foreach($locations as $location)
                                 <option>{{$location->location}}</option>
                                 @endforeach
@@ -89,10 +105,22 @@
                     </tr>
                 </thead>
                 <tbody >
-
+                <input type="hidden" name="quantity[]" value="{{$p_d->quantity}}" />
+                <input type="hidden" name="paper_type[]" value="{{$p_d->paper_type}}" />
+                <input type="hidden" name="dimension[]" value="{{$p_d->dimension}}" />
+                <input type="hidden" name="weight[]" value="{{$p_d->weight}}" />
+                <input type="hidden" name="calliper[]" value="{{$p_d->calliper}}" />
+                <input type="hidden" name="instructions[]" value="{{$p_d->instructions}}" />
+                <input type="hidden" name="unit[]" value="{{$p_d->unit}}" />
+                <input type="hidden" name="roll[]" value="{{$p_d->roll}}" />
+                <input type="hidden" name="transaction_type[]" value="roll" />
+                <input type="hidden" name="warehouse[]" value="{{$p_d->warehouse}}" />
+                <input type="hidden" name="location[]" value="{{$p_d->location}}" />
+                   
                     @foreach($pr_d as $p_d)
                     @if($p_d->transaction_type == "roll")
                     <?php $r = Roll::find($p_d->roll) ?>
+                    
                     <tr>
                         <td >{{$p_d->quantity}}</td>
                         <td >{{$r->unit}}</td>
@@ -134,53 +162,58 @@
             </table>
         </div>
     </div>
+    
+    
+    <input type="submit" value="Approve Production Record" />
 </form>
 
 <div class="hidden">
     <div id="balance_content">
         <table><tbody>
         <tr>
-            <td><input type="number" name="quantity" value="" /></td>
+                <input type="hidden" name="roll[]" value="" />
+                <input type="hidden" name="transaction_type[]" value="balance" />
+            <td><input type="number" name="quantity[]" value="" /></td>
             <td >
-                <select name="unit" class="input-block-level">
+                <select name="unit[]" class="input-block-level">
                     @foreach($units as $unit)
                     <option>{{$unit->unit}}</option>
                     @endforeach
                 </select>
             </td>
             <td >
-                <select name="paper_type" class="input-block-level">
+                <select name="paper_type[]" class="input-block-level">
                     @foreach($paper_types as $paper_type)
                     <option>{{$paper_type->type}}</option>
                     @endforeach
                 </select>
             </td>
             <td >
-                <input type="text" name="dimension" value="" />
+                <input type="text" name="dimension[]" value="" />
             </td>
             <td >
-                <select name="weight" class="input-block-level">
+                <select name="weight[]" class="input-block-level">
                     @foreach($weights as $weight)
                     <option>{{$weight->weight}}</option>
                     @endforeach
                 </select>
             </td>
             <td >
-                <select name="calliper" class="input-block-level">
+                <select name="calliper[]" class="input-block-level">
                     @foreach($callipers as $calliper)
                     <option>{{$calliper->calliper}}</option>
                     @endforeach
                 </select>
             </td>
             <td >
-                <select name="warehouse" class="input-block-level">
+                <select name="warehouse[]" class="input-block-level">
                     @foreach($warehouses as $warehouse)
                     <option>{{$warehouse->warehouse}}</option>
                     @endforeach
                 </select>
             </td>
             <td>
-                <select name="location" class="input-block-level">
+                <select name="location[]" class="input-block-level">
                     @foreach($locations as $location)
                     <option>{{$location->location}}</option>
                     @endforeach
