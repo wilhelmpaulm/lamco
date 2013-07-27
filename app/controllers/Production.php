@@ -262,7 +262,7 @@ class Production extends BaseController {
     }
     public function postApproveProductionRecord(){
 //      var_dump($_POST);  
-            $id = Input::get('id');
+        $id = Input::get('id');
         $pr = Production_record::find($id);
         $pr_d = Pr_detail::where('pr_no','=',$id)->get();
                
@@ -302,6 +302,9 @@ class Production extends BaseController {
         $pr->approved_by = Auth::user()->id;
         $pr->status = 'approved';
         $pr->save();
+        
+        Sales::processSalesOrder($pr->so_no);
+        Sales::processSalesInvoice($pr->so_no);
         
         return Redirect::to('production/view-production-records');
     }

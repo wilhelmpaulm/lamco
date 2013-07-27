@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSoDetailsTable extends Migration {
+class CreateSiDetailsTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateSoDetailsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('so_details', function(Blueprint $table) {
+        Schema::create('si_details', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('so_no');
+            $table->integer('si_no')->nullable();
 			$table->integer('quantity')->nullable();
 			$table->string('unit')->nullable();
 			$table->string('paper_type')->nullable();
-			$table->string('production_type')->nullable();
 			$table->string('dimension')->nullable();
 			$table->string('weight')->nullable();
 			$table->string('calliper')->nullable();
@@ -27,11 +26,10 @@ class CreateSoDetailsTable extends Migration {
 			$table->float('price')->nullable();
 			$table->integer('product')->nullable();
 			$table->integer('roll')->nullable();
-			$table->string('transaction_type')->nullable();
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -39,7 +37,7 @@ class CreateSoDetailsTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('so_details');
+        Schema::drop('si_details');
     }
 
 }

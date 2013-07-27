@@ -93,3 +93,7 @@ Route::controller('billing', 'Billing');
 
 
 //Route::resource('addresses', 'AddressesController');
+//
+//Route::resource('sales_invoices', 'Sales_invoicesController');
+//
+//Route::resource('si_details', 'Si_detailsController');

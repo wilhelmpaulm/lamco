@@ -51,7 +51,9 @@ class DatabaseSeeder extends Seeder {
 		$this->call('Pr_detailsTableSeeder');
 //		$this->call('Dq_detailsTableSeeder');
 		
-		$this->call('AddressesTableSeeder');
+//		$this->call('AddressesTableSeeder');
+		$this->call('Sales_invoicesTableSeeder');
+		$this->call('Si_detailsTableSeeder');
 	}
 
 }
