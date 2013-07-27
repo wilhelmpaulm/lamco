@@ -3,7 +3,7 @@
 
 
 <div class="span6 offset3">
-    <div class="hero-unit">
+    <div class="hero-unit ">
         <hr>
         <h1 class="text-center">Login</h1>
         <hr>

@@ -1,15 +1,6 @@
 <?php
 
 class Billing extends BaseController {
-//    
-//    The body of this shit
-//    
-//    createsalesorder - done
-//    addsalesorder - done
-//    editsalesorder - done
-//    applyeditsalesorder - done
-//    
-    
     
     public function getCreateSalesInvoice(){
         $clients = Client::all();
@@ -35,7 +26,6 @@ class Billing extends BaseController {
             'units' => $units,
             'rolls' => $rolls
         ];
-        
         return View::make('billing.createsalesorder', $data);
     }
     
@@ -204,8 +194,6 @@ class Billing extends BaseController {
                     'transaction_type' => 'product'
                 ]);
             }
-           
-            
         }
         
         
