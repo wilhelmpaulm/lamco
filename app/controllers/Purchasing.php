@@ -2,17 +2,17 @@
 
 class Purchasing extends BaseController {
 
-    public function getNotif(){
-        return Roll::where('quantity','<','50')->get()->toJson();
+    public function getNotif() {
+        return Roll::where('quantity', '<', '50')->get()->toJson();
     }
-    
+
     public function getIndex() {
         return View::make('purchasing.index');
     }
 
     public function getMemo() {
-        
-        
+
+
         return View::make('purchasing.memo');
     }
 
@@ -132,7 +132,6 @@ class Purchasing extends BaseController {
 
     public function postApplyEditPurchaseOrder() {
         $id = Input::get('id');
-//        return $id;
         $po = Purchase_order::find($id);
         $po->supplier = Input::get('vendor');
         $po->created_by = Auth::user()->id;
@@ -261,39 +260,34 @@ class Purchasing extends BaseController {
 //
         $rr_d = Rr_detail::where('rr_no', '=', $id)->get();
         foreach ($rr_d as $rr_d) {
-            $sr = Roll::where('paper_type','=',$rr_d->paper_type)
-                    ->where('weight','=',$rr_d->weight)
-                    ->where('dimension','=',$rr_d->dimension)
-                    ->where('calliper','=',$rr_d->calliper)
-                    ->where('unit','=',$rr_d->unit)
-                    ->where('supplier','=',$rr->supplier)
-                    ->where('owner','=','lamco')
-                    ->where('warehouse','=',$rr_d->warehouse)
-                    ->where('location','=',$rr_d->location)
+            $sr = Roll::where('paper_type', '=', $rr_d->paper_type)
+                    ->where('weight', '=', $rr_d->weight)
+                    ->where('dimension', '=', $rr_d->dimension)
+                    ->where('calliper', '=', $rr_d->calliper)
+                    ->where('unit', '=', $rr_d->unit)
+                    ->where('supplier', '=', $rr->supplier)
+                    ->where('owner', '=', 'lamco')
+                    ->where('warehouse', '=', $rr_d->warehouse)
+                    ->where('location', '=', $rr_d->location)
                     ->first();
-            if(isset($sr)){
-               $sr->increment('quantity',$rr_d->quantity);
-               $sr->save();
+            if (isset($sr)) {
+                $sr->increment('quantity', $rr_d->quantity);
+                $sr->save();
+            } else {
+
+                Roll::create([
+                    'supplier' => $rr->supplier,
+                    'quantity' => $rr_d->quantity,
+                    'paper_type' => $rr_d->paper_type,
+                    'dimension' => $rr_d->dimension,
+                    'weight' => $rr_d->weight,
+                    'calliper' => $rr_d->calliper,
+                    'warehouse' => $rr_d->warehouse,
+                    'location' => $rr_d->location,
+                    'unit' => $rr_d->unit,
+                    'owner' => 'lamco'
+                ]);
             }
-            else{
-                
-            Roll::create([
-                'supplier' => $rr->supplier,
-                'quantity' => $rr_d->quantity,
-                'paper_type' => $rr_d->paper_type,
-                'dimension' => $rr_d->dimension,
-                'weight' => $rr_d->weight,
-                'calliper' => $rr_d->calliper,
-//                'instructions' => $rr->instructions,
-                'warehouse' => $rr_d->warehouse,
-                'location' => $rr_d->location,
-                'unit' => $rr_d->unit,
-                'owner' => 'lamco'
-            ]);
-            }
-            
-            
-//            dd($sr);        
         }
 
 
@@ -304,45 +298,37 @@ class Purchasing extends BaseController {
         $pos_p = Purchase_order::where('status', '=', 'pending')->get();
         $pos_a = Purchase_order::where('status', '=', 'approved')->get();
         $pos_f = Purchase_order::where('status', '=', 'finished')->get();
-//        
         $data = [
             'pos_p' => $pos_p,
             'pos_a' => $pos_a,
             'pos_f' => $pos_f
         ];
-//        
         return View::make('purchasing.viewpurchaseorders', $data);
     }
 
     public function getViewRolls() {
         $lamco_rolls = Roll::where('owner', '=', 'lamco')->get();
-        $low_rolls = Roll::where('quantity','<',50)->get();
+        $low_rolls = Roll::where('quantity', '<', 50)->get();
         $client_rolls = Roll::where('owner', '!=', 'lamco')->get();
         $data = [
             'lamco_rolls' => $lamco_rolls,
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
-
-//        print_r($low_rolls);
-        
         return View::make('purchasing.viewrolls', $data);
     }
+
     public function getViewProducts() {
         $lamco_products = Product::where('owner', '=', 'lamco')->get();
-        $low_products = Product::where('quantity','<',50)->get();
+        $low_products = Product::where('quantity', '<', 50)->get();
         $client_products = Product::where('owner', '!=', 'lamco')->get();
         $data = [
             'lamco_products' => $lamco_products,
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
-
-//        print_r($low_rolls);
-        
         return View::make('purchasing.viewproducts', $data);
     }
-
 
     public function getViewVendors() {
         $products = Product::all();
@@ -372,8 +358,6 @@ class Purchasing extends BaseController {
         $caliipers = Calliper::all();
         $statuses = Status::all();
         $vendors = Supplier::all();
-//        $t = Vendor::all();
-
         $data = [
             'paper_types' => $paper_types,
             'dimensions' => $dimensions,
@@ -388,14 +372,12 @@ class Purchasing extends BaseController {
     public function getManageProducts() {
         $products = Product::all();
         $data = ['products' => $products];
-
         return View::make('purchasing.manageproducts', $data);
     }
 
     public function getManageVendors() {
         $products = Product::all();
         $data = ['products' => $products];
-
         return View::make('purchasing.managevendors', $data);
     }
 

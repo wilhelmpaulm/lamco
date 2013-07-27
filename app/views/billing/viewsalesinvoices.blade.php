@@ -1,4 +1,4 @@
-@extends('layouts.sales')
+@extends('layouts.billing')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">
@@ -8,27 +8,30 @@
                     <a href="#">Home</a> <span class="divider">/</span>
                 </li>
                 <li>
-                    <a href="#">Purchasing</a> <span class="divider">/</span>
+                    <a href="#">Billing</a> <span class="divider">/</span>
                 </li>
-                
+
                 <li class="active">
-                View Purchase Orders
+                    View Sales Invoices
                 </li>
             </ul>
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#po-pending" data-toggle="tab">Pending Sales Orders ({{$so_p->count()}})</a>
+                        <a href="#si-pending" data-toggle="tab">Pending Sales Invoices ({{$si_p->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-approved" data-toggle="tab">Approved Sales Orders</a>
+                        <a href="#si-approved" data-toggle="tab">Approved Sales Invoices ({{$si_a->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-accomplished" data-toggle="tab">Accomplished Sales Orders</a>
+                        <a href="#si-completed" data-toggle="tab">Completed Sales Invoices ({{$si_c->count()}})</a>
+                    </li>
+                    <li>
+                        <a href="#si-hold" data-toggle="tab">Accomplished Sales Invoices ({{$si_h->count()}})</a>
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="po-pending">
+                    <div class="tab-pane active" id="si-pending">
                         <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-condensed table-bordered table-striped table-hover dtable" >
@@ -38,7 +41,7 @@
                                                 #
                                             </th>
                                             <th>
-                                                Vendor
+                                                Client
                                             </th>
                                             <th>
                                                 Date Created
@@ -50,122 +53,51 @@
                                             </th>
                                             <th>
                                             </th>
-                                            <th>
-                                            </th>
-                                            <th>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach($so_p as $so)
-                                        <tr>
-                                            <td>
-                                                {{$so->id}}
-                                            </td>
-                                            <td>
-                                                {{$so->client}}
-                                            </td>
-                                            <td>
-                                                {{$so->created_at}}
-                                            </td>
-                                            <td>
-                                                {{$so->updated_at}}
-                                            </td>
-                                            <td>
-                                                <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action="{{URL::to('sales/approve-sales-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-success" type="submit" value="Approve" />
-                                                </form>
-                                            
-                                            </td>
-                                            <td>
-                                                 <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-warning" type="submit" value="Edit" />
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action="{{URL::to('sales/delete-sales-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-danger" type="submit" value="Delete" />
-                                                </form>
-                                            
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="po-approved">
-                        <div class="row-fluid">
-                            <div class="span12">
-                        <table class="table table-condensed table-bordered table-striped table-hover dtable" >
-
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                #
-                                            </th>
-                                            <th>
-                                                Vendor
-                                            </th>
-                                            <th>
-                                                Date Created
-                                            </th>
-                                            <th>
-                                                Date Updated
-                                            </th>
-                                            
-                                            <th>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach($so_a as $so)
-                                        <tr>
-                                            <td>
-                                                {{$so->id}}
-                                            </td>
-                                            <td>
-                                                {{$so->supplier}}
-                                            </td>
-                                            <td>
-                                                {{$so->created_at}}
-                                            </td>
-                                            <td>
-                                                {{$so->updated_at}}
-                                            </td>
-                                            <td>
-                                                 <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
-                                                </form>
-                                            </td>
                                            
                                         </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach($si_p as $si)
+                                        <tr>
+                                            <td>
+                                                {{$si->id}}
+                                            </td>
+                                            <td>
+                                                {{$si->client}}
+                                            </td>
+                                            <td>
+                                                {{$si->created_at}}
+                                            </td>
+                                            <td>
+                                                {{$si->updated_at}}
+                                            </td>
+                                            <td>
+                                                <form action="{{URL::to('billing/view-edit-sales-invoice')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
+                                                    <input class="btn btn-warning" type="submit" value="Modify Sales Invoice" />
+                                                </form>
+                                            </td>
+                                          
+                                            <td>
+                                                <form action="{{URL::to('billing/delete-sales-invoice')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
+                                                    <input class="btn btn-danger" type="submit" value="Delete" />
+                                                </form>
+
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
 
                             </div>
                         </div>
-
                     </div>
-                    <div class="tab-pane" id="po-accomplished">
+                    <div class="tab-pane" id="si-approved">
                         <div class="row-fluid">
                             <div class="span12">
-                                                               <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
 
                                     <thead>
                                         <tr>
@@ -181,30 +113,141 @@
                                             <th>
                                                 Date Updated
                                             </th>
-                                            
+
                                             <th>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        @foreach($so_f as $so)
+                                        @foreach($si_a as $si)
                                         <tr>
                                             <td>
-                                                {{$so->id}}
+                                                {{$si->id}}
                                             </td>
                                             <td>
-                                                {{$so->supplier}}
+                                                {{$si->supplier}}
                                             </td>
                                             <td>
-                                                {{$so->created_at}}
+                                                {{$si->created_at}}
                                             </td>
                                             <td>
-                                                {{$so->updated_at}}
+                                                {{$si->updated_at}}
                                             </td>
-                                           <td>
-                                                 <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
+                                            <td>
+                                                <form action="{{URL::to('billing/view-approve-sales-invoice')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
+                                                    <input class="btn btn-info" type="submit" value="View / Approve Sales Invoice" />
+                                                </form>
+                                            </td>
+
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="si-completed">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Vendor
+                                            </th>
+                                            <th>
+                                                Date Created
+                                            </th>
+                                            <th>
+                                                Date Updated
+                                            </th>
+
+                                            <th>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach($si_c as $si)
+                                        <tr>
+                                            <td>
+                                                {{$si->id}}
+                                            </td>
+                                            <td>
+                                                {{$si->supplier}}
+                                            </td>
+                                            <td>
+                                                {{$si->created_at}}
+                                            </td>
+                                            <td>
+                                                {{$si->updated_at}}
+                                            </td>
+                                            <td>
+                                                <form action="{{URL::to('billing/view-sales-invoice')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
+                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="si-hold">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Vendor
+                                            </th>
+                                            <th>
+                                                Date Created
+                                            </th>
+                                            <th>
+                                                Date Updated
+                                            </th>
+
+                                            <th>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach($si_h as $si)
+                                        <tr>
+                                            <td>
+                                                {{$si->id}}
+                                            </td>
+                                            <td>
+                                                {{$si->supplier}}
+                                            </td>
+                                            <td>
+                                                {{$si->created_at}}
+                                            </td>
+                                            <td>
+                                                {{$si->updated_at}}
+                                            </td>
+                                            <td>
+                                                <form action="{{URL::to('billing/view-sales-invoice')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
                                             </td>
@@ -246,9 +289,9 @@
 
 <script >
 //    $('#example').dataTable();
-$(document).ready(function() {
-    $('.dtable').dataTable();
-} );
+    $(document).ready(function() {
+        $('.dtable').dataTable();
+    });
 </script>
 
 

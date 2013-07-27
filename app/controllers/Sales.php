@@ -13,7 +13,7 @@ class Sales extends BaseController {
 //    applyeditsalesorder - done
 //    
     public static function processSalesInvoice($id) {
-        $si = Sales_invoice::where("so_no","=", $id)->first();
+        $si = Sales_invoice::where("so_no", "=", $id)->first();
 
         if (Sales_order::find($id)->status == "completed") {
             $si->status = "pending";
@@ -55,7 +55,7 @@ class Sales extends BaseController {
                 'roll' => $sd->roll
             ]);
         }
-        
+
         Sales::processSalesInvoice($si->id);
     }
 
