@@ -15,21 +15,16 @@ class Delivery extends BaseController {
     {
         return View::make('delivery.reminder');
     }
-    public function getCreatePurchaseOrder()
-    {
-        return View::make('delivery.reminder');
-    }
-    public function getPurchaseOrderSummary()
-    {
-        return View::make('delivery.reminder');
-    }
-    public function getApprovePurchaseOrder()
-    {
-        return View::make('delivery.reminder');
-    }
     
-    public function getPoopHansen()
-    {
-        echo "mama";
+    public function getViewDeliveryTickets() {
+        $dq_p = Delivery_queue::where('status', '=', 'pending')->get();
+        $dq_d = Delivery_queue::where('status', '=', 'in delivery')->get();
+        $dq_a = Delivery_queue::where('status', '=', 'completed')->get();
+        $data = [
+            'dq_p' => $dq_p,
+            'dq_a' => $dq_a,
+            'dq_d' => $dq_d
+        ];
+        return View::make('billing.viewsalesinvoices', $data);
     }
 }

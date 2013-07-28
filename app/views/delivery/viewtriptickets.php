@@ -8,30 +8,25 @@
                     <a href="#">Home</a> <span class="divider">/</span>
                 </li>
                 <li>
-                    <a href="#">Billing</a> <span class="divider">/</span>
+                    <a href="#">Delivery</a> <span class="divider">/</span>
                 </li>
 
                 <li class="active">
-                    View Sales Invoices
+                    View Trip Tickets
                 </li>
             </ul>
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#si-pending" data-toggle="tab">Pending Sales Invoices ({{$si_p->count()}})</a>
+                        <a href="#dq-pending" data-toggle="tab">Pending Trip Tickets ({{$dq_p->count()}})</a>
                     </li>
                     <li>
-                        <a href="#si-approved" data-toggle="tab">Approved Sales Invoices ({{$si_a->count()}})</a>
+                        <a href="#dq-delivery" data-toggle="tab">Trip Tickets In Delivery ({{$dq_d->count()}})</a>
                     </li>
                     <li>
-                        <a href="#si-delivery" data-toggle="tab">Sales Invoices In Delivery ({{$si_d->count()}})</a>
+                        <a href="#dq-approved" data-toggle="tab">Completed Trip Tickets ({{$dq_c->count()}})</a>
                     </li>
-                    <li>
-                        <a href="#si-completed" data-toggle="tab">Completed Sales Invoices ({{$si_c->count()}})</a>
-                    </li>
-                    <li>
-                        <a href="#si-hold" data-toggle="tab">Sales Invoices On Hold({{$si_h->count()}})</a>
-                    </li>
+                    
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="si-pending">
@@ -61,30 +56,30 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($si_p as $si)
+                                        @foreach($dq_p as $dq)
                                         <tr>
                                             <td>
-                                                {{$si->id}}
+                                                {{$dq->id}}
                                             </td>
                                             <td>
-                                                {{$si->client}}
+                                                {{$dq->client}}
                                             </td>
                                             <td>
-                                                {{$si->created_at}}
+                                                {{$dq->created_at}}
                                             </td>
                                             <td>
-                                                {{$si->updated_at}}
+                                                {{$dq->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('billing/view-edit-sales-invoice')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
-                                                    <input class="btn btn-warning" type="submit" value="Modify Sales Invoice" />
+                                                <form action="{{URL::to('delivery/view-approve-trip-ticket')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$dq->id}}" />
+                                                    <input class="btn btn-warning" type="submit" value="View / Approve Trip Ticket" />
                                                 </form>
                                             </td>
                                           
                                             <td>
-                                                <form action="{{URL::to('billing/delete-sales-invoice')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
+                                                <form action="{{URL::to('billing/delete-trip-ticket')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$dq->id}}" />
                                                     <input class="btn btn-danger" type="submit" value="Delete" />
                                                 </form>
 

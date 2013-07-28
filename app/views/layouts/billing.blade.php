@@ -116,8 +116,8 @@
               <li><a href="{{URL::to('billing/reminder')}}">Reminders</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-tags"></i> Sales</li>
-              <li><a href="{{URL::to('billing/create-sales-invoice')}}">Create Sales Invoice</a></li>
-              <li><a href="{{URL::to('billing/view-sales-invoice')}}">View Sales Invoice</a></li>
+              <!--<li><a href="{{URL::to('billing/create-sales-invoice')}}">Create Sales Invoice</a></li>-->
+              <li><a href="{{URL::to('billing/view-sales-invoices')}}">View Sales Invoices</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
               <li><a href="{{URL::to('billing/view-rolls')}}">View Rolls</a></li>

@@ -25,6 +25,7 @@ class CreateSiDetailsTable extends Migration {
                     $table->float('price')->nullable();
                     $table->integer('product')->nullable();
                     $table->integer('roll')->nullable();
+                    $table->string('transaction_type')->nullable();
                     $table->timestamps();
                 });
     }

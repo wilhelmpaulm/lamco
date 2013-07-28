@@ -52,10 +52,23 @@ class Sales extends BaseController {
                 'price' => $sd->price,
 //                'discount' => $sd->discount,
                 'product' => $sd->product,
-                'roll' => $sd->roll
+                'roll' => $sd->roll,
+                'transaction_type' => $sd->transaction_type
             ]);
         }
-
+        $si_d = Si_detail::where("si_no", "=", $si->id)->get();
+       
+        $subtotal = 0;
+        foreach($si_d as $sid){
+           $subtotal += $sid->price*$sid->quantity; 
+        }
+        $vat = ($subtotal/100)*12;
+        $total = $vat + $subtotal;
+        
+        $si->subtotal = $subtotal;
+        $si->vat = $vat;
+        $si->total = $total;
+        $si->save();
         Sales::processSalesInvoice($si->id);
     }
 

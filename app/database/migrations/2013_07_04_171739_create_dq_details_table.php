@@ -10,14 +10,18 @@ class CreateDqDetailsTable extends Migration {
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('dq_details', function(Blueprint $table) {
-            $table->increments('id');
-            $table->integer('dq_no')->nullable();
-			$table->integer('so_no')->nullable();
-            $table->timestamps();
-        });
+                    $table->increments('id');
+                    $table->integer('dq_no')->nullable();
+                    $table->integer('so_no')->nullable();
+                    $table->integer('si_no')->nullable();
+                    $table->text('destination')->nullable();
+                    $table->string('left_at')->nullable();
+                    $table->string('arrived_at')->nullable();
+                    $table->string('status')->nullable();
+                    $table->timestamps();
+                });
     }
 
     /**
@@ -25,8 +29,7 @@ class CreateDqDetailsTable extends Migration {
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('dq_details');
     }
 

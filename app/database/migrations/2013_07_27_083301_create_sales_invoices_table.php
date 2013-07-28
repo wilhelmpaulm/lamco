@@ -17,6 +17,10 @@ class CreateSalesInvoicesTable extends Migration {
             $table->integer('so_no')->nullable();
 			$table->integer('client')->nullable();
 			$table->string('terms')->nullable();
+			$table->float('discount')->nullable();
+			$table->float('subtotal')->nullable();
+			$table->float('vat')->nullable();
+			$table->float('total')->nullable();
 			$table->integer('created_by')->nullable();
 			$table->integer('approved_by')->nullable();
 			$table->string('status')->nullable();
