@@ -1,4 +1,4 @@
-@extends('layouts.billing')
+@extends('layouts.delivery')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">
@@ -20,16 +20,17 @@
                     <li class="active">
                         <a href="#dq-pending" data-toggle="tab">Pending Trip Tickets ({{$dq_p->count()}})</a>
                     </li>
+                   
                     <li>
                         <a href="#dq-delivery" data-toggle="tab">Trip Tickets In Delivery ({{$dq_d->count()}})</a>
                     </li>
                     <li>
-                        <a href="#dq-approved" data-toggle="tab">Completed Trip Tickets ({{$dq_c->count()}})</a>
+                        <a href="#dq-completed" data-toggle="tab">Completed Trip Tickets ({{$dq_c->count()}})</a>
                     </li>
-                    
+
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="si-pending">
+                    <div class="tab-pane active" id="dq-pending">
                         <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-condensed table-bordered table-striped table-hover dtable" >
@@ -51,7 +52,7 @@
                                             </th>
                                             <th>
                                             </th>
-                                           
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -76,7 +77,7 @@
                                                     <input class="btn btn-warning" type="submit" value="View / Approve Trip Ticket" />
                                                 </form>
                                             </td>
-                                          
+
                                             <td>
                                                 <form action="{{URL::to('billing/delete-trip-ticket')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$dq->id}}" />
@@ -92,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="si-approved">
+                    <div class="tab-pane" id="dq-delivery">
                         <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-condensed table-bordered table-striped table-hover dtable" >
@@ -118,23 +119,23 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($si_a as $si)
+                                        @foreach($dq_d as $dq)
                                         <tr>
                                             <td>
-                                                {{$si->id}}
+                                                {{$dq->id}}
                                             </td>
                                             <td>
-                                                {{$si->supplier}}
+                                                {{$dq->supplier}}
                                             </td>
                                             <td>
-                                                {{$si->created_at}}
+                                                {{$dq->created_at}}
                                             </td>
                                             <td>
-                                                {{$si->updated_at}}
+                                                {{$dq->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('billing/view-sales-invoice')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
+                                                <form action="{{URL::to('delivery/view-approve-trip-ticket')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$dq->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View / Approve Sales Invoice" />
                                                 </form>
                                             </td>
@@ -148,7 +149,8 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane" id="si-delivery">
+                    
+                    <div class="tab-pane" id="dq-completed">
                         <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-condensed table-bordered table-striped table-hover dtable" >
@@ -174,23 +176,23 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach($si_d as $si)
+                                        @foreach($dq_c as $dq)
                                         <tr>
                                             <td>
-                                                {{$si->id}}
+                                                {{$dq->id}}
                                             </td>
                                             <td>
-                                                {{$si->supplier}}
+                                                {{$dq->supplier}}
                                             </td>
                                             <td>
-                                                {{$si->created_at}}
+                                                {{$dq->created_at}}
                                             </td>
                                             <td>
-                                                {{$si->updated_at}}
+                                                {{$dq->updated_at}}
                                             </td>
                                             <td>
                                                 <form action="{{URL::to('billing/view-sales-invoice')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
+                                                    <input class="" type="hidden" name="id" value="{{$dq->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View / Approve Sales Invoice" />
                                                 </form>
                                             </td>
@@ -204,116 +206,8 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane" id="si-completed">
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
 
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                #
-                                            </th>
-                                            <th>
-                                                Vendor
-                                            </th>
-                                            <th>
-                                                Date Created
-                                            </th>
-                                            <th>
-                                                Date Updated
-                                            </th>
 
-                                            <th>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach($si_c as $si)
-                                        <tr>
-                                            <td>
-                                                {{$si->id}}
-                                            </td>
-                                            <td>
-                                                {{$si->supplier}}
-                                            </td>
-                                            <td>
-                                                {{$si->created_at}}
-                                            </td>
-                                            <td>
-                                                {{$si->updated_at}}
-                                            </td>
-                                            <td>
-                                                <form action="{{URL::to('billing/view-sales-invoice')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="tab-pane" id="si-hold">
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
-
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                #
-                                            </th>
-                                            <th>
-                                                Vendor
-                                            </th>
-                                            <th>
-                                                Date Created
-                                            </th>
-                                            <th>
-                                                Date Updated
-                                            </th>
-
-                                            <th>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach($si_h as $si)
-                                        <tr>
-                                            <td>
-                                                {{$si->id}}
-                                            </td>
-                                            <td>
-                                                {{$si->supplier}}
-                                            </td>
-                                            <td>
-                                                {{$si->created_at}}
-                                            </td>
-                                            <td>
-                                                {{$si->updated_at}}
-                                            </td>
-                                            <td>
-                                                <form action="{{URL::to('billing/view-sales-invoice')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>

@@ -12,7 +12,9 @@ class UsersTableSeeder extends Seeder {
             ['id'=>'109302', "last_name" => "fernandex", "first_name" => "edward", "password" => Hash::make("pawie2062"), "department" => "sales", "job_title" => "CEO" ],
             ['id'=>'109303',"last_name" => "kau", "first_name" => "janine", "password" => Hash::make("pawie2062"), "department" => "production", "job_title" => "CEO" ],
             ['id'=>'109304',"last_name" => "untalan", "first_name" => "kier", "password" => Hash::make("pawie2062"), "department" => "delivery", "job_title" => "CEO" ],
-            ['id'=>'109305',"last_name" => "espenesin", "first_name" => "espenesin", "password" => Hash::make("pawie2062"), "department" => "admin", "job_title" => "CEO" ]
+            ['id'=>'109305',"last_name" => "espenesin", "first_name" => "espenesin", "password" => Hash::make("pawie2062"), "department" => "admin", "job_title" => "CEO" ],
+            ['id'=>'109306',"last_name" => "sita", "first_name" => "mama", "password" => Hash::make("pawie2062"), "department" => "delivery", "job_title" => "staff" ],
+            ['id'=>'109307',"last_name" => "choice", "first_name" => "ladies", "password" => Hash::make("pawie2062"), "department" => "delivery", "job_title" => "staff" ]
         );
 
         // Uncomment the below to run the seeder

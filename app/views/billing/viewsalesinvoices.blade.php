@@ -38,13 +38,13 @@
                         <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-condensed table-bordered table-striped table-hover dtable" >
-                                    <thead>
+                                     <thead>
                                         <tr>
-                                            <th aria-controls="example">
+                                            <th>
                                                 #
                                             </th>
                                             <th>
-                                                Client
+                                                Vendor
                                             </th>
                                             <th>
                                                 Date Created
@@ -52,11 +52,9 @@
                                             <th>
                                                 Date Updated
                                             </th>
+
                                             <th>
                                             </th>
-                                            <th>
-                                            </th>
-                                           
                                         </tr>
                                     </thead>
                                     <tbody>
