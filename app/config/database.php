@@ -47,7 +47,7 @@ return array(
 	'connections' => array(
 
 		'sqlite' => array(
-			'driver'   => 'sqlite3',
+			'driver'   => 'sqlite',
 			'database' => __DIR__.'/../database/production.sqlite',
 			'prefix'   => '',
 		),
@@ -58,6 +58,17 @@ return array(
 			'database'  => 'lamco',
 			'username'  => 'root',
 			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+            
+		'mysqlol' => array(
+			'driver'    => 'mysql',
+			'host'      => 'mysql.3owl.com',
+			'database'  => 'u463540598_lamco',
+			'username'  => 'u463540598_root',
+			'password'  => 'pawie2062',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

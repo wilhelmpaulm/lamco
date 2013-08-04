@@ -13,7 +13,7 @@
         <!-- Le styles -->
 
         {{HTML::style('css/dataTables.css')}}
-                {{HTML::style('css/flatstrap-bootstrap.css')}}
+        {{HTML::style('css/flatstrap-bootstrap.css')}}
 
         <!--{{HTML::style('css/bootstrap.min.css')}}-->    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
@@ -76,12 +76,12 @@
         <![endif]-->
 
         <!-- Fav and touch icons -->
-        
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
-                    <link rel="apple-touch-icon-precomposed" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
-                    <link rel="shortcut icon"  href='{{URL::asset("ico/favicon.ico")}}'>
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+        <link rel="apple-touch-icon-precomposed" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+        <link rel="shortcut icon"  href='{{URL::asset("ico/favicon.ico")}}'>
     </head>
 
     <body>
@@ -96,7 +96,7 @@
                     </button>
                     <a class="brand" href="{{URL::to('purchasing/')}}">Purchasing Department</a>
                     <div class="nav-collapse collapse">
-                       
+
                         <div class="navbar-text pull-right">
                             Logged in as {{Auth::user()->first_name}} |
 
@@ -106,12 +106,12 @@
                         </div>
                         <div class="navbar-text">
                             <div id="notification" >
-                            <span id="lownotif" ><a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none" ><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num" > {{Roll::where('quantity','<','50')->count();}}</span></p></a></span>
+                                <span id="lownotif" ><a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none" ><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num" > {{Roll::where('quantity','<','50')->count();}}</span></p></a></span>
                             </div>
                         </div>
-                            <!--                            @if(Roll::where('quantity','<=','100')->count() != 0)
-                                                        <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-warning " ><i class="icon-flag"></i>  {{Roll::where('quantity','<=','100')->count();}}</p></a>
-                                                        @endif-->
+                        <!--                            @if(Roll::where('quantity','<=','100')->count() != 0)
+                                                    <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-warning " ><i class="icon-flag"></i>  {{Roll::where('quantity','<=','100')->count();}}</p></a>
+                                                    @endif-->
                         <ul class="nav">
                             <!--              <li class="active"><a href="#">Home</a></li>
                                           <li><a href="#about">About</a></li>
@@ -171,12 +171,12 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script>
-            $('#toggleNotif').click (function(){
+            $('#toggleNotif').click(function() {
                 $('#notification').toggleClass('hidden');
             });
-        
-            
-            
+
+
+
             var war = 5;
 //            $('.notif').pulsate();
             $('.notif').pulsate({
@@ -192,26 +192,26 @@
 //            alert();
             var num;
 //            alert($('#num').text());    
-             if($('#num').text() == 0){
-                    $('#lownotif').hide();
-                }
+            if ($('#num').text() == 0) {
+                $('#lownotif').hide();
+            }
 //            $('#lownotif').hide();
             $.timer(function() {
-                
+
                 $.get("{{URL::to('purchasing/notif')}}", function(data) {
-                   num = JSON.parse(data);
-                    $('#num').text(" "+num.length);
+                    num = JSON.parse(data);
+                    $('#num').text(" " + num.length);
 //                    console.log(num.length);
-                        
-                    if(num.length != 0){
+
+                    if (num.length != 0) {
                         $('#lownotif').show();
-                    }else{
+                    } else {
                         $('#lownotif').hide();
                     }
 //                    num
 //                    console.log($('#num').text());
                 });
-                
+
             }, 7000, true);
 //          
 

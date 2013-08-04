@@ -10,16 +10,16 @@ class CreateRemindersTable extends Migration {
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('reminders', function(Blueprint $table) {
-            $table->increments('id');
-            $table->integer('created_by');
-			$table->date('deadline')->nullable();
-			$table->text('reminder')->nullable();
-			$table->string('importance')->nullable();
-            $table->timestamps();
-        });
+                    $table->increments('id');
+                    $table->integer('created_by');
+                    $table->integer('created_for');
+                    $table->date('deadline')->nullable();
+                    $table->text('reminder')->nullable();
+                    $table->string('importance')->nullable();
+                    $table->timestamps();
+                });
     }
 
     /**
@@ -27,8 +27,7 @@ class CreateRemindersTable extends Migration {
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('reminders');
     }
 

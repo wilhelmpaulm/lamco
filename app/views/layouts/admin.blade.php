@@ -93,7 +93,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="{{URL::to('billing/')}}">Admin</a>
+          <a class="brand" href="{{URL::to('admin/')}}">Admin</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
              Logged in as {{Auth::user()->first_name}} | <a href="{{URL::to('logout')}}" class="navbar-link">Logout</a>

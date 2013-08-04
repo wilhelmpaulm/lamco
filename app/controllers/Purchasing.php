@@ -85,7 +85,7 @@ class Purchasing extends BaseController {
         $statuses = Status::all();
         $vendors = Supplier::all();
         $units = Unit::all();
-        $warehouses = warehouse::all();
+        $warehouses = Warehouse::all();
         $locations = Location::all();
 
         $rr = Receiving_report::find($id);

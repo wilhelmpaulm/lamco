@@ -10,17 +10,16 @@ class CreateMemosTable extends Migration {
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('memos', function(Blueprint $table) {
-            $table->increments('id');
-            $table->integer('created_by');
-			$table->date('deadline')->nullable();
-			$table->text('mome')->nullable();
-			$table->string('importance')->nullable();
-			$table->string('department')->nullable();
-            $table->timestamps();
-        });
+                    $table->increments('id');
+                    $table->integer('created_by');
+                    $table->date('deadline')->nullable();
+                    $table->text('memo')->nullable();
+                    $table->string('importance')->nullable();
+                    $table->string('department')->nullable();
+                    $table->timestamps();
+                });
     }
 
     /**
@@ -28,8 +27,7 @@ class CreateMemosTable extends Migration {
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('memos');
     }
 

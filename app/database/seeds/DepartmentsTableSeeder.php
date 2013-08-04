@@ -10,10 +10,9 @@ class DepartmentsTableSeeder extends Seeder {
         $departments = array(
             ['code' => 'SAL','department' => 'Sales' ],
             ['code' => 'BIL','department' => 'Billing' ],
-            ['code' => 'IMP','department' => 'Importation' ],
             ['code' => 'PRD','department' => 'Production' ],
-            ['code' => 'WRH','department' => 'Warehousing' ],
-            ['code' => 'MGT','department' => 'Management' ],
+            ['code' => 'WRH','department' => 'Purchasing' ],
+            ['code' => 'MGT','department' => 'Delivery' ],
             ['code' => 'ADM','department' => 'Admin' ]
         );
 
