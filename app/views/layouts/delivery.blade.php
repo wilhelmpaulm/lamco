@@ -113,8 +113,8 @@
                     <div class="well sidebar-nav ">
                         <ul class="nav nav-list">
                             <li class="nav-header"><i class="icon-home"></i> Home</li>
-                            <li><a href="{{URL::to('delivery/memo')}}">Memos</a></li>
-                            <li><a href="{{URL::to('delivery/reminder')}}">Reminders</a></li>
+                            <li><a href="{{URL::to('delivery/memos')}}">Memos</a></li>
+                            <li><a href="{{URL::to('delivery/reminders')}}">Reminders</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-truck"></i> Delivery</li>
                             <li><a href="{{URL::to('delivery/create-trip-ticket')}}">Create Trip Ticket</a></li>

@@ -129,8 +129,8 @@
                     <div class="well sidebar-nav ">
                         <ul class="nav nav-list">
                             <li class="nav-header"><i class="icon-home"></i> Home</li>
-                            <li><a href="{{URL::to('purchasing/memo')}}">Memos</a></li>
-                            <li><a href="{{URL::to('purchasing/reminder')}}">Reminders</a></li>
+                            <li><a href="{{URL::to('purchasing/memos')}}">Memos</a></li>
+                            <li><a href="{{URL::to('purchasing/reminders')}}">Reminders</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-money"></i> Purchasing</li>
                             <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Purchase Order</a></li>

@@ -115,8 +115,8 @@
           <div class="well sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
-              <li><a href="{{URL::to('admin/memo')}}">Memos</a></li>
-              <li><a href="{{URL::to('admin/reminder')}}">Reminders</a></li>
+              <li><a href="{{URL::to('admin/memos')}}">Memos</a></li>
+              <li><a href="{{URL::to('admin/reminders')}}">Reminders</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-group"></i> Users</li>
               <!--<li><a href="{{URL::to('billing/create-sales-invoice')}}">Create Sales Invoice</a></li>-->

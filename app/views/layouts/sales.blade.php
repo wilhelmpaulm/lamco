@@ -113,8 +113,8 @@
           <div class="well sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
-              <li><a href="{{URL::to('sales/memo')}}">Memos</a></li>
-              <li><a href="{{URL::to('sales/reminder')}}">Reminders</a></li>
+              <li><a href="{{URL::to('sales/memos')}}">Memos</a></li>
+              <li><a href="{{URL::to('sales/reminders')}}">Reminders</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-tags"></i> Sales</li>
               <li><a href="{{URL::to('sales/create-sales-order')}}">Create Sales Order</a></li>

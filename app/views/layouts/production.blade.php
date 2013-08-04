@@ -116,8 +116,8 @@
           <div class="well sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
-              <li><a href="{{URL::to('production/memo')}}">Memos</a></li>
-              <li><a href="{{URL::to('production/reminder')}}">Reminders</a></li>
+              <li><a href="{{URL::to('production/memos')}}">Memos</a></li>
+              <li><a href="{{URL::to('production/reminders')}}">Reminders</a></li>
               <li><hr></li>
               <li class="nav-header"><i class="icon-cogs"></i> Production</li>
               <!--<li><a href="{{URL::to('production/assign-machine-to-queue')}}">Assign Machine to Queue</a></li>-->
