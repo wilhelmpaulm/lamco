@@ -141,10 +141,10 @@
                             <li><a href="{{URL::to('purchasing/view-rolls')}}">View Rolls</a></li>
                             <li><a href="{{URL::to('purchasing/view-products')}}">View Products</a></li>
                             <li><hr></li>
-                            <li class="nav-header"><i class="icon-suitcase"></i> Vendors</li>
-                            <li><a href="{{URL::to('purchasing/view-vendors')}}">View Vendors</a></li>
-                            <li><a href="{{URL::to('purchasing/manage-vendors')}}">Manage Vendors</a></li>
-                            <li><a href="{{URL::to('purchasing/view-roll-prices')}}">View Roll Prices</a></li>
+                            <li class="nav-header"><i class="icon-suitcase"></i> Suppliers</li>
+                            <li><a href="{{URL::to('purchasing/view-suppliers')}}">View Suppliers</a></li>
+                            <li><a href="{{URL::to('purchasing/view-add-suppliers')}}">Add Suppliers</a></li>
+                            <!--<li><a href="{{URL::to('purchasing/view-roll-prices')}}">View Roll Prices</a></li>-->
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->

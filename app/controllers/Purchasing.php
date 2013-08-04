@@ -4,7 +4,8 @@ class Purchasing extends BaseController {
 
     public function getC() {
         var_dump($_COOKIE);
-        }
+    }
+
     public function getNotif() {
         return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
     }
@@ -12,8 +13,6 @@ class Purchasing extends BaseController {
     public function getIndex() {
         return View::make('purchasing.index');
     }
-
-   
 
     public function getCreatePurchaseOrder() {
         $paper_types = Paper_type::all();
@@ -325,11 +324,24 @@ class Purchasing extends BaseController {
         return View::make('purchasing.viewproducts', $data);
     }
 
-    public function getViewVendors() {
-        $products = Product::all();
-        $data = ['products' => $products];
-
-        return View::make('purchasing.viewvendors', $data);
+    public function getViewSuppliers() {
+        $suppliers = Supplier::all();
+        $data = [
+            'suppliers' => $suppliers
+        ];
+        return View::make('purchasing.viewsuppliers', $data);
+    }
+    public function postEditSupplier() {
+        $id = Input::get('id');
+        $supplier = Supplier::find($id);
+        $data = [
+            'supplier' => $supplier
+        ];
+        return View::make('purchasing.editsupplier', $data);
+    }
+    public function postDeleteSupplier() {
+        Supplier::find(Input::get('id'))->delete();
+        return Redirect::to('purchasing/view-suppliers');
     }
 
     public function getViewReceivingReports() {
@@ -385,7 +397,7 @@ class Purchasing extends BaseController {
         ];
         return View::make('purchasing.memos', $data);
     }
-    
+
     public static function postDeleteMemo() {
         Memo::find(Input::get('id'))->delete();
         return Redirect::to('purchasing/memos');
@@ -411,7 +423,7 @@ class Purchasing extends BaseController {
         ];
         return View::make('purchasing.reminders', $data);
     }
-    
+
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
         return Redirect::to('purchasing/reminders');
@@ -427,4 +439,5 @@ class Purchasing extends BaseController {
         ]);
         return Redirect::to('purchasing/reminders');
     }
+
 }
