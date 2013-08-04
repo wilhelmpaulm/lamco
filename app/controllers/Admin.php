@@ -10,12 +10,30 @@ class Admin extends BaseController {
         return View::make('admin.index');
     }
 
-    public function getMemo() {
+    public function getMemos() {
         $memos = Memo::where('department', '=', Auth::user()->department)->get();
+        $departments = Department::all();
         $data = [
+            'departments' => $departments,
             'memos' => $memos
         ];
         return View::make('admin.memos', $data);
+    }
+    
+    public static function postDeleteMemo() {
+        Memo::find(Input::get('id'))->delete();
+        return Redirect::to('admin/memos');
+    }
+
+    public static function postAddMemo() {
+        Memo::create([
+            "created_by" => Auth::user()->id,
+            "deadline" => Input::get("deadline"),
+            "department" => Input::get("department"),
+            "importance" => Input::get("importance"),
+            "memo" => Input::get("memo")
+        ]);
+        return Redirect::to('admin/memos');
     }
 
     public function getReminders() {

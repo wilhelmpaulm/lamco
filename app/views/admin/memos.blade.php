@@ -25,7 +25,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="reminder-list">
+                    <div class="tab-pane active" id="memos-list">
 
                         <div class="row-fluid">
                             <div class="span12" style="">
@@ -34,27 +34,27 @@
                                         <tr class="">
                                             <th width='10%'>By</th>
                                             <th width='10%'>Deadline</th>
-                                            <th>Reminder</th>
+                                            <th>Memo</th>
                                             <th width='5%'></th>
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        @foreach($reminders as $reminder)
+                                        @foreach($memos as $memo)
                                         <tr 
-                                            @if($reminder->importance == 'low')
+                                            @if($memo->importance == 'low')
                                             class='info'
-                                            @elseif($reminder->importance == 'mid')
+                                            @elseif($memo->importance == 'mid')
                                             class='warning'
-                                            @elseif($reminder->importance == 'high')
+                                            @elseif($memo->importance == 'high')
                                             class='error'
                                             @endif
                                             >
-                                            <td>{{User::find($reminder->created_by)->last_name}}, {{User::find($reminder->created_by)->first_name}}</td>
-                                            <td>{{$reminder->deadline}}</td>
-                                            <td>{{$reminder->reminder}}</td>
+                                            <td>{{User::find($memo->created_by)->last_name}}, {{User::find($memo->created_by)->first_name}}</td>
+                                            <td>{{$memo->deadline}}</td>
+                                            <td>{{$memo->memo}}</td>
                                             <td>
-                                                <form action="delete-reminder" method="post">
-                                                    <input type="hidden" name="id" value="{{$reminder->id}}" />
+                                                <form action="delete-memo" method="post">
+                                                    <input type="hidden" name="id" value="{{$memo->id}}" />
                                                     <input type="submit" class="btn btn-danger" value="Delete" />
                                                 </form>
                                             </td>
@@ -66,18 +66,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="reminder-make">
-                        <form action="{{URL::to('admin/add-reminder')}}" method="post">
+                    <div class="tab-pane" id="memos-make">
+                        <form action="{{URL::to('admin/add-memo')}}" method="post">
                             <div class="row-fluid">
                                 <div class="span3">
                                     <label for="deadline">Deadline</label>
                                         <input id="deadline" class="input-block-level" type="date" name="deadline" value="" />
                                         <br>
                                         <br>
-                                        <label for="created_for">Reminder For</label>
-                                        <select id="created_for"  name="created_for" class="input-block-level sel2">
-                                            @foreach($users as $user)
-                                            <option value="{{$user->id}}" >{{$user->department}} | {{$user->last_name}}, {{$user->first_name}} | {{$user->job_title}}</option>
+                                        <label for="created_for">Memo For</label>
+                                        <select id="created_for"  name="department" class="input-block-level sel2">
+                                            @foreach($departments as $department)
+                                            <option value="{{$department->department}}" >{{$department->department}}</option>
                                             @endforeach
                                         </select>
                                         <br>
@@ -89,9 +89,9 @@
                                         </select>
                                 </div>
                                 <div class="span6">
-                                    <label for="reminder">Reminder</label>
-                                    <textarea id="reminder" class="input-block-level" name="reminder"  rows="4" cols="20"></textarea>
-                                    <input type="submit" class="btn btn-info pull-right" value="Create Reminder" />
+                                    <label for="memo">Memo</label>
+                                    <textarea id="memo" class="input-block-level" name="memo"  rows="4" cols="20"></textarea>
+                                    <input type="submit" class="btn btn-info pull-right" value="Create Memo" />
                                 </div>
                             </div>
                             <div class="row-fluid">
