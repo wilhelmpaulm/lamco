@@ -19,13 +19,17 @@
         <div class="span12">
             <h3>Trip Ticket</h3>
         </div>
-        <div class="span12">
+        <div class="span6">
             <p>Driver</p>
             <select name="driver">
                 @foreach($drivers as $driver)
                 <option value="{{$driver->id}}">{{$driver->last_name}}, {{$driver->first_name}}</option>
                 @endforeach
             </select>
+           
+        </div>
+        <div class="span6">
+           
             <p>Truck</p>
             <select name="truck">
                 @foreach($trucks as $truck)
@@ -39,7 +43,8 @@
 
 
     <div class="row-fluid " >
-        <div class="span12" >
+        <div class="span2"></div>
+        <div class="span8" >
             <h4>Balance Rolls</h4>
             <table  id="balance_form" width="100%" class="table table-condensed table-bordered table-striped table-hover" >
                 <thead>
@@ -56,11 +61,12 @@
 
                 </tbody>
             </table>
+            <input type="submit" class="btn btn-warning" value="Create Trip Ticket" />
         </div>
+        <div class="span2"></div>
     </div>
 
 
-    <input type="submit" value="Create Trip Ticket" />
 </form>
 
 <div class="hidden">

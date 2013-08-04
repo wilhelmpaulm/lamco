@@ -21,8 +21,8 @@ class CreateSiDetailsTable extends Migration {
                     $table->string('weight')->nullable();
                     $table->string('calliper')->nullable();
                     $table->text('instructions')->nullable();
-                    $table->float('total')->nullable();
-                    $table->float('price')->nullable();
+                    $table->decimal('total', 30,2)->nullable();
+                    $table->decimal('price', 30,2)->nullable();
                     $table->integer('product')->nullable();
                     $table->integer('roll')->nullable();
                     $table->string('transaction_type')->nullable();

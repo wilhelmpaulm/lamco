@@ -48,7 +48,7 @@ class Sales extends BaseController {
                 'weight' => $sd->weight,
                 'calliper' => $sd->calliper,
                 'instructions' => $sd->instructions,
-                'total' => $sd->total,
+                'total' => $sd->price * $sd->quantity,
                 'price' => $sd->price,
 //                'discount' => $sd->discount,
                 'product' => $sd->product,
@@ -57,14 +57,14 @@ class Sales extends BaseController {
             ]);
         }
         $si_d = Si_detail::where("si_no", "=", $si->id)->get();
-       
+
         $subtotal = 0;
-        foreach($si_d as $sid){
-           $subtotal += $sid->price*$sid->quantity; 
+        foreach ($si_d as $sid) {
+            $subtotal += $sid->price * $sid->quantity;
         }
-        $vat = ($subtotal/100)*12;
+        $vat = ($subtotal / 100) * 12;
         $total = $vat + $subtotal;
-        
+
         $si->subtotal = $subtotal;
         $si->vat = $vat;
         $si->total = $total;
@@ -113,10 +113,12 @@ class Sales extends BaseController {
         $so_p = Sales_order::where('status', '=', 'pending')->get();
         $so_a = Sales_order::where('status', '=', 'approved')->get();
         $so_f = Sales_order::where('status', '=', 'completed')->get();
+        $so_f = Sales_order::where('status', '=', 'rejected')->get();
 
         $data = [
             'so_p' => $so_p,
             'so_a' => $so_a,
+            'so_r' => $so_r,
             'so_f' => $so_f
         ];
 
@@ -142,7 +144,7 @@ class Sales extends BaseController {
                 'dimension' => Input::get('dimension')[$index],
                 'weight' => Input::get('weight')[$index],
                 'calliper' => Input::get('calliper')[$index],
-                'total' => Input::get('subtotal')[$index],
+                'total' => Input::get('price')[$index] * Input::get('quantity')[$index],
                 'price' => Input::get('price')[$index],
                 'product' => Input::get('product')[$index],
                 'production_type' => Input::get('production_type')[$index],
@@ -153,6 +155,7 @@ class Sales extends BaseController {
     }
 
     public function postApplyEditSalesOrder() {
+//        var_dump($_POST);
         $id = Input::get('id');
 
         $so = Sales_order::find("$id");
@@ -172,7 +175,7 @@ class Sales extends BaseController {
                 'dimension' => Input::get('dimension')[$index],
                 'weight' => Input::get('weight')[$index],
                 'calliper' => Input::get('calliper')[$index],
-                'total' => Input::get('total')[$index],
+                'total' => Input::get('price')[$index] * Input::get('quantity')[$index],
                 'price' => Input::get('price')[$index],
                 'product' => Input::get('product')[$index],
                 'production_type' => Input::get('production_type')[$index],
@@ -227,32 +230,37 @@ class Sales extends BaseController {
             if ($so_d->transaction_type == 'reserve') {
                 Roll::where('id', '=', $so_d->roll)->decrement('quantity', $so_d->quantity);
                 $r = Roll::find($so_d->roll);
-                Roll::create([
-                    'quantity' => $so_d->quantity,
-                    'paper_type' => $r->paper_type,
-                    'weight' => $r->weight,
-                    'calliper' => $r->calliper,
-                    'dimension' => $r->dimension,
-                    'supplier' => $r->supplier,
-                    'unit' => $r->unit,
-                    'warehouse' => $r->warehouse,
-                    'location' => $r->location,
-                    'owner' => $so->client
+                $roll = Roll::create([
+                            'quantity' => $so_d->quantity,
+                            'paper_type' => $r->paper_type,
+                            'weight' => $r->weight,
+                            'calliper' => $r->calliper,
+                            'dimension' => $r->dimension,
+                            'supplier' => $r->supplier,
+                            'unit' => $r->unit,
+                            'warehouse' => $r->warehouse,
+                            'location' => $r->location,
+                            'owner' => $so->client
                 ]);
+                $so_d->roll = $roll->id;
+                $so_d->save();
             } elseif ($so_d->transaction_type == 'ordinary') {
                 Product::where('id', '=', $so_d->product)->decrement('quantity', $so_d->quantity);
                 $p = Product::find($so_d->product);
-                Product::create([
-                    'quantity' => $so_d->quantity,
-                    'paper_type' => $p->paper_type,
-                    'weight' => $p->weight,
-                    'calliper' => $p->calliper,
-                    'dimension' => $p->dimension,
-                    'warehouse' => $p->warehouse,
-                    'price' => $so_d->price,
-                    'location' => $p->location,
-                    'owner' => $so->client
+                $product = Product::create([
+                            'quantity' => $so_d->quantity,
+                            'paper_type' => $p->paper_type,
+                            'weight' => $p->weight,
+                            'calliper' => $p->calliper,
+                            'dimension' => $p->dimension,
+                            'warehouse' => $p->warehouse,
+                            'unit' => $p->unit,
+                            'price' => $so_d->price,
+                            'location' => $p->location,
+                            'owner' => $so->client
                 ]);
+                $so_d->product = $product->id;
+                $so_d->save();
             } elseif ($so_d->transaction_type == 'special') {
                 $mq = Machine_queue::create([
                             'so_no' => $so->id,

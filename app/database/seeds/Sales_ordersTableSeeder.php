@@ -12,7 +12,7 @@ class Sales_ordersTableSeeder extends Seeder {
         );
 
         // Uncomment the below to run the seeder
-        // DB::table('sales_orders')->insert($sales_orders);
+         DB::table('sales_orders')->insert($sales_orders);
     }
 
 }

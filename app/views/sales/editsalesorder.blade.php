@@ -258,6 +258,7 @@
                     <option value="{{$product->id}}">{{$product->paper_type}} {{$product->dimension}} {{$product->weight}} {{$product->calliper}}</option>
                     @endforeach
                 </select>
+                <input id=""  class="" type="hidden"  name="unit[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>
@@ -289,6 +290,7 @@
                     <option value="{{$roll->id}}">{{$roll->paper_type}} {{$roll->dimensions}} {{$roll->weight}} {{$roll->calliper}}</option>
                     @endforeach
                 </select>
+                <input id=""  class="" type="hidden"  name="unit[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="paper_type[]" placeholder="000.00"/>
                 <input id=""  class="" type="hidden"  name="calliper[]"  placeholder="000.00"/>

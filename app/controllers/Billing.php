@@ -8,45 +8,49 @@ class Billing extends BaseController {
         $si_a = Sales_invoice::where('status', '=', 'approved')->get();
         $si_c = Sales_invoice::where('status', '=', 'completed')->get();
         $si_d = Sales_invoice::where('status', '=', 'in delivery')->get();
+        $si_r = Sales_invoice::where('status', '=', 'rejected')->get();
         $data = [
             'si_p' => $si_p,
             'si_h' => $si_h,
             'si_a' => $si_a,
             'si_d' => $si_d,
+            'si_r' => $si_r,
             'si_c' => $si_c
         ];
         return View::make('billing.viewsalesinvoices', $data);
     }
-    
-    public function postViewSalesInvoice(){
+
+    public function postViewSalesInvoice() {
         $id = Input::get('id');
         $si = Sales_invoice::find($id);
         $si_d = Si_detail::where("si_no", "=", $id)->get();
         $data = [
-          'si' => $si,
+            'si' => $si,
             'si_d' => $si_d
         ];
         return View::make('billing.viewsalesinvoice', $data);
     }
-    
-    public function postViewEditSalesInvoice(){
+
+    public function postViewEditSalesInvoice() {
         $id = Input::get('id');
         $si = Sales_invoice::find($id);
         $si_d = Si_detail::where("si_no", "=", $id)->get();
         $data = [
-          'si' => $si,
+            'si' => $si,
             'si_d' => $si_d
         ];
         return View::make('billing.editsalesinvoice', $data);
     }
-    public function postApplyEditSalesInvoice(){
+
+    public function postApplyEditSalesInvoice() {
         $id = Input::get('id');
         $si = Sales_invoice::find($id);
         $si->status = "approved";
         $si->save();
-        
+
         return Redirect::to("billing/view-sales-invoices");
     }
+
     public function getIndex() {
         return View::make('billing.index');
     }

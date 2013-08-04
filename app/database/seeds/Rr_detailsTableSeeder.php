@@ -12,7 +12,7 @@ class Rr_detailsTableSeeder extends Seeder {
         );
 
         // Uncomment the below to run the seeder
-//         DB::table('rr_details')->insert($rr_details);
+         DB::table('rr_details')->insert($rr_details);
     }
 
 }

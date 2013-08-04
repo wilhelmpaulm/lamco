@@ -43,7 +43,7 @@
                         <th>Quantity</th>
                         <th>Unit</th>
                         <th>Unit Price</th>
-                        <th>Amount</th>
+                        <th >Amount</th>
                     </tr>
                 </thead>
                 <tbody >
@@ -123,7 +123,7 @@
     <div class="row-fluid">
         <div class="span12">
 
-            <input class="btn pull-right"  type="submit" value="Approve Production Record" />
+            <input class="btn btn-warning pull-right"  type="submit" value="Approve Production Record" />
         </div>
     </div>
 </form>

@@ -38,23 +38,14 @@
                         <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-condensed table-bordered table-striped table-hover dtable" >
-                                     <thead>
+                                    <thead>
                                         <tr>
-                                            <th>
-                                                #
-                                            </th>
-                                            <th>
-                                                Vendor
-                                            </th>
-                                            <th>
-                                                Date Created
-                                            </th>
-                                            <th>
-                                                Date Updated
-                                            </th>
-
-                                            <th>
-                                            </th>
+                                            <th>#</th>
+                                            <th>Vendor</th>
+                                            <th>Date Created</th>
+                                            <th>Date Updated</th>
+                                            <th ></th>
+                                            <th ></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,7 +70,7 @@
                                                     <input class="btn btn-warning" type="submit" value="Modify Sales Invoice" />
                                                 </form>
                                             </td>
-                                          
+
                                             <td>
                                                 <form action="{{URL::to('billing/delete-sales-invoice')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$si->id}}" />

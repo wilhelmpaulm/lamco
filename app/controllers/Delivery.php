@@ -40,8 +40,9 @@ class Delivery extends BaseController {
             $si->status = "in delivery";
             Dq_detail::create([
                 'dq_no' => $dq->id,
+                'so_no' => $si->so_no,
                 'si_no' => $si->id,
-                'destination' => Client::find($si->client)->adrress,
+                'destination' => Client::find($si->client)->address,
                 'status' => "in delivery"
             ]);
             $si->save();
@@ -102,6 +103,47 @@ class Delivery extends BaseController {
 
     public function postApplyManageTripTicket() {
         var_dump($_POST);
+        $id = Input::get("id");
+        $dq = Delivery_queue::find($id);
+
+        for ($index = 0; $index < count(Input::get("dqd_id")); $index++) {
+            $dq_d = Dq_detail::find(Input::get("dqd_id")[$index]);
+            $si = Sales_invoice::find($dq_d->si_no);
+            $so = Sales_order::find($dq_d->so_no);
+
+            if (Input::get("status")[$index] == 'completed') {
+                $si_d = Si_detail::where("si_no", "=", $si->id)->get();
+                foreach ($si_d as $sid) {
+                    if ($sid->transaction_type == "ordinary" || $sid->transaction_type == "special") {
+                        Product::find($sid->product)->delete();
+                    }
+                }
+                $si->status = "completed";
+                $si->save();
+            }
+            if (Input::get("status")[$index] == 'rejected') {
+                $si_d = Si_detail::where("si_no", "=", $si->id)->get();
+                foreach ($si_d as $sid) {
+                    if ($sid->transaction_type == "ordinary" || $sid->transaction_type == "special") {
+                        $product = Product::find($sid->product);
+                        $product->owner = "lamco";
+                        $product->save();
+                    }
+                }
+                $so->status = "rejected";
+                $si->status = "rejected";
+                $so->save();
+                $si->save();
+            }
+            if (Input::get("status")[$index] == 'reschedule') {
+                $si->status = "approved";
+                $si->save();
+            }
+        }
+
+        $dq->status = "completed";
+        $dq->save();
+        return Redirect::to('delivery/view-trip-tickets');
     }
 
 }
