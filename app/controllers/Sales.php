@@ -12,6 +12,12 @@ class Sales extends BaseController {
 //    editsalesorder - done
 //    applyeditsalesorder - done
 //    
+    
+    public static function postValidate(){
+        var_dump($_POST);
+    }
+    
+    
     public static function processSalesInvoice($id) {
         $si = Sales_invoice::where("so_no", "=", $id)->first();
         if (Sales_order::find($id)->status == "completed") {
@@ -80,7 +86,7 @@ class Sales extends BaseController {
         }
     }
 
-    public function getCreateSalesOrder() {
+    public function getCreateSalesOrder2() {
         $clients = Client::all();
         $terms = Term::all();
         $paper_types = Paper_type::all();
@@ -105,7 +111,7 @@ class Sales extends BaseController {
         ];
         return View::make('sales.createsalesorder', $data);
     }
-    public function getCreateSalesOrder2() {
+    public function getCreateSalesOrder() {
         $clients = Client::all();
         $terms = Term::all();
         $paper_types = Paper_type::all();
@@ -183,6 +189,7 @@ class Sales extends BaseController {
         $so = Sales_order::find("$id");
         $so->client = Input::get('client');
         $so->terms = Input::get('terms');
+        $so->status = "pending";
         $so->created_by = Auth::user()->id;
         $so->save();
 
@@ -237,7 +244,69 @@ class Sales extends BaseController {
             'so' => $so,
             'so_d' => $so_d
         ];
-        return View::make('sales.editsalesorder', $data);
+        return View::make('sales.editsalesorder2', $data);
+    }
+    public function postViewSalesOrder() {
+        $id = Input::get('id');
+        $clients = Client::all();
+        $terms = Term::all();
+        $paper_types = Paper_type::all();
+        $dimensions = Dimension::all();
+        $weights = Weight::all();
+        $callipers = Calliper::all();
+        $products = Product::all();
+        $production_types = Production_type::all();
+        $rolls = Roll::all();
+        $units = Unit::all();
+        $so = Sales_order::find($id);
+        $so_d = So_detail::where('so_no', '=', $id)->get();
+
+        $data = [
+            'units' => $units,
+            'clients' => $clients,
+            'terms' => $terms,
+            'paper_types' => $paper_types,
+            'dimensions' => $dimensions,
+            'weights' => $weights,
+            'callipers' => $callipers,
+            'products' => $products,
+            'production_types' => $production_types,
+            'rolls' => $rolls,
+            'so' => $so,
+            'so_d' => $so_d
+        ];
+        return View::make('sales.viewsalesorder2', $data);
+    }
+    public function postViewApproveSalesOrder() {
+        $id = Input::get('id');
+        $clients = Client::all();
+        $terms = Term::all();
+        $paper_types = Paper_type::all();
+        $dimensions = Dimension::all();
+        $weights = Weight::all();
+        $callipers = Calliper::all();
+        $products = Product::all();
+        $production_types = Production_type::all();
+        $rolls = Roll::all();
+        $units = Unit::all();
+        $so = Sales_order::find($id);
+        $so_d = So_detail::where('so_no', '=', $id)->get();
+
+        $data = [
+            'units' => $units,
+            'clients' => $clients,
+            'terms' => $terms,
+            'paper_types' => $paper_types,
+            'dimensions' => $dimensions,
+            'weights' => $weights,
+            'callipers' => $callipers,
+            'products' => $products,
+            'production_types' => $production_types,
+            'rolls' => $rolls,
+            'so' => $so,
+            'so_d' => $so_d
+        ];
+        return View::make('sales.viewsalesorder', $data);
     }
 
     public function postApproveSalesOrder() {
@@ -306,9 +375,7 @@ class Sales extends BaseController {
         }
         Sales::processSalesOrder($id);
         Sales::createSalesInvoice($id);
-//        processSalesOrder($id);
-//        Sales::processSalesOrder($id);
-//        processSalesOrder($id);
+
 
         return Redirect::to('sales/view-sales-orders');
     }
@@ -317,6 +384,15 @@ class Sales extends BaseController {
         $id = Input::get('id');
         Sales_order::find($id)->delete();
         So_detail::where('so_no', '=', $id)->delete();
+        return Redirect::to('sales/view-sales-orders');
+    }
+    
+    public function postRejectSalesOrder() {
+        $id = Input::get('id');
+        $so = Sales_order::find($id);
+        $so->status = "rejected";
+        $so->save();
+//        $so_d = So_detail::where('so_no', '=', $id)->get();
         return Redirect::to('sales/view-sales-orders');
     }
 

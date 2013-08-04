@@ -5,16 +5,18 @@
 <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->
 <head>
     <meta charset="utf-8">
-    <title>Lamco Sales</title>
+    <title>Lamco Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="wilhelmpaulm">
+    <meta name="author" content="">
 
     <!-- Le styles -->
     
      {{HTML::style('css/dataTables.css')}}
-        {{HTML::style('css/flatstrap-bootstrap.css')}}
+             {{HTML::style('css/flatstrap-bootstrap.css')}}
+
         <!--{{HTML::style('css/bootstrap.min.css')}}-->    
+        <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         {{HTML::style('css/bootstrap-responsive.min.css')}}
         {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::style('css/wilhelmpaulm.css')}}
@@ -31,17 +33,17 @@
         {{HTML::script('js/pulsate.min.js')}}
         <!--    {{HTML::script('js/spin.min.js')}}-->
         {{HTML::script('js/ladda.js')}}
-        <!--{{HTML::script('js/select2.min.js')}}-->
+        {{HTML::script('js/select2.min.js')}}
    
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
-          background: url('{{URL::asset("bg/triangles.png")}}')
+          background: url('{{URL::asset("bg/triangles.png")}}');
         
       }
       .hero-unit {
-               background: url('{{URL::asset("bg/paper_3.png")}}');
+               /*background: url('{{URL::asset("bg/paper_3.png")}}');*/
 
       }
       
@@ -72,7 +74,7 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-
+   
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
@@ -83,15 +85,15 @@
 
   <body>
 
-    <div class="navbar  navbar-fixed-top ">
-      <div class="navbar-inner ">
+    <div class="navbar  navbar-fixed-top">
+      <div class="navbar-inner">
         <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="{{URL::to('sales/')}}">Sales Department</a>
+          <a class="brand" href="{{URL::to('billing/')}}">Admin</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
              Logged in as {{Auth::user()->first_name}} | <a href="{{URL::to('logout')}}" class="navbar-link">Logout</a>
@@ -113,21 +115,23 @@
           <div class="well sidebar-nav ">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-home"></i> Home</li>
-              <li><a href="{{URL::to('sales/memo')}}">Memos</a></li>
-              <li><a href="{{URL::to('sales/reminder')}}">Reminders</a></li>
+              <li><a href="{{URL::to('admin/memo')}}">Memos</a></li>
+              <li><a href="{{URL::to('admin/reminder')}}">Reminders</a></li>
               <li><hr></li>
-              <li class="nav-header"><i class="icon-tags"></i> Sales</li>
-              <li><a href="{{URL::to('sales/create-sales-order')}}">Create Sales Order</a></li>
-              <li><a href="{{URL::to('sales/view-sales-orders')}}">View Sales Orders</a></li>
+              <li class="nav-header"><i class="icon-group"></i> Users</li>
+              <!--<li><a href="{{URL::to('billing/create-sales-invoice')}}">Create Sales Invoice</a></li>-->
+              <li><a href="{{URL::to('admin/create-user')}}">Create user</a></li>
+              <li><a href="{{URL::to('admin/view-users')}}">View Users</a></li>
               <li><hr></li>
-              <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
-              <li><a href="{{URL::to('sales/view-rolls')}}">View Rolls</a></li>
-              <!--<li><a href="#">Rolls Summary</a></li>-->
-              <li><a href="{{URL::to('sales/view-products')}}">View Products</a></li>
-              <!--<li><a href="#">Products Summary</a></li>-->
+              <li class="nav-header"><i class="icon-cogs"></i> Content</li>
+              <li><a href="{{URL::to('admin/view-calliper')}}">Manage Calliper</a></li>
+              <li><a href="{{URL::to('admin/view-dimension')}}">Manage Dimension</a></li>
+              <li><a href="{{URL::to('admin/view-paper_type')}}">Manage Paper Type</a></li>
+              <li><a href="{{URL::to('admin/view-weight')}}">Manage Weight</a></li>
               <li><hr></li>
-              <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
-              <li><a href="#">View Clients</a></li>
+              <li class="nav-header"><i class="icon-console"></i> System Logs</li>
+              <li><a href="#">View User Logs</a></li>
+              <li><a href="#">View Sales Logs</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

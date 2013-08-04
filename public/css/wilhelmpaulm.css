@@ -1,15 +1,23 @@
 
 
-
+/*@font-face {
+  font-family: 'suil';
+  src: url('../font/poop.ttf');
+  src: url('../font/poop.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}*/
 
 root { 
     display: block;
 }
 
 body{
-    font-family:  "Segoe UI";
+    /*font-family: 'suil', "Segoe UI";*/
+    font-family: "Segoe UI";
     /*font-family: "Segoe UI";*/
 }
+
 
 .bg-brown{background-color: #632F00;}
 .bg-gray{background-color: #696969;}
@@ -25,6 +33,21 @@ body{
 .bg-magenta{background-color: #AE113D;}
 .bg-purple{background-color: #7200AC;}
 .bg-black{background-color: #000;}
+.bg-p1{background-color: #649203;}
+.bg-p2{background-color: #8bb029;}
+.bg-p3{background-color: #f8ffd8;}
+.bg-p4{background-color: #e0daa8;}
+.bg-p5{background-color: #c2bd91;}
+.bg-p6{background-color: #1d4025;}
+.bg-p7{background-color: #45734c;}
+.bg-p8{background-color: #528c37;}
+.bg-p9{background-color: #9abf80;}
+.bg-p10{background-color: #f2f0d0;}
+.bg-s1{background-color: #012d3d;}
+.bg-s2{background-color: #38ad9e;}
+.bg-s3{background-color: #ffeb9e;}
+.bg-s4{background-color: #ff6867;}
+.bg-s5{background-color: #f9fcfc;}
 
 .c-white{color: #ffffff;}
 .c-brown{color: #632F00;}
@@ -41,6 +64,21 @@ body{
 .c-magenta{color: #AE113D;}
 .c-purple{color: #7200AC;}
 .c-black{color: #000;}
+.c-p1{background-color: #649203;}
+.c-p2{background-color: #8bb029;}
+.c-p3{background-color: #f8ffd8;}
+.c-p4{background-color: #e0daa8;}
+.c-p5{background-color: #c2bd91;}
+.c-p6{background-color: #1d4025;}
+.c-p7{background-color: #45734c;}
+.c-p8{background-color: #528c37;}
+.c-p9{background-color: #9abf80;}
+.c-p10{background-color: #f2f0d0;}
+.c-s1{background-color: #012d3d;}
+.c-s2{background-color: #38ad9e;}
+.c-s3{background-color: #ffeb9e;}
+.c-s4{background-color: #ff6867;}
+.c-s5{background-color: #f9fcfc;}
 
 .pad20{ padding: 20px}
 .pad40{ padding: 40px}

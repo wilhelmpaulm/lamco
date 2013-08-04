@@ -13,7 +13,7 @@
         Create Purchase Order
     </li>
 </ul>
-<form id="mamamia"  class="" action="{{URL::to('sales/apply-edit-sales-order')}}" method="post">
+<form id="mamamia"  class="" action="{{URL::to('sales/validate')}}" method="post">
     <div class="row-fluid">
         <div class="span3">
             <!--<input class="btn " disabled="true" type="text" name="vendor" value="PO no. 879" />-->

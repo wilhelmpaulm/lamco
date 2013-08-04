@@ -49,8 +49,7 @@
                                             <th>
                                                 Date Updated
                                             </th>
-                                            <th>
-                                            </th>
+                                            
                                             <th>
                                             </th>
                                             <th>
@@ -76,28 +75,22 @@
                                                 {{$so->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                                <form action="{{URL::to('sales/view-approve-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                    <input class="btn btn-info" type="submit" value="Approve Order" />
                                                 </form>
                                             </td>
-                                            <td>
-                                                <form action="{{URL::to('sales/approve-sales-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-success" type="submit" value="Approve" />
-                                                </form>
                                             
-                                            </td>
                                             <td>
                                                  <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-warning" type="submit" value="Edit" />
+                                                    <input class="btn btn-warning" type="submit" value="Modify Order" />
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="{{URL::to('sales/delete-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-danger" type="submit" value="Delete" />
+                                                    <input class="btn btn-danger" type="submit" value="Delete " />
                                                 </form>
                                             
                                             </td>
@@ -242,6 +235,9 @@
                                             
                                             <th>
                                             </th>
+                                            
+                                            <th>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -261,11 +257,18 @@
                                                 {{$so->updated_at}}
                                             </td>
                                            <td>
-                                                 <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                                  <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                    <input class="btn btn-warning" type="submit" value="View" />
                                                 </form>
                                             </td>
+                                           <td>
+                                                  <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
+                                                    <input class="btn btn-warning" type="submit" value="Modify Order" />
+                                                </form>
+                                            </td>
+                                            
                                         </tr>
                                         @endforeach
                                     </tbody>

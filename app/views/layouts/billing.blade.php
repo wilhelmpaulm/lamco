@@ -13,7 +13,9 @@
     <!-- Le styles -->
     
      {{HTML::style('css/dataTables.css')}}
-        {{HTML::style('css/bootstrap.min.css')}}    
+             {{HTML::style('css/flatstrap-bootstrap.css')}}
+
+        <!--{{HTML::style('css/bootstrap.min.css')}}-->    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         {{HTML::style('css/bootstrap-responsive.min.css')}}
         {{HTML::style('css/font-awesome.min.css')}}
@@ -72,11 +74,12 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+   
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+                    <link rel="apple-touch-icon-precomposed" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+                    <link rel="shortcut icon"  href='{{URL::asset("ico/favicon.ico")}}'>
   </head>
 
 
@@ -90,7 +93,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Billing Department</a>
+          <a class="brand" href="{{URL::to('billing/')}}">Billing Department</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
              Logged in as {{Auth::user()->first_name}} | <a href="{{URL::to('logout')}}" class="navbar-link">Logout</a>

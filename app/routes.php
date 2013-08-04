@@ -5,10 +5,11 @@
 //Route::when('delivery', 'auth');
 //Route::when('production', 'auth');
 Route::when('purchasing*', 'auth');
-Route::when('sales/*', 'auth');
-Route::when('billing/*', 'auth');
-Route::when('delivery/*', 'auth');
-Route::when('production/*', 'auth');
+Route::when('sales*', 'auth');
+Route::when('billing*', 'auth');
+Route::when('delivery*', 'auth');
+Route::when('production*', 'auth');
+Route::when('admin*', 'auth');
 
 Route::get("", function(){
     return View::make('base.login');
@@ -98,6 +99,7 @@ Route::controller('sales', 'Sales');
 Route::controller('production', 'Production');
 Route::controller('delivery', 'Delivery');
 Route::controller('billing', 'Billing');
+Route::controller('admin', 'Admin');
 
 
 
