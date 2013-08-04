@@ -19,13 +19,31 @@ class Admin extends BaseController {
     }
 
     public function getReminders() {
+        $users = User::all();
         $reminders = Reminder::where('created_for', '=', Auth::user()->id)->get();
         $data = [
-            'reminders' => $reminders
+            'reminders' => $reminders,
+            'users' => $users
         ];
         return View::make('admin.reminders', $data);
     }
+    
+    public static function postDeleteReminder() {
+        Reminder::find(Input::get('id'))->delete();
+        return Redirect::to('admin/reminders');
+    }
 
+    public static function postAddReminder() {
+        Reminder::create([
+            "created_by" => Auth::user()->id,
+            "deadline" => Input::get("deadline"),
+            "created_for" => Input::get("created_for"),
+            "importance" => Input::get("importance"),
+            "reminder" => Input::get("reminder")
+        ]);
+        return Redirect::to('admin/reminders');
+    }
+    
     public static function getViewUsers() {
         $users = User::all();
         $data = [

@@ -1,132 +1,123 @@
 @extends('layouts.admin')
-
 @section('main')
 <div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<ul class="breadcrumb balon">
-				<li>
-					<a href="#">Home</a> <span class="divider">/</span>
-				</li>
-				
-				<li class="active">
-					Memos
-				</li>
-			</ul>
-			<div class="row-fluid">
-				<div class="span12">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>
-									#
-								</th>
-								<th>
-									Product
-								</th>
-								<th>
-									Payment Taken
-								</th>
-								<th>
-									Status
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									1
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									01/04/2012
-								</td>
-								<td>
-									Default
-								</td>
-							</tr>
-							<tr class="success">
-								<td>
-									1
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									01/04/2012
-								</td>
-								<td>
-									Approved
-								</td>
-							</tr>
-							<tr class="error">
-								<td>
-									2
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									02/04/2012
-								</td>
-								<td>
-									Declined
-								</td>
-							</tr>
-							<tr class="warning">
-								<td>
-									3
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									03/04/2012
-								</td>
-								<td>
-									Pending
-								</td>
-							</tr>
-							<tr class="info">
-								<td>
-									4
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									04/04/2012
-								</td>
-								<td>
-									Call in to confirm
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					 <a id="modal-633482" href="#modal-container-633482" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-					
-					<div id="modal-container-633482" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-header">
-							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h3 id="myModalLabel">
-								Modal header
-							</h3>
-						</div>
-						<div class="modal-body">
-							<p>
-								One fine body…
-							</p>
-						</div>
-						<div class="modal-footer">
-							 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> <button class="btn btn-primary">Save changes</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="row-fluid">
+        <div class="span12">
+            <ul class="breadcrumb balon">
+                <li>
+                    <a href="#">Home</a> <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="#">Library</a> <span class="divider">/</span>
+                </li>
+                <li class="active">
+                    Data
+                </li>
+            </ul>
+            <div class="tabbable" >
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#memos-list" data-toggle="tab">Memos ({{$memos->count()}})</a>
+                    </li>
+                    <li>
+                        <a href="#memos-make" data-toggle="tab">Create Memo</a>
+                    </li>
+
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="reminder-list">
+
+                        <div class="row-fluid">
+                            <div class="span12" style="">
+                                <table class="table table-condensed  table-striped table-hover dtable" >
+                                    <thead>
+                                        <tr class="">
+                                            <th width='10%'>By</th>
+                                            <th width='10%'>Deadline</th>
+                                            <th>Reminder</th>
+                                            <th width='5%'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        @foreach($reminders as $reminder)
+                                        <tr 
+                                            @if($reminder->importance == 'low')
+                                            class='info'
+                                            @elseif($reminder->importance == 'mid')
+                                            class='warning'
+                                            @elseif($reminder->importance == 'high')
+                                            class='error'
+                                            @endif
+                                            >
+                                            <td>{{User::find($reminder->created_by)->last_name}}, {{User::find($reminder->created_by)->first_name}}</td>
+                                            <td>{{$reminder->deadline}}</td>
+                                            <td>{{$reminder->reminder}}</td>
+                                            <td>
+                                                <form action="delete-reminder" method="post">
+                                                    <input type="hidden" name="id" value="{{$reminder->id}}" />
+                                                    <input type="submit" class="btn btn-danger" value="Delete" />
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="reminder-make">
+                        <form action="{{URL::to('admin/add-reminder')}}" method="post">
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    <label for="deadline">Deadline</label>
+                                        <input id="deadline" class="input-block-level" type="date" name="deadline" value="" />
+                                        <br>
+                                        <br>
+                                        <label for="created_for">Reminder For</label>
+                                        <select id="created_for"  name="created_for" class="input-block-level sel2">
+                                            @foreach($users as $user)
+                                            <option value="{{$user->id}}" >{{$user->department}} | {{$user->last_name}}, {{$user->first_name}} | {{$user->job_title}}</option>
+                                            @endforeach
+                                        </select>
+                                        <br>
+                                        <label for="importance">Importance</label>
+                                        <select id="importance" name="importance" class="input-block-level">
+                                            <option>low</option>
+                                            <option>mid</option>
+                                            <option>high</option>
+                                        </select>
+                                </div>
+                                <div class="span6">
+                                    <label for="reminder">Reminder</label>
+                                    <textarea id="reminder" class="input-block-level" name="reminder"  rows="4" cols="20"></textarea>
+                                    <input type="submit" class="btn btn-info pull-right" value="Create Reminder" />
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span12">
+
+
+                                </div>
+                            </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
+<script >
+//    $('#example').dataTable();
+//    $(document).ready(function() {
+        $('.dtable').dataTable();
+        $('.sel2').select2();
+//    });
+</script>
+
 
 @stop
