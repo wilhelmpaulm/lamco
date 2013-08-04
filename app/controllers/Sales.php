@@ -14,7 +14,6 @@ class Sales extends BaseController {
 //    
     public static function processSalesInvoice($id) {
         $si = Sales_invoice::where("so_no", "=", $id)->first();
-
         if (Sales_order::find($id)->status == "completed") {
             $si->status = "pending";
             $si->save();
@@ -92,7 +91,6 @@ class Sales extends BaseController {
         $production_types = Production_type::all();
         $rolls = Roll::all();
         $units = Unit::all();
-
         $data = [
             'clients' => $clients,
             'terms' => $terms,
@@ -105,15 +103,39 @@ class Sales extends BaseController {
             'units' => $units,
             'rolls' => $rolls
         ];
-
         return View::make('sales.createsalesorder', $data);
+    }
+    public function getCreateSalesOrder2() {
+        $clients = Client::all();
+        $terms = Term::all();
+        $paper_types = Paper_type::all();
+        $dimensions = Dimension::all();
+        $weights = Weight::all();
+        $callipers = Calliper::all();
+        $products = Product::all();
+        $production_types = Production_type::all();
+        $rolls = Roll::all();
+        $units = Unit::all();
+        $data = [
+            'clients' => $clients,
+            'terms' => $terms,
+            'paper_types' => $paper_types,
+            'dimensions' => $dimensions,
+            'weights' => $weights,
+            'callipers' => $callipers,
+            'products' => $products,
+            'production_types' => $production_types,
+            'units' => $units,
+            'rolls' => $rolls
+        ];
+        return View::make('sales.createsalesorder2', $data);
     }
 
     public function getViewSalesOrders() {
         $so_p = Sales_order::where('status', '=', 'pending')->get();
         $so_a = Sales_order::where('status', '=', 'approved')->get();
         $so_f = Sales_order::where('status', '=', 'completed')->get();
-        $so_f = Sales_order::where('status', '=', 'rejected')->get();
+        $so_r = Sales_order::where('status', '=', 'rejected')->get();
 
         $data = [
             'so_p' => $so_p,

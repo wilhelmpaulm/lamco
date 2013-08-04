@@ -17,20 +17,23 @@
             </ul>
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
+                    <li>
+                        <a href="#si-hold" data-toggle="tab">On Hold ({{$si_h->count()}})</a>
+                    </li>
                     <li class="active">
-                        <a href="#si-pending" data-toggle="tab">Pending Sales Invoices ({{$si_p->count()}})</a>
+                        <a href="#si-pending" data-toggle="tab">Pending ({{$si_p->count()}})</a>
                     </li>
                     <li>
-                        <a href="#si-approved" data-toggle="tab">Approved Sales Invoices ({{$si_a->count()}})</a>
+                        <a href="#si-approved" data-toggle="tab">Approved ({{$si_a->count()}})</a>
                     </li>
                     <li>
-                        <a href="#si-delivery" data-toggle="tab">Sales Invoices In Delivery ({{$si_d->count()}})</a>
+                        <a href="#si-delivery" data-toggle="tab">In Delivery ({{$si_d->count()}})</a>
                     </li>
                     <li>
-                        <a href="#si-completed" data-toggle="tab">Completed Sales Invoices ({{$si_c->count()}})</a>
+                        <a href="#si-completed" data-toggle="tab">Completed ({{$si_c->count()}})</a>
                     </li>
                     <li>
-                        <a href="#si-hold" data-toggle="tab">Sales Invoices On Hold({{$si_h->count()}})</a>
+                        <a href="#si-rejected" data-toggle="tab">Rejected ({{$si_r->count()}})</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -225,6 +228,61 @@
                                     <tbody>
 
                                         @foreach($si_c as $si)
+                                        <tr>
+                                            <td>
+                                                {{$si->id}}
+                                            </td>
+                                            <td>
+                                                {{$si->supplier}}
+                                            </td>
+                                            <td>
+                                                {{$si->created_at}}
+                                            </td>
+                                            <td>
+                                                {{$si->updated_at}}
+                                            </td>
+                                            <td>
+                                                <form action="{{URL::to('billing/view-sales-invoice')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$si->id}}" />
+                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="si-rejected">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Vendor
+                                            </th>
+                                            <th>
+                                                Date Created
+                                            </th>
+                                            <th>
+                                                Date Updated
+                                            </th>
+
+                                            <th>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach($si_r as $si)
                                         <tr>
                                             <td>
                                                 {{$si->id}}

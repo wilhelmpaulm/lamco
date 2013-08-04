@@ -38,22 +38,22 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UnitsTableSeeder');
 		$this->call('Purchase_ordersTableSeeder');
 		$this->call('Receiving_reportsTableSeeder');
-		$this->call('Sales_ordersTableSeeder');
+//		$this->call('Sales_ordersTableSeeder');
 		$this->call('Machine_queuesTableSeeder');
 		$this->call('Production_recordsTableSeeder');
-		$this->call('Delivery_queuesTableSeeder');
+//		$this->call('Delivery_queuesTableSeeder');
 		$this->call('TermsTableSeeder');
 //		$this->call('UnitsTableSeeder');
-		$this->call('Po_detailsTableSeeder');
-		$this->call('Rr_detailsTableSeeder');
-		$this->call('So_detailsTableSeeder');
-		$this->call('Mq_detailsTableSeeder');
-		$this->call('Pr_detailsTableSeeder');
+//		$this->call('Po_detailsTableSeeder');
+//		$this->call('Rr_detailsTableSeeder');
+//		$this->call('So_detailsTableSeeder');
+//		$this->call('Mq_detailsTableSeeder');
+//		$this->call('Pr_detailsTableSeeder');
 //		$this->call('Dq_detailsTableSeeder');
 		
 //		$this->call('AddressesTableSeeder');
-		$this->call('Sales_invoicesTableSeeder');
-		$this->call('Si_detailsTableSeeder');
+//		$this->call('Sales_invoicesTableSeeder');
+//		$this->call('Si_detailsTableSeeder');
 	}
 
 }

@@ -21,10 +21,13 @@
                         <a href="#po-pending" data-toggle="tab">Pending Sales Orders ({{$so_p->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-approved" data-toggle="tab">Approved Sales Orders</a>
+                        <a href="#po-approved" data-toggle="tab">Approved ({{$so_a->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-accomplished" data-toggle="tab">Accomplished Sales Orders</a>
+                        <a href="#po-accomplished" data-toggle="tab">Completed ({{$so_f->count()}})</a>
+                    </li>
+                    <li>
+                        <a href="#po-rejected" data-toggle="tab">Rejected ({{$so_r->count()}})</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -189,6 +192,61 @@
                                     <tbody>
 
                                         @foreach($so_f as $so)
+                                        <tr>
+                                            <td>
+                                                {{$so->id}}
+                                            </td>
+                                            <td>
+                                                {{$so->supplier}}
+                                            </td>
+                                            <td>
+                                                {{$so->created_at}}
+                                            </td>
+                                            <td>
+                                                {{$so->updated_at}}
+                                            </td>
+                                           <td>
+                                                 <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                                    <input class="" type="hidden" name="id" value="{{$so->id}}" />
+                                                    <input class="btn btn-info" type="submit" value="View" />
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="po-rejected">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                                               <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Vendor
+                                            </th>
+                                            <th>
+                                                Date Created
+                                            </th>
+                                            <th>
+                                                Date Updated
+                                            </th>
+                                            
+                                            <th>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach($so_r as $so)
                                         <tr>
                                             <td>
                                                 {{$so->id}}
