@@ -20,7 +20,7 @@
                     <li class="active">
                         <a href="#dq-pending" data-toggle="tab">Pending Trip Tickets ({{$dq_p->count()}})</a>
                     </li>
-                   
+
                     <li>
                         <a href="#dq-delivery" data-toggle="tab">Trip Tickets In Delivery ({{$dq_d->count()}})</a>
                     </li>
@@ -134,10 +134,13 @@
                                                 {{$dq->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('delivery/view-approve-trip-ticket')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$dq->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View / Approve Sales Invoice" />
+
+                                                <form action="{{URL::to('delivery/view-manage-trip-ticket')}}" method="POST">
+                                                    <input type="hidden" value="{{$dq->id}}" name='id'>
+                                                    <input class="btn btn-info" type="submit" value="Manage Trip Ticket" />
                                                 </form>
+
+                                                <!--<a href="{{URL::to('delivery/view-manage-trip-ticket')}}/{{$dq->id}}"><button class="btn btn-info">Manage Trip Ticket</button></a>-->
                                             </td>
 
                                         </tr>
@@ -149,7 +152,7 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="tab-pane" id="dq-completed">
                         <div class="row-fluid">
                             <div class="span12">

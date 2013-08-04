@@ -2,6 +2,9 @@
 
 class Purchasing extends BaseController {
 
+    public function getC() {
+        var_dump($_COOKIE);
+        }
     public function getNotif() {
         return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
     }

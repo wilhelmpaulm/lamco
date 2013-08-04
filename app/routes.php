@@ -1,5 +1,14 @@
 <?php
-
+//Route::when('purchasing', 'auth');
+//Route::when('sales', 'auth');
+//Route::when('billing', 'auth');
+//Route::when('delivery', 'auth');
+//Route::when('production', 'auth');
+Route::when('purchasing*', 'auth');
+Route::when('sales/*', 'auth');
+Route::when('billing/*', 'auth');
+Route::when('delivery/*', 'auth');
+Route::when('production/*', 'auth');
 
 Route::get("", function(){
     return View::make('base.login');

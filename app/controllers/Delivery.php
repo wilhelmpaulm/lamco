@@ -38,14 +38,13 @@ class Delivery extends BaseController {
             $si_no = Input::get("si_no")[$index];
             $si = Sales_invoice::find($si_no);
             $si->status = "in delivery";
-            $si->save();
-
             Dq_detail::create([
                 'dq_no' => $dq->id,
-                'si_no' => $si_no,
+                'si_no' => $si->id,
                 'destination' => Client::find($si->client)->adrress,
                 'status' => "in delivery"
             ]);
+            $si->save();
         }
         return Redirect::to("delivery/view-trip-tickets");
     }
@@ -55,43 +54,54 @@ class Delivery extends BaseController {
         $id = Input::get("id");
         $dq = Delivery_queue::find($id);
         $dq_d = Dq_detail::where("dq_no", "=", $id)->get();
-
         $data = [
             'dq' => $dq,
             'dq_d' => $dq_d
         ];
-
         return View::make('delivery.viewapprovetripticket', $data);
     }
 
+    public function postViewManageTripTicket() {
+//        var_dump($_POST);
+        $id = Input::get("id");
+        $dq = Delivery_queue::find($id);
+        $dq_d = Dq_detail::where("dq_no", "=", $id)->get();
+        $data = [
+            'dq' => $dq,
+            'dq_d' => $dq_d
+        ];
+        return View::make('delivery.viewmanagetripticket', $data);
+    }
+
     public function postApplyApproveTripTicket() {
-        var_dump($_POST);
-//        $id = Input::get("id");
-//        $dq = Delivery_queue::find($id);
+//        var_dump($_POST);
+        $id = Input::get("id");
+        $dq = Delivery_queue::find($id);
 //        $dq_d = Delivery_queue::where("dq_no", "=", $id)->get();
-//
 //        foreach ($dq_d as $dqd) {
 //            
 //        }
-//
-//        $dq->status = "approved";
-//        $dq->save();
-//
-//        return Redirect::to('delivery/view-trip-tickets');
+        $dq->status = "in delivery";
+        $dq->save();
+        return Redirect::to('delivery/view-trip-tickets');
     }
 
     public function getViewTripTickets() {
         $dq_p = Delivery_queue::where('status', '=', 'pending')->get();
-        $dq_a = Delivery_queue::where('status', '=', 'approved')->get();
+//        $dq_a = Delivery_queue::where('status', '=', 'approved')->get();
         $dq_d = Delivery_queue::where('status', '=', 'in delivery')->get();
         $dq_c = Delivery_queue::where('status', '=', 'completed')->get();
         $data = [
             'dq_p' => $dq_p,
-            'dq_a' => $dq_a,
+//            'dq_a' => $dq_a,
             'dq_c' => $dq_c,
             'dq_d' => $dq_d
         ];
         return View::make('delivery.viewtriptickets', $data);
+    }
+
+    public function postApplyManageTripTicket() {
+        var_dump($_POST);
     }
 
 }

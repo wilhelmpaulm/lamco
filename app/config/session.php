@@ -94,7 +94,7 @@ return array(
 	|
 	*/
 
-	'cookie' => 'laravel_session',
+	'cookie' => 'secured_session_lamco_dont_even_try_cant_crack_this_code',
 
 	/*
 	|--------------------------------------------------------------------------
