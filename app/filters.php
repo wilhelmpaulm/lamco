@@ -38,6 +38,39 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::guest('login');
 });
 
+Route::filter('admin', function(){
+        if(Auth::user()->department != "admin"){
+            Stalk::stalkSystem("tried to enter admin", null);
+            return View::make('errors.deny');
+        } 
+});
+Route::filter('production', function(){
+        if(Auth::user()->department != "production"){
+            Stalk::stalkSystem("tried to enter production", null);
+            return View::make('errors.deny');
+        } 
+});
+Route::filter('sales', function(){
+        if(Auth::user()->department != "sales"){
+            Stalk::stalkSystem("tried to enter sales", null);
+            return View::make('errors.deny');
+        } 
+});
+Route::filter('purchasing', function(){
+        if(Auth::user()->department != "purchasing"){
+            Stalk::stalkSystem("tried to enter purchasing", null);
+            return View::make('errors.deny');
+        } 
+});
+Route::filter('billing', function(){
+        if(Auth::user()->department != "billing"){
+            Stalk::stalkSystem("tried to enter billing", null);
+            return View::make('errors.deny');
+        } 
+});
+
+
+
 
 Route::filter('auth.basic', function()
 {

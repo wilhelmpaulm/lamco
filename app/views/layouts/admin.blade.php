@@ -131,7 +131,7 @@
               <li><hr></li>-->
               <li class="nav-header"><i class="icon-console"></i> System Logs</li>
               <li><a href="{{URL::to('admin/view-system-logs')}}">View System Logs</a></li>
-              <li><a href="{{URL::to('admin/view-production-logs')}}">View Sales Logs</a></li>
+              <!--<li><a href="{{URL::to('admin/view-production-logs')}}">View Sales Logs</a></li>-->
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

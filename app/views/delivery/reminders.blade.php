@@ -53,7 +53,7 @@
                                             <td>{{$reminder->deadline}}</td>
                                             <td>{{$reminder->reminder}}</td>
                                             <td>
-                                                <form action="delivery/delete-reminder" method="post">
+                                                <form action="{{URL::to('delivery/delete-reminder')}}" method="post">
                                                     <input type="hidden" name="id" value="{{$reminder->id}}" />
                                                     <input type="submit" class="btn btn-danger" value="Delete" />
                                                 </form>

@@ -53,7 +53,7 @@ class Admin extends BaseController {
     
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
-        Stalk::stalkSystem("deleted reminders", Input::get('id'));
+        Stalk::stalkSystem("deleted reminder", Input::get('id'));
         return Redirect::to('admin/reminders');
     }
 
