@@ -68,6 +68,24 @@ Route::filter('billing', function(){
             return View::make('errors.deny');
         } 
 });
+Route::filter('delivery', function(){
+        if(Auth::user()->department != "delivery"){
+            Stalk::stalkSystem("tried to enter delivery", null);
+            return View::make('errors.deny');
+        } 
+});
+Route::filter('warehousing', function(){
+        if(Auth::user()->department != "warehousing"){
+            Stalk::stalkSystem("tried to enter warehousing", null);
+            return View::make('errors.deny');
+        } 
+});
+Route::filter('maangement', function(){
+        if(Auth::user()->department != "management"){
+            Stalk::stalkSystem("tried to enter delivery", null);
+            return View::make('errors.deny');
+        } 
+});
 
 
 

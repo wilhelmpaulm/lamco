@@ -160,6 +160,10 @@ class Purchasing extends BaseController {
         $rr->supplier = Input::get('vendor');
         $rr->created_by = Auth::user()->id;
         $rr->save();
+        
+        $po = Purchase_order::find($rr->po_no);
+        $po->status = "completed";
+        $po->save();
 
         Rr_detail::where('rr_no', '=', $rr->id)->delete();
 
@@ -297,7 +301,7 @@ class Purchasing extends BaseController {
     public function getViewPurchaseOrders() {
         $pos_p = Purchase_order::where('status', '=', 'pending')->get();
         $pos_a = Purchase_order::where('status', '=', 'approved')->get();
-        $pos_f = Purchase_order::where('status', '=', 'finished')->get();
+        $pos_f = Purchase_order::where('status', '=', 'completed')->get();
         $data = [
             'pos_p' => $pos_p,
             'pos_a' => $pos_a,
@@ -387,7 +391,7 @@ class Purchasing extends BaseController {
     public function getViewReceivingReports() {
         $rr_p = Receiving_report::where('status', '=', 'pending')->get();
         $rr_a = Receiving_report::where('status', '=', 'approved')->get();
-        $rr_f = Receiving_report::where('status', '=', 'finished')->get();
+        $rr_f = Receiving_report::where('status', '=', 'completed')->get();
 //        
         $data = [
             'rr_p' => $rr_p,

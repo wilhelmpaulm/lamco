@@ -1,4 +1,4 @@
-@extends('layouts.sales')
+@extends('layouts.management')
 @section('main')
 
 
@@ -144,16 +144,18 @@
         </div>
     </div>
 
+    
 @if($so->status == "pending")
-    <form action="{{URL::to('sales/approve-sales-order')}}" method="POST">
+    <form action="{{URL::to('management/approve-sales-order')}}" method="POST">
         <input class="" type="hidden" name="id" value="{{$so->id}}" />
         <input class="btn btn-success " type="submit" value="Approve Sales Order" />
     </form>
-    <form action="{{URL::to('sales/reject-sales-order')}}" method="POST">
+    <form action="{{URL::to('management/reject-sales-order')}}" method="POST">
         <input class="" type="hidden" name="id" value="{{$so->id}}" />
         <input class="btn btn-danger " type="submit" value="Reject Sales Order" />
     </form>
 @endif
+
 
 </div>
 <script>

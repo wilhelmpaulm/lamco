@@ -119,14 +119,10 @@
                             <li class="nav-header"><i class="icon-truck"></i> Delivery</li>
                             <li><a href="{{URL::to('delivery/create-trip-ticket')}}">Create Trip Ticket</a></li>
                             <li><a href="{{URL::to('delivery/view-trip-tickets')}}">View Trip Tickets</a></li>
-                            <!--<li><a href="{{URL::to('purchasing/purchase-order-summary')}}">Reschedule Delivery Queue</a></li>-->
-                            <!--<li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Bad Order Report</a></li>-->
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
-                            <li><a href="#">View Rolls</a></li>
-                            <li><a href="#">Rolls Summary</a></li>
-                            <li><a href="#">View Products</a></li>
-                            <li><a href="#">Products Summary</a></li>
+                            <li><a href="{{URL::to('delivery/view-rolls')}}">View Rolls</a></li>
+                            <li><a href="{{URL::to('delivery/view-products')}}">View Products</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
                             <li><a href="{{URL::to('delivery/view-clients')}}">View Clients</a></li>

@@ -1,4 +1,4 @@
-@extends('layouts.purchasing')
+@extends('layouts.management')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">
@@ -46,13 +46,10 @@
                                             <th>
                                                 Date Updated
                                             </th>
-                                            <th>
-                                            </th>
-                                            <th>
-                                            </th>
-                                            <th>
-                                            </th>
                                             
+                                            <th>
+                                            </th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,39 +69,13 @@
                                                 {{$pos->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
+                                                <form action="{{URL::to('management/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
                                                     <!--<input class="btn btn-info" type="submit" value="View" />-->
                                                      <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
-
                                                 </form>
                                             </td>
-<!--                                            <td>
-                                                <form action="{{URL::to('purchasing/approve-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                    <input class="btn btn-success" type="submit" value="Approve" />
-                                                     <button class="ladda-button btn expand-right btn-success" type="submit"><span class="ladda-label">Approve</span><span class="ladda-spinner"></span></button>
-
-                                                </form>
                                             
-                                            </td>-->
-                                            <td>
-                                                 <form action="{{URL::to('purchasing/edit-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                    <!--<input class="btn btn-warning" type="submit" value="Edit" />-->
-                                                     <button class="ladda-button btn  expand-right btn-warning" type="submit"><span class="ladda-label">Edit</span><span class="ladda-spinner"></span></button>
-
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action="{{URL::to('purchasing/delete-purchase-order')}}" method="POST">
-                                                    <input class="" type="hidden" name="id" value="{{$pos->id}}" />
-                                                     <button class="ladda-button btn  expand-right btn-danger" type="submit"><span class="ladda-label">Delete</span><span class="ladda-spinner"></span></button>
-
-                                                    <!--<input class="btn btn-danger" type="submit" value="Delete" />-->
-                                                </form>
-                                            
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -154,7 +125,7 @@
                                                 {{$pos->updated_at}}
                                             </td>
                                             <td>
-                                                 <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
+                                                 <form action="{{URL::to('management/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
                                                                                                          <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
 
@@ -211,7 +182,7 @@
                                                 {{$pos->updated_at}}
                                             </td>
                                            <td>
-                                                 <form action="{{URL::to('purchasing/view-purchase-order')}}" method="POST">
+                                                 <form action="{{URL::to('management/view-purchase-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$pos->id}}" />
                                                                                                         <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
 

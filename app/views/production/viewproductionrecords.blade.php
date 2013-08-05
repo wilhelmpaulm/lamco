@@ -11,19 +11,19 @@
                     <a href="#">Production</a> <span class="divider">/</span>
                 </li>
                 <li class="active">
-                Job Orders
+                Production Records
                 </li>
             </ul>
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#po-pending" data-toggle="tab">Pending Production Records</a>
+                        <a href="#po-pending" data-toggle="tab">Pending Production Records ({{$pr_p->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-inproduction" data-toggle="tab">Processed Production Records</a>
+                        <a href="#po-inproduction" data-toggle="tab">Processed Production Records ({{$pr_a->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-completed" data-toggle="tab">Completed Production Records</a>
+                        <a href="#po-completed" data-toggle="tab">Completed Production Records ({{$pr_i->count()}})</a>
                     </li>
                     
                 </ul>

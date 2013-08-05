@@ -10,9 +10,9 @@
                 <li>
                     <a href="#">Purchasing</a> <span class="divider">/</span>
                 </li>
-                
+
                 <li class="active">
-                View Purchase Orders
+                    View Purchase Orders
                 </li>
             </ul>
             <div class="tabbable" id="tabs-299920">
@@ -49,9 +49,9 @@
                                             <th>
                                                 Date Updated
                                             </th>
-                                            
-                                            <th>
-                                            </th>
+
+<!--                                            <th>
+                                            </th>-->
                                             <th>
                                             </th>
                                             <th>
@@ -74,15 +74,15 @@
                                             <td>
                                                 {{$so->updated_at}}
                                             </td>
-                                            <td>
-                                                <form action="{{URL::to('sales/view-approve-sales-order')}}" method="POST">
+<!--                                            <td>
+                                                <form action="{{URL::to('sales/approve-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="Approve Order" />
                                                 </form>
-                                            </td>
-                                            
+                                            </td>-->
+
                                             <td>
-                                                 <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">
+                                                <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-warning" type="submit" value="Modify Order" />
                                                 </form>
@@ -92,7 +92,7 @@
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-danger" type="submit" value="Delete " />
                                                 </form>
-                                            
+
                                             </td>
                                         </tr>
                                         @endforeach
@@ -105,7 +105,7 @@
                     <div class="tab-pane" id="po-approved">
                         <div class="row-fluid">
                             <div class="span12">
-                        <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
 
                                     <thead>
                                         <tr>
@@ -121,7 +121,7 @@
                                             <th>
                                                 Date Updated
                                             </th>
-                                            
+
                                             <th>
                                             </th>
                                         </tr>
@@ -143,12 +143,12 @@
                                                 {{$so->updated_at}}
                                             </td>
                                             <td>
-                                                 <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                                <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
                                             </td>
-                                           
+
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -161,7 +161,7 @@
                     <div class="tab-pane" id="po-accomplished">
                         <div class="row-fluid">
                             <div class="span12">
-                                                               <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
 
                                     <thead>
                                         <tr>
@@ -177,7 +177,7 @@
                                             <th>
                                                 Date Updated
                                             </th>
-                                            
+
                                             <th>
                                             </th>
                                         </tr>
@@ -198,8 +198,8 @@
                                             <td>
                                                 {{$so->updated_at}}
                                             </td>
-                                           <td>
-                                                 <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                            <td>
+                                                <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>
@@ -216,7 +216,7 @@
                     <div class="tab-pane" id="po-rejected">
                         <div class="row-fluid">
                             <div class="span12">
-                                                               <table class="table table-condensed table-bordered table-striped table-hover dtable" >
+                                <table class="table table-condensed table-bordered table-striped table-hover dtable" >
 
                                     <thead>
                                         <tr>
@@ -232,10 +232,10 @@
                                             <th>
                                                 Date Updated
                                             </th>
-                                            
+
                                             <th>
                                             </th>
-                                            
+
                                             <th>
                                             </th>
                                         </tr>
@@ -256,19 +256,19 @@
                                             <td>
                                                 {{$so->updated_at}}
                                             </td>
-                                           <td>
-                                                  <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
+                                            <td>
+                                                <form action="{{URL::to('sales/view-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-warning" type="submit" value="View" />
                                                 </form>
                                             </td>
-                                           <td>
-                                                  <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">
+                                            <td>
+                                                <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-warning" type="submit" value="Modify Order" />
                                                 </form>
                                             </td>
-                                            
+
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -286,30 +286,11 @@
 </div>
 
 
-
-<div id="modal-container-771123" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">
-            Modal header
-        </h3>
-    </div>
-    <div class="modal-body">
-        <p>
-            One fine body…
-        </p>
-    </div>
-    <div class="modal-footer" style="">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> <button class="btn btn-primary">Save changes</button>
-    </div>
-</div>
-
-
 <script >
 //    $('#example').dataTable();
-$(document).ready(function() {
-    $('.dtable').dataTable();
-} );
+    $(document).ready(function() {
+        $('.dtable').dataTable();
+    });
 </script>
 
 
