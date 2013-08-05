@@ -7,6 +7,7 @@ class Admin extends BaseController {
     }
 
     public function getIndex() {
+        Stalk::stalkSystem("view main page of admin", null);
         return View::make('admin.index');
     }
 
@@ -17,22 +18,25 @@ class Admin extends BaseController {
             'departments' => $departments,
             'memos' => $memos
         ];
+        Stalk::stalkSystem("view memos", null);
         return View::make('admin.memos', $data);
     }
     
     public static function postDeleteMemo() {
         Memo::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted memo", Input::get('id'));
         return Redirect::to('admin/memos');
     }
 
     public static function postAddMemo() {
-        Memo::create([
+        $m = Memo::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "department" => Input::get("department"),
             "importance" => Input::get("importance"),
             "memo" => Input::get("memo")
         ]);
+        Stalk::stalkSystem("created memo", $m->id);
         return Redirect::to('admin/memos');
     }
 
@@ -43,22 +47,25 @@ class Admin extends BaseController {
             'reminders' => $reminders,
             'users' => $users
         ];
+        Stalk::stalkSystem("view reminders", null);
         return View::make('admin.reminders', $data);
     }
     
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted reminders", Input::get('id'));
         return Redirect::to('admin/reminders');
     }
 
     public static function postAddReminder() {
-        Reminder::create([
+        $r = Reminder::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "created_for" => Input::get("created_for"),
             "importance" => Input::get("importance"),
             "reminder" => Input::get("reminder")
         ]);
+        Stalk::stalkSystem("created reminder", $r->id);
         return Redirect::to('admin/reminders');
     }
     
@@ -68,21 +75,24 @@ class Admin extends BaseController {
         $data = [
             'users' => $users
         ];
+        Stalk::stalkSystem("view users", null);
         return View::make('admin.viewusers', $data);
     }
 
     public static function getCreateUser() {
+        Stalk::stalkSystem("view add user", null);
         return View::make('admin.createuser');
     }
 
     public static function postAddUser() {
-        User::create([
+        $u = User::create([
             "last_name" => Input::get("last_name"),
             "first_name" => Input::get("first_name"),
             "password" => Hash::make(Input::get("password")),
             "department" => Input::get("department"),
             "job_title" => Input::get("job_title")
         ]);
+        Stalk::stalkSystem("created user", $u->id);
         return Redirect::to('admin/view-users');
     }
 
@@ -94,11 +104,13 @@ class Admin extends BaseController {
         $user->department = Input::get("department");
         $user->job_title = Input::get("job_title");
         $user->save();
+        Stalk::stalkSystem("edited user", Input::get('id'));
         return Redirect::to('admin/view-users');
     }
 
     public static function postDeleteUser() {
         User::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted user", Input::get('id'));
         return Redirect::to('admin/view-users');
     }
 
@@ -111,6 +123,7 @@ class Admin extends BaseController {
             'job_titles' => $job_titles,
             'departments' => $departments
         ];
+        Stalk::stalkSystem("view edit user", Input::get('id'));
         return View::make('admin.edituser', $data);
     }
     
@@ -119,6 +132,7 @@ class Admin extends BaseController {
         $data = [
             'sys_logs' => $sys_logs
         ];
+        Stalk::stalkSystem("view system logs", null);
         return View::make('admin.viewsystemlogs', $data);
     }
     public static function getViewProductionLogs() {
@@ -126,6 +140,7 @@ class Admin extends BaseController {
         $data = [
             'pro_logs' => $pro_logs
         ];
+        Stalk::stalkSystem("view production logs", null);
         return View::make('admin.viewproductionlogs', $data);
     }
 
