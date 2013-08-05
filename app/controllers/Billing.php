@@ -17,6 +17,7 @@ class Billing extends BaseController {
             'si_r' => $si_r,
             'si_c' => $si_c
         ];
+        Stalk::stalkSystem("view sales invoices", null);
         return View::make('billing.viewsalesinvoices', $data);
     }
 
@@ -28,6 +29,7 @@ class Billing extends BaseController {
             'si' => $si,
             'si_d' => $si_d
         ];
+        Stalk::stalkSystem("view sales invoice", $id);
         return View::make('billing.viewsalesinvoice', $data);
     }
 
@@ -39,6 +41,7 @@ class Billing extends BaseController {
             'si' => $si,
             'si_d' => $si_d
         ];
+        Stalk::stalkSystem("view edit sales invoice", $id);
         return View::make('billing.editsalesinvoice', $data);
     }
 
@@ -47,11 +50,12 @@ class Billing extends BaseController {
         $si = Sales_invoice::find($id);
         $si->status = "approved";
         $si->save();
-
+        Stalk::stalkSystem("edited sales invoice", $id);
         return Redirect::to("billing/view-sales-invoices");
     }
 
     public function getIndex() {
+        Stalk::stalkSystem("view main page of billing", null);
         return View::make('billing.index');
     }
 
@@ -64,6 +68,7 @@ class Billing extends BaseController {
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
+        Stalk::stalkSystem("view rolls", null);
         return View::make('billing.viewrolls', $data);
     }
 
@@ -76,6 +81,7 @@ class Billing extends BaseController {
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
+        Stalk::stalkSystem("view products", null);
         return View::make('billing.viewproducts', $data);
     }
     
@@ -86,22 +92,25 @@ class Billing extends BaseController {
             'departments' => $departments,
             'memos' => $memos
         ];
+        Stalk::stalkSystem("view memos", null);
         return View::make('billing.memos', $data);
     }
     
     public static function postDeleteMemo() {
         Memo::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("view deleted memo", Input::get('id'));
         return Redirect::to('billing/memos');
     }
 
     public static function postAddMemo() {
-        Memo::create([
+        $m = Memo::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "department" => Input::get("department"),
             "importance" => Input::get("importance"),
             "memo" => Input::get("memo")
         ]);
+        Stalk::stalkSystem("created memo", $m->id);
         return Redirect::to('billing/memos');
     }
 
@@ -112,22 +121,25 @@ class Billing extends BaseController {
             'reminders' => $reminders,
             'users' => $users
         ];
+        Stalk::stalkSystem("view reminders", null);
         return View::make('admin.reminders', $data);
     }
     
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted reminder", Input::get('id'));
         return Redirect::to('billing/reminders');
     }
 
     public static function postAddReminder() {
-        Reminder::create([
+        $r = Reminder::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "created_for" => Input::get("created_for"),
             "importance" => Input::get("importance"),
             "reminder" => Input::get("reminder")
         ]);
+        Stalk::stalkSystem("created reminder", $r->id);
         return Redirect::to('billing/reminders');
     }
     
@@ -136,19 +148,22 @@ class Billing extends BaseController {
         $data = [
             'clients' => $clients
         ];
+        Stalk::stalkSystem("view clients", null);
         return View::make('billing.viewclients', $data);
     }
 
     public function getViewAddClient() {
+        Stalk::stalkSystem("view add client", null);
         return View::make('billing.addclient');
     }
 
     public function postAddClient() {
-        Client::create([
+        $c = Client::create([
             'name' => Input::get('name'),
             'contacts' => Input::get('contacts'),
             'address' => Input::get('address')
         ]);
+        Stalk::stalkSystem("created client", $c->id);
         return Redirect::to('billing/view-clients');
     }
 
@@ -158,6 +173,7 @@ class Billing extends BaseController {
         $data = [
             'client' => $client
         ];
+        Stalk::stalkSystem("view edit client", $id);
         return View::make('billing.editclient', $data);
     }
 
@@ -168,11 +184,13 @@ class Billing extends BaseController {
         $client->contacts = Input::get('contacts');
         $client->address = Input::get('address');
         $client->save();
+        Stalk::stalkSystem("edited client", $id);
         return Redirect::to('sales/view-clients');
     }
 
     public function postDeleteClient() {
         Client::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted client", Input::get('id'));
         return Redirect::to('billing/view-clients');
     }
 

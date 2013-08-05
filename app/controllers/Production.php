@@ -7,6 +7,7 @@ class Production extends BaseController {
         $data = [
             'suppliers' => $suppliers
         ];
+        Stalk::stalkSystem("view suppliers", null);
         return View::make('production.viewsuppliers', $data);
     }
     
@@ -15,6 +16,7 @@ class Production extends BaseController {
         $data = [
             'clients' => $clients
         ];
+        Stalk::stalkSystem("view clients", null);
         return View::make('production.viewclients', $data);
     }
 
@@ -27,7 +29,7 @@ class Production extends BaseController {
             'mq_a' => $mq_a,
             'mq_i' => $mq_i
         ];
-
+        Stalk::stalkSystem("view job orders", null);
         return View::make('production.viewjoborders', $data);
     }
 
@@ -40,7 +42,7 @@ class Production extends BaseController {
             'pr_a' => $pr_a,
             'pr_i' => $pr_i
         ];
-
+        Stalk::stalkSystem("view production records", null);
         return View::make('production.viewproductionrecords', $data);
     }
 
@@ -59,7 +61,7 @@ class Production extends BaseController {
             'pr' => $pr,
             'pr_d' => $pr_d
         ];
-
+        Stalk::stalkSystem("view production record", $id);
         return View::make('production.viewproductionrecord', $data);
     }
 
@@ -94,7 +96,7 @@ class Production extends BaseController {
             'pr' => $pr,
             'pr_d' => $pr_d
         ];
-
+        Stalk::stalkSystem("view approve production record", $id);
         return View::make('production.approveproductionrecord', $data);
     }
 
@@ -129,7 +131,7 @@ class Production extends BaseController {
             'pr' => $pr,
             'pr_d' => $pr_d
         ];
-
+        Stalk::stalkSystem("view edit production record", $id);
         return View::make('production.editproductionrecord', $data);
     }
 
@@ -150,7 +152,7 @@ class Production extends BaseController {
             'mq' => $mq,
             'mq_d' => $mq_d
         ];
-
+        Stalk::stalkSystem("view edit job orders", $id);
         return View::make('production.editjoborder', $data);
     }
 
@@ -173,7 +175,7 @@ class Production extends BaseController {
         ];
 
 
-
+        Stalk::stalkSystem("view approve production record", $id);
         return View::make('production.approvejoborder', $data);
     }
 
@@ -208,7 +210,7 @@ class Production extends BaseController {
             }
         };
 
-
+        Stalk::stalkSystem("edited job order", $id);
         return Redirect::to('production/view-job-orders');
     }
 
@@ -240,7 +242,7 @@ class Production extends BaseController {
         $pr->save();
 
 
-
+        Stalk::stalkSystem("edited production record", $id);
         return Redirect::to('production/view-production-records');
     }
 
@@ -280,7 +282,7 @@ class Production extends BaseController {
         $mq->approved_by = Auth::user()->id;
         $mq->status = 'approved';
         $mq->save();
-
+        Stalk::stalkSystem("approved job order", $id);
         return Redirect::to('production/view-job-orders');
     }
 
@@ -329,11 +331,13 @@ class Production extends BaseController {
 
         Sales::processSalesOrder($pr->so_no);
         Sales::processSalesInvoice($pr->so_no);
-
+        Stalk::stalkSystem("processed sales invoice", $id);
+        Stalk::stalkSystem("approved production record", $id);
         return Redirect::to('production/view-production-records');
     }
 
     public function getIndex() {
+        Stalk::stalkSystem("view main page of production", null);
         return View::make('production.index');
     }
 
@@ -344,22 +348,25 @@ class Production extends BaseController {
             'departments' => $departments,
             'memos' => $memos
         ];
+        Stalk::stalkSystem("view memos", null);
         return View::make('production.memos', $data);
     }
 
     public static function postDeleteMemo() {
         Memo::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted memo", Input::get('id'));
         return Redirect::to('production/memos');
     }
 
     public static function postAddMemo() {
-        Memo::create([
+        $m = Memo::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "department" => Input::get("department"),
             "importance" => Input::get("importance"),
             "memo" => Input::get("memo")
         ]);
+        Stalk::stalkSystem("created memo", $m->id);
         return Redirect::to('production/memos');
     }
 
@@ -370,22 +377,25 @@ class Production extends BaseController {
             'reminders' => $reminders,
             'users' => $users
         ];
+        Stalk::stalkSystem("view reminders", null);
         return View::make('production.reminders', $data);
     }
 
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted reminder", Input::get('id'));
         return Redirect::to('production/reminders');
     }
 
     public static function postAddReminder() {
-        Reminder::create([
+        $r = Reminder::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "created_for" => Input::get("created_for"),
             "importance" => Input::get("importance"),
             "reminder" => Input::get("reminder")
         ]);
+        Stalk::stalkSystem("created reminder", $r->id);
         return Redirect::to('production/reminders');
     }
 
@@ -398,6 +408,7 @@ class Production extends BaseController {
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
+        Stalk::stalkSystem("view rolls", null);
         return View::make('production.viewrolls', $data);
     }
 
@@ -410,6 +421,7 @@ class Production extends BaseController {
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
+        Stalk::stalkSystem("view products", null);
         return View::make('production.viewproducts', $data);
     }
 

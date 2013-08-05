@@ -3,6 +3,7 @@
 class Delivery extends BaseController {
 
     public function getIndex() {
+        Stalk::stalkSystem("view main page of delivery", null);
         return View::make('delivery.index');
     }
     
@@ -11,6 +12,7 @@ class Delivery extends BaseController {
         $data = [
             'suppliers' => $suppliers
         ];
+        Stalk::stalkSystem("view suppliers", null);
         return View::make('delivery.viewsuppliers', $data);
     }
     
@@ -19,6 +21,7 @@ class Delivery extends BaseController {
         $data = [
             'clients' => $clients
         ];
+        Stalk::stalkSystem("view clients", null);
         return View::make('delivery.viewclients', $data);
     }
 
@@ -32,6 +35,7 @@ class Delivery extends BaseController {
             'trucks' => $trucks,
             'drivers' => $drivers
         ];
+        Stalk::stalkSystem("view create trip ticket", null);
         return View::make('delivery.createtripticket', $data);
     }
 
@@ -55,6 +59,7 @@ class Delivery extends BaseController {
             ]);
             $si->save();
         }
+        Stalk::stalkSystem("create trip ticket", $dq->id);
         return Redirect::to("delivery/view-trip-tickets");
     }
 
@@ -67,6 +72,7 @@ class Delivery extends BaseController {
             'dq' => $dq,
             'dq_d' => $dq_d
         ];
+        Stalk::stalkSystem("view approve ticket", $id);
         return View::make('delivery.viewapprovetripticket', $data);
     }
 
@@ -79,6 +85,7 @@ class Delivery extends BaseController {
             'dq' => $dq,
             'dq_d' => $dq_d
         ];
+        Stalk::stalkSystem("view manage trip ticket", $id);
         return View::make('delivery.viewmanagetripticket', $data);
     }
 
@@ -92,6 +99,7 @@ class Delivery extends BaseController {
 //        }
         $dq->status = "in delivery";
         $dq->save();
+        Stalk::stalkSystem("approve ticket", $id);
         return Redirect::to('delivery/view-trip-tickets');
     }
 
@@ -106,11 +114,12 @@ class Delivery extends BaseController {
             'dq_c' => $dq_c,
             'dq_d' => $dq_d
         ];
+        Stalk::stalkSystem("view trip tickets", null);
         return View::make('delivery.viewtriptickets', $data);
     }
 
     public function postApplyManageTripTicket() {
-        var_dump($_POST);
+//        var_dump($_POST);
         $id = Input::get("id");
         $dq = Delivery_queue::find($id);
 
@@ -151,6 +160,7 @@ class Delivery extends BaseController {
 
         $dq->status = "completed";
         $dq->save();
+        Stalk::stalkSystem("approve manage trip ticket", $id);
         return Redirect::to('delivery/view-trip-tickets');
     }
 
@@ -161,22 +171,25 @@ class Delivery extends BaseController {
             'departments' => $departments,
             'memos' => $memos
         ];
+        Stalk::stalkSystem("view memos", null);
         return View::make('delivery.memos', $data);
     }
     
     public static function postDeleteMemo() {
         Memo::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted memo", Input::get('id'));
         return Redirect::to('delivery/memos');
     }
 
     public static function postAddMemo() {
-        Memo::create([
+        $m = Memo::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "department" => Input::get("department"),
             "importance" => Input::get("importance"),
             "memo" => Input::get("memo")
         ]);
+        Stalk::stalkSystem("created memo", $m->id);
         return Redirect::to('delivery/memos');
     }
 
@@ -187,22 +200,25 @@ class Delivery extends BaseController {
             'reminders' => $reminders,
             'users' => $users
         ];
+        Stalk::stalkSystem("view reminders", null);
         return View::make('delivery.reminders', $data);
     }
     
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted reminder", Input::get('id'));
         return Redirect::to('delivery/reminders');
     }
 
     public static function postAddReminder() {
-        Reminder::create([
+        $r = Reminder::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "created_for" => Input::get("created_for"),
             "importance" => Input::get("importance"),
             "reminder" => Input::get("reminder")
         ]);
+        Stalk::stalkSystem("created reminder", $r->id);
         return Redirect::to('delivery/reminders');
     }
     
@@ -215,6 +231,7 @@ class Delivery extends BaseController {
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
+        Stalk::stalkSystem("view rolls", null);
         return View::make('delivery.viewrolls', $data);
     }
 
@@ -227,6 +244,7 @@ class Delivery extends BaseController {
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
+        Stalk::stalkSystem("view products", null);
         return View::make('delivery.viewproducts', $data);
     }
     
