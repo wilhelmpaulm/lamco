@@ -130,5 +130,50 @@ class Billing extends BaseController {
         ]);
         return Redirect::to('billing/reminders');
     }
+    
+    public function getViewClients() {
+        $clients = Client::all();
+        $data = [
+            'clients' => $clients
+        ];
+        return View::make('billing.viewclients', $data);
+    }
+
+    public function getViewAddClient() {
+        return View::make('billing.addclient');
+    }
+
+    public function postAddClient() {
+        Client::create([
+            'name' => Input::get('name'),
+            'contacts' => Input::get('contacts'),
+            'address' => Input::get('address')
+        ]);
+        return Redirect::to('billing/view-clients');
+    }
+
+    public function postEditClient() {
+        $id = Input::get('id');
+        $client = Client::find($id);
+        $data = [
+            'client' => $client
+        ];
+        return View::make('billing.editclient', $data);
+    }
+
+    public function postApplyEditClient() {
+        $id = Input::get('id');
+        $client = Client::find($id);
+        $client->name = Input::get('name');
+        $client->contacts = Input::get('contacts');
+        $client->address = Input::get('address');
+        $client->save();
+        return Redirect::to('sales/view-clients');
+    }
+
+    public function postDeleteClient() {
+        Client::find(Input::get('id'))->delete();
+        return Redirect::to('billing/view-clients');
+    }
 
 }

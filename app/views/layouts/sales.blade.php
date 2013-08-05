@@ -127,7 +127,8 @@
               <!--<li><a href="#">Products Summary</a></li>-->
               <li><hr></li>
               <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
-              <li><a href="#">View Clients</a></li>
+              <li><a href="{{URL::to('sales/view-clients')}}">View Clients</a></li>
+              <li><a href="{{URL::to('sales/view-add-client')}}">Add Client</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

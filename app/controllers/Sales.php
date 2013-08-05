@@ -17,6 +17,50 @@ class Sales extends BaseController {
         var_dump($_POST);
     }
     
+    public function getViewClients() {
+        $clients = Client::all();
+        $data = [
+            'clients' => $clients
+        ];
+        return View::make('sales.viewclients', $data);
+    }
+
+    public function getViewAddClient() {
+        return View::make('sales.addclient');
+    }
+
+    public function postAddClient() {
+        Client::create([
+            'name' => Input::get('name'),
+            'contacts' => Input::get('contacts'),
+            'address' => Input::get('address')
+        ]);
+        return Redirect::to('sales/view-clients');
+    }
+
+    public function postEditClient() {
+        $id = Input::get('id');
+        $client = Client::find($id);
+        $data = [
+            'client' => $client
+        ];
+        return View::make('sales.editclient', $data);
+    }
+
+    public function postApplyEditClient() {
+        $id = Input::get('id');
+        $client = Client::find($id);
+        $client->name = Input::get('name');
+        $client->contacts = Input::get('contacts');
+        $client->address = Input::get('address');
+        $client->save();
+        return Redirect::to('sales/view-clients');
+    }
+
+    public function postDeleteClient() {
+        Client::find(Input::get('id'))->delete();
+        return Redirect::to('sales/view-clients');
+    }
     
     public static function processSalesInvoice($id) {
         $si = Sales_invoice::where("so_no", "=", $id)->first();
@@ -461,9 +505,6 @@ class Sales extends BaseController {
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
-
-//        print_r($low_rolls);
-
         return View::make('sales.viewrolls', $data);
     }
 
@@ -476,9 +517,6 @@ class Sales extends BaseController {
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
-
-//        print_r($low_rolls);
-
         return View::make('sales.viewproducts', $data);
     }
 

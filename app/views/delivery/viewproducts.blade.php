@@ -1,4 +1,4 @@
-@extends('layouts.sales')
+@extends('layouts.delivery')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">

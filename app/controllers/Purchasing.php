@@ -331,6 +331,20 @@ class Purchasing extends BaseController {
         ];
         return View::make('purchasing.viewsuppliers', $data);
     }
+
+    public function getViewAddSupplier() {
+        return View::make('purchasing.addsupplier');
+    }
+
+    public function postAddSupplier() {
+        Supplier::create([
+            'name' => Input::get('name'),
+            'contacts' => Input::get('contacts'),
+            'address' => Input::get('address')
+        ]);
+        return Redirect::to('purchasing/view-suppliers');
+    }
+
     public function postEditSupplier() {
         $id = Input::get('id');
         $supplier = Supplier::find($id);
@@ -339,6 +353,17 @@ class Purchasing extends BaseController {
         ];
         return View::make('purchasing.editsupplier', $data);
     }
+
+    public function postApplyEditSupplier() {
+        $id = Input::get('id');
+        $supplier = Supplier::find($id);
+        $supplier->name = Input::get('name');
+        $supplier->contacts = Input::get('contacts');
+        $supplier->address = Input::get('address');
+        $supplier->save();
+        return Redirect::to('purchasing/view-suppliers');
+    }
+
     public function postDeleteSupplier() {
         Supplier::find(Input::get('id'))->delete();
         return Redirect::to('purchasing/view-suppliers');

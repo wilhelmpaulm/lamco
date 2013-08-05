@@ -5,6 +5,22 @@ class Delivery extends BaseController {
     public function getIndex() {
         return View::make('delivery.index');
     }
+    
+    public function getViewSuppliers() {
+        $suppliers = Supplier::all();
+        $data = [
+            'suppliers' => $suppliers
+        ];
+        return View::make('delivery.viewsuppliers', $data);
+    }
+    
+    public function getViewClients() {
+        $clients = Client::all();
+        $data = [
+            'clients' => $clients
+        ];
+        return View::make('delivery.viewclients', $data);
+    }
 
     public function getCreateTripTicket() {
         $si = Sales_invoice::where('status', '=', 'approved')->get();
@@ -189,4 +205,29 @@ class Delivery extends BaseController {
         ]);
         return Redirect::to('delivery/reminders');
     }
+    
+    public function getViewRolls() {
+        $lamco_rolls = Roll::where('owner', '=', 'lamco')->get();
+        $low_rolls = Roll::where('quantity', '<', 50)->where('owner', '=', 'lamco')->get();
+        $client_rolls = Roll::where('owner', '!=', 'lamco')->get();
+        $data = [
+            'lamco_rolls' => $lamco_rolls,
+            'low_rolls' => $low_rolls,
+            'client_rolls' => $client_rolls
+        ];
+        return View::make('delivery.viewrolls', $data);
+    }
+
+    public function getViewProducts() {
+        $lamco_products = Product::where('owner', '=', 'lamco')->get();
+        $low_products = Product::where('quantity', '<', 50)->where('owner', '=', 'lamco')->get();
+        $client_products = Product::where('owner', '!=', 'lamco')->get();
+        $data = [
+            'lamco_products' => $lamco_products,
+            'low_products' => $low_products,
+            'client_products' => $client_products
+        ];
+        return View::make('delivery.viewproducts', $data);
+    }
+    
 }

@@ -12,7 +12,7 @@
 
         <!-- Le styles -->
         {{HTML::style('css/dataTables.css')}}
-                {{HTML::style('css/flatstrap-bootstrap.css')}}
+        {{HTML::style('css/flatstrap-bootstrap.css')}}
 
         <!--{{HTML::style('css/bootstrap.min.css')}}-->    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
@@ -73,12 +73,12 @@
         <![endif]-->
 
         <!-- Fav and touch icons -->
-       
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
-                    <link rel="apple-touch-icon-precomposed" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
-                    <link rel="shortcut icon"  href='{{URL::asset("ico/favicon.ico")}}'>
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+        <link rel="apple-touch-icon-precomposed" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
+        <link rel="shortcut icon"  href='{{URL::asset("ico/favicon.ico")}}'>
     </head>
 
     <body>
@@ -129,7 +129,10 @@
                             <li><a href="#">Products Summary</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
-                            <li><a href="#">View Clients</a></li>
+                            <li><a href="{{URL::to('delivery/view-clients')}}">View Clients</a></li>
+                            <li><hr></li>
+                            <li class="nav-header"><i class="icon-suitcase"></i> Suppliers</li>
+                            <li><a href="{{URL::to('delivery/view-suppliers')}}">View Suppliers</a></li>
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->
@@ -155,7 +158,7 @@
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        
+
     </body>
 
     <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->

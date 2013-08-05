@@ -1,4 +1,4 @@
-@extends('layouts.purchasing')
+@extends('layouts.billing')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">
@@ -15,21 +15,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($suppliers as $supplier)
+                    @foreach($clients as $client)
                     <tr class="">
-                        <td>{{$supplier->id}}</td>
-                        <td>{{$supplier->name}}</td>
-                        <td>{{$supplier->address}}</td>
-                        <td>{{$supplier->contacts}}</td>
+                        <td>{{$client->id}}</td>
+                        <td>{{$client->name}}</td>
+                        <td>{{$client->address}}</td>
+                        <td>{{$client->contacts}}</td>
                         <td>
-                            <form action="{{URL::to('purchasing/edit-supplier')}}" method="POST">
-                                <input type="hidden" name="id" value="{{$supplier->id}}" />
+                            <form action="{{URL::to('sales/edit-client')}}" method="POST">
+                                <input type="hidden" name="id" value="{{$client->id}}" />
                                 <input type="submit" class="btn btn-warning" value="Edit" />
                             </form>
                         </td>
                         <td>
-                            <form action="{{URL::to('purchasing/delete-supplier')}}" method="POST">
-                                <input type="hidden" name="id" value="{{$supplier->id}}" />
+                            <form action="{{URL::to('sales/delete-client')}}" method="POST">
+                                <input type="hidden" name="id" value="{{$client->id}}" />
                                 <input type="submit" class="btn btn-danger" value="Delete" />
                             </form>
                         </td>

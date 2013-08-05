@@ -1,4 +1,4 @@
-@extends('layouts.sales')
+@extends('layouts.billing')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">
@@ -17,13 +17,13 @@
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#rolls-inventory" data-toggle="tab">Lamco Rolls</a>
+                        <a href="#rolls-inventory" data-toggle="tab">Lamco Products ({{$lamco_products->count()}})</a>
                     </li>
                     <li>
-                        <a href="#rolls-reserved" data-toggle="tab">Reserved Rolls</a>
+                        <a href="#rolls-reserved" data-toggle="tab">Customer Products ({{$client_products->count()}})</a>
                     </li>
                     <li>
-                        <a href="#rolls-danger" data-toggle="tab">Stock Alerter</a>
+                        <a href="#rolls-danger" data-toggle="tab">Stock Alerter ({{$low_products->count()}})</a>
                     </li>
                 </ul>
                 <div class="tab-content">

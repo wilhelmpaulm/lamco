@@ -129,8 +129,11 @@
               <li><a href="{{URL::to('production/view-rolls')}}">View Rolls</a></li>
               <li><a href="{{URL::to('production/view-products')}}">View Products</a></li>
               <li><hr></li>
-              <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
-              <li><a href="#">View Clients</a></li>
+               <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
+              <li><a href="{{URL::to('production/view-clients')}}">View Clients</a></li>
+              <li><hr></li>
+               <li class="nav-header"><i class="icon-suitcase"></i> Suppliers</li>
+              <li><a href="{{URL::to('production/view-suppliers')}}">View Suppliers</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

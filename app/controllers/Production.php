@@ -1,6 +1,22 @@
 <?php
 
 class Production extends BaseController {
+    
+    public function getViewSuppliers() {
+        $suppliers = Supplier::all();
+        $data = [
+            'suppliers' => $suppliers
+        ];
+        return View::make('production.viewsuppliers', $data);
+    }
+    
+    public function getViewClients() {
+        $clients = Client::all();
+        $data = [
+            'clients' => $clients
+        ];
+        return View::make('production.viewclients', $data);
+    }
 
     public function getViewJobOrders() {
         $mq_p = Machine_queue::where('status', '=', 'pending')->get();
@@ -330,7 +346,7 @@ class Production extends BaseController {
         ];
         return View::make('production.memos', $data);
     }
-    
+
     public static function postDeleteMemo() {
         Memo::find(Input::get('id'))->delete();
         return Redirect::to('production/memos');
@@ -356,7 +372,7 @@ class Production extends BaseController {
         ];
         return View::make('production.reminders', $data);
     }
-    
+
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
         return Redirect::to('production/reminders');
@@ -375,31 +391,25 @@ class Production extends BaseController {
 
     public function getViewRolls() {
         $lamco_rolls = Roll::where('owner', '=', 'lamco')->get();
-        $low_rolls = Roll::where('quantity', '<', 50)->get();
+        $low_rolls = Roll::where('quantity', '<', 50)->where('owner', '=', 'lamco')->get();
         $client_rolls = Roll::where('owner', '!=', 'lamco')->get();
         $data = [
             'lamco_rolls' => $lamco_rolls,
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
-
-//        print_r($low_rolls);
-
         return View::make('production.viewrolls', $data);
     }
 
     public function getViewProducts() {
         $lamco_products = Product::where('owner', '=', 'lamco')->get();
-        $low_products = Product::where('quantity', '<', 50)->get();
+        $low_products = Product::where('quantity', '<', 50)->where('owner', '=', 'lamco')->get();
         $client_products = Product::where('owner', '!=', 'lamco')->get();
         $data = [
             'lamco_products' => $lamco_products,
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
-
-//        print_r($low_rolls);
-
         return View::make('production.viewproducts', $data);
     }
 

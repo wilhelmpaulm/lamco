@@ -1,4 +1,4 @@
-@extends('layouts.sales')
+@extends('layouts.delivery')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">
@@ -14,16 +14,16 @@
                     Data
                 </li>
             </ul>
-            <div class="tabbable" id="tabs-299920">
+            <div class="tabbable" >
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#rolls-inventory" data-toggle="tab">Lamco Products ({{$lamco_products->count()}})</a>
+                        <a href="#rolls-inventory" data-toggle="tab">Lamco Rolls ({{$lamco_rolls->count()}})</a>
                     </li>
                     <li>
-                        <a href="#rolls-reserved" data-toggle="tab">Customer Products ({{$client_products->count()}})</a>
+                        <a href="#rolls-reserved" data-toggle="tab">Reserved Rolls ({{$client_rolls->count()}})</a>
                     </li>
                     <li>
-                        <a href="#rolls-danger" data-toggle="tab">Stock Alerter ({{$low_products->count()}})</a>
+                        <a href="#rolls-danger" data-toggle="tab">Stock Alerter ({{$low_rolls->count()}})</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -60,8 +60,8 @@
                                         </tr>
                                     </thead>
                                     <tbody >
-                                         @foreach($lamco_products as $roll)
-                                         <tr @if($roll->quantity < 50) class='error' @elseif($roll->quantity < 100  ) class='warning'  @endif>
+                                         @foreach($lamco_rolls as $roll)
+                                         <tr @if($roll->quantity < 50) class='error' @elseif($roll->quantity < 100  ) class='warning' @elseif($roll->quantity < 150  ) class='info' @elseif($roll->quantity < 200  ) class='success' @elseif($roll->quantity < 250  ) class='inverse' @endif>
                                             <td>
                                                 {{$roll->id}}
                                             </td>
@@ -127,7 +127,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                         @foreach($client_products as $roll)
+                                         @foreach($client_rolls as $roll)
                                          <tr class="">
                                             <td>
                                                 {{$roll->id}}
@@ -164,7 +164,7 @@
                         </div>
                        
                     </div>
-                    <div class="tab-pane" id="rolls-danger">
+                    <div class="tab-pane" id="rolls-danger" >
                        <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-condensed table-bordered table-striped table-hover dtable" >
@@ -197,7 +197,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                         @foreach($low_products as $roll)
+                                         @foreach($low_rolls as $roll)
                                          <tr class="error">
                                             <td>
                                                 {{$roll->id}}

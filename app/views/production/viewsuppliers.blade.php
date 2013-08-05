@@ -1,4 +1,4 @@
-@extends('layouts.purchasing')
+@extends('layouts.production')
 @section('main')
 <div class="container-fluid">
     <div class="row-fluid">
@@ -10,8 +10,7 @@
                         <th>Name</th>
                         <th>Address</th>
                         <th>Contacts</th>
-                        <th></th>
-                        <th></th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -21,18 +20,7 @@
                         <td>{{$supplier->name}}</td>
                         <td>{{$supplier->address}}</td>
                         <td>{{$supplier->contacts}}</td>
-                        <td>
-                            <form action="{{URL::to('purchasing/edit-supplier')}}" method="POST">
-                                <input type="hidden" name="id" value="{{$supplier->id}}" />
-                                <input type="submit" class="btn btn-warning" value="Edit" />
-                            </form>
-                        </td>
-                        <td>
-                            <form action="{{URL::to('purchasing/delete-supplier')}}" method="POST">
-                                <input type="hidden" name="id" value="{{$supplier->id}}" />
-                                <input type="submit" class="btn btn-danger" value="Delete" />
-                            </form>
-                        </td>
+                        
                     </tr>
                     @endforeach
                 </tbody>
