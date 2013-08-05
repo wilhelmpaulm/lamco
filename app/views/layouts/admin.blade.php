@@ -123,15 +123,15 @@
               <li><a href="{{URL::to('admin/create-user')}}">Create user</a></li>
               <li><a href="{{URL::to('admin/view-users')}}">View Users</a></li>
               <li><hr></li>
-              <li class="nav-header"><i class="icon-cogs"></i> Content</li>
+<!--              <li class="nav-header"><i class="icon-cogs"></i> Content</li>
               <li><a href="{{URL::to('admin/view-calliper')}}">Manage Calliper</a></li>
               <li><a href="{{URL::to('admin/view-dimension')}}">Manage Dimension</a></li>
               <li><a href="{{URL::to('admin/view-paper_type')}}">Manage Paper Type</a></li>
               <li><a href="{{URL::to('admin/view-weight')}}">Manage Weight</a></li>
-              <li><hr></li>
+              <li><hr></li>-->
               <li class="nav-header"><i class="icon-console"></i> System Logs</li>
-              <li><a href="#">View User Logs</a></li>
-              <li><a href="#">View Sales Logs</a></li>
+              <li><a href="{{URL::to('admin/view-system-logs')}}">View System Logs</a></li>
+              <li><a href="{{URL::to('admin/view-production-logs')}}">View Sales Logs</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

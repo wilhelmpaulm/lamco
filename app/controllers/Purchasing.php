@@ -11,7 +11,9 @@ class Purchasing extends BaseController {
     }
 
     public function getIndex() {
+        Stalk::stalkSystem("view main page of purchasing", null);
         return View::make('purchasing.index');
+        
     }
 
     public function getCreatePurchaseOrder() {
@@ -32,7 +34,7 @@ class Purchasing extends BaseController {
             'units' => $units,
             'vendors' => $vendors
         ];
-
+        Stalk::stalkSystem("view create purchase order", null);
         return View::make('purchasing.createpurchaseorder', $data);
     }
 
@@ -62,7 +64,7 @@ class Purchasing extends BaseController {
             'units' => $units,
             'vendors' => $vendors
         ];
-
+        Stalk::stalkSystem("view edit a purchase order", $id);
         return View::make('purchasing.editpurchaseorder', $data);
     }
 
@@ -96,7 +98,7 @@ class Purchasing extends BaseController {
             'locations' => $locations,
             'vendors' => $vendors
         ];
-
+        Stalk::stalkSystem("view edit a recieving report", $id);
         return View::make('purchasing.editreceivingreport', $data);
     }
 
@@ -108,7 +110,7 @@ class Purchasing extends BaseController {
             'po' => $po,
             'po_d' => $po_d,
         ];
-
+        Stalk::stalkSystem("viewed purchase order", $id);
         return View::make('purchasing.viewpurchaseorder', $data);
     }
 
@@ -120,7 +122,7 @@ class Purchasing extends BaseController {
             'rr' => $rr,
             'rr_d' => $rr_d,
         ];
-
+        Stalk::stalkSystem("view receiving report", $id);
         return View::make('purchasing.viewreceivingreport', $data);
     }
 
@@ -147,7 +149,7 @@ class Purchasing extends BaseController {
                         'total' => Input::get("subtotal")[$index]
             ]);
         }
-
+        Stalk::stalkSystem("edited purchase order", $id);
         return Redirect::to('purchasing/view-purchase-orders');
     }
 
@@ -175,7 +177,7 @@ class Purchasing extends BaseController {
                         'unit' => Input::get("unit")[$index]
             ]);
         }
-
+        Stalk::stalkSystem("edited receiving report", $id);
         return Redirect::to('purchasing/view-receiving-reports');
     }
 
@@ -199,7 +201,7 @@ class Purchasing extends BaseController {
                         'total' => Input::get("subtotal")[$index]
             ]);
         }
-
+        Stalk::stalkSystem("created purchase order", $po->id);
         return Redirect::to('purchasing/view-purchase-orders');
     }
 
@@ -207,6 +209,8 @@ class Purchasing extends BaseController {
         $id = Input::get('id');
         Purchase_order::find($id)->delete();
         Po_detail::where('po_no', '=', $id)->delete();
+               
+        Stalk::stalkSystem("deleted purchase order", $id);
         return Redirect::to('purchasing/view-purchase-orders');
     }
 
@@ -214,6 +218,7 @@ class Purchasing extends BaseController {
         $id = Input::get('id');
         Receiving_report::find($id)->delete();
         Rr_detail::where('rr_no', '=', $id)->delete();
+        Stalk::stalkSystem("deleted receiving report", $id);
         return Redirect::to('purchasing/view-receiving-reports');
     }
 
@@ -242,6 +247,7 @@ class Purchasing extends BaseController {
                 'unit' => $po_d->unit
             ]);
         }
+        Stalk::stalkSystem("approved purchase order", $id);
         return Redirect::to('purchasing/view-purchase-orders');
     }
 
@@ -284,7 +290,7 @@ class Purchasing extends BaseController {
             }
         }
 
-
+        Stalk::stalkSystem("approved receiving report", $id);
         return Redirect::to('purchasing/view-receiving-reports');
     }
 
@@ -297,6 +303,7 @@ class Purchasing extends BaseController {
             'pos_a' => $pos_a,
             'pos_f' => $pos_f
         ];
+        Stalk::stalkSystem("viewed purchase orders", null);
         return View::make('purchasing.viewpurchaseorders', $data);
     }
 
@@ -309,6 +316,7 @@ class Purchasing extends BaseController {
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
+        Stalk::stalkSystem("approved viewed rolls", null);
         return View::make('purchasing.viewrolls', $data);
     }
 
@@ -321,6 +329,7 @@ class Purchasing extends BaseController {
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
+        Stalk::stalkSystem("viewed products", null);
         return View::make('purchasing.viewproducts', $data);
     }
 
@@ -329,19 +338,22 @@ class Purchasing extends BaseController {
         $data = [
             'suppliers' => $suppliers
         ];
+        Stalk::stalkSystem("viewed suppliers", null);
         return View::make('purchasing.viewsuppliers', $data);
     }
 
     public function getViewAddSupplier() {
+        Stalk::stalkSystem("view add supplier", null);
         return View::make('purchasing.addsupplier');
     }
 
     public function postAddSupplier() {
-        Supplier::create([
+        $s = Supplier::create([
             'name' => Input::get('name'),
             'contacts' => Input::get('contacts'),
             'address' => Input::get('address')
         ]);
+        Stalk::stalkSystem("created new supplier", $s->id);
         return Redirect::to('purchasing/view-suppliers');
     }
 
@@ -351,6 +363,7 @@ class Purchasing extends BaseController {
         $data = [
             'supplier' => $supplier
         ];
+        Stalk::stalkSystem("view edit a supplier", $id);
         return View::make('purchasing.editsupplier', $data);
     }
 
@@ -361,11 +374,13 @@ class Purchasing extends BaseController {
         $supplier->contacts = Input::get('contacts');
         $supplier->address = Input::get('address');
         $supplier->save();
+        Stalk::stalkSystem("edited supplier", $id);
         return Redirect::to('purchasing/view-suppliers');
     }
 
     public function postDeleteSupplier() {
         Supplier::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted supplier", Input::get('id'));
         return Redirect::to('purchasing/view-suppliers');
     }
 
@@ -379,7 +394,7 @@ class Purchasing extends BaseController {
             'rr_a' => $rr_a,
             'rr_f' => $rr_f
         ];
-
+        Stalk::stalkSystem("viewed receiving reports", null);
         return View::make('purchasing.viewreceivingreports', $data);
     }
 
@@ -398,20 +413,17 @@ class Purchasing extends BaseController {
             'statuses' => $statuses,
             'vendors' => $vendors
         ];
+        Stalk::stalkSystem("view edit rolls", null);
         return View::make('purchasing.managerolls', $data);
     }
 
     public function getManageProducts() {
         $products = Product::all();
         $data = ['products' => $products];
+        Stalk::stalkSystem("view edit products", null);
         return View::make('purchasing.manageproducts', $data);
     }
 
-    public function getManageVendors() {
-        $products = Product::all();
-        $data = ['products' => $products];
-        return View::make('purchasing.managevendors', $data);
-    }
 
     public function getMemos() {
         $memos = Memo::where('department', '=', Auth::user()->department)->get();
@@ -420,22 +432,25 @@ class Purchasing extends BaseController {
             'departments' => $departments,
             'memos' => $memos
         ];
+        Stalk::stalkSystem("viewed memos", null);
         return View::make('purchasing.memos', $data);
     }
 
     public static function postDeleteMemo() {
         Memo::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted memo", Input::get('id'));
         return Redirect::to('purchasing/memos');
     }
 
     public static function postAddMemo() {
-        Memo::create([
+        $m = Memo::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "department" => Input::get("department"),
             "importance" => Input::get("importance"),
             "memo" => Input::get("memo")
         ]);
+        Stalk::stalkSystem("created memo", $m->id);
         return Redirect::to('purchasing/memos');
     }
 
@@ -446,22 +461,25 @@ class Purchasing extends BaseController {
             'reminders' => $reminders,
             'users' => $users
         ];
+        Stalk::stalkSystem("viewed reminders", null);
         return View::make('purchasing.reminders', $data);
     }
 
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
+        Stalk::stalkSystem("deleted reminder", Input::get('id'));
         return Redirect::to('purchasing/reminders');
     }
 
     public static function postAddReminder() {
-        Reminder::create([
+        $r = Reminder::create([
             "created_by" => Auth::user()->id,
             "deadline" => Input::get("deadline"),
             "created_for" => Input::get("created_for"),
             "importance" => Input::get("importance"),
             "reminder" => Input::get("reminder")
         ]);
+        Stalk::stalkSystem("created reminder", $r->id);
         return Redirect::to('purchasing/reminders');
     }
 

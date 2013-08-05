@@ -62,6 +62,7 @@ class Admin extends BaseController {
         return Redirect::to('admin/reminders');
     }
     
+    
     public static function getViewUsers() {
         $users = User::all();
         $data = [
@@ -111,6 +112,21 @@ class Admin extends BaseController {
             'departments' => $departments
         ];
         return View::make('admin.edituser', $data);
+    }
+    
+    public static function getViewSystemLogs() {
+        $sys_logs = System_log::all();
+        $data = [
+            'sys_logs' => $sys_logs
+        ];
+        return View::make('admin.viewsystemlogs', $data);
+    }
+    public static function getViewProductionLogs() {
+        $pro_logs = System_log::all();
+        $data = [
+            'pro_logs' => $pro_logs
+        ];
+        return View::make('admin.viewproductionlogs', $data);
     }
 
 }

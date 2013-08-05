@@ -1,4 +1,5 @@
 <?php
+
 //Route::when('purchasing', 'auth');
 //Route::when('sales', 'auth');
 //Route::when('billing', 'auth');
@@ -11,43 +12,38 @@ Route::when('delivery*', 'auth');
 Route::when('production*', 'auth');
 Route::when('admin*', 'auth');
 
-Route::get("", function(){
-    return View::make('base.login');
-});
-Route::get("login", function(){
-    return View::make('base.login');
-});
+Route::get("", function() {
+            return View::make('base.login');
+        });
+Route::get("login", function() {
+            return View::make('base.login');
+        });
 
-Route::get("logout", function(){
-    Auth::logout();
-    return Redirect::to('login');
-});
+Route::get("logout", function() {
+            Stalk::stalkSystem("has logged out", null);
+            Auth::logout();
+            return Redirect::to('login');
+        });
 
-Route::post('login', function(){
-   if(Auth::attempt(['id' => Input::get('id'), 'password' => Input::get('password')]))
-   {
-       if(Auth::user()->department == "purchasing")
-       {
-           return Redirect::to('purchasing');
-       }elseif (Auth::user()->department == "delivery") {
-           return Redirect::to('delivery');
-       }
-       elseif (Auth::user()->department == "production") {
-           return Redirect::to('production');
-       }
-       elseif (Auth::user()->department == "sales") 
-       {
-           return Redirect::to('sales');
-       }
-       elseif (Auth::user()->department == "admin") 
-       {
-           return Redirect::to('admin');
-       }
-       
-   }
-   else
-       return Redirect::to('login');
-});
+Route::post('login', function() {
+            if (Auth::attempt(['id' => Input::get('id'), 'password' => Input::get('password')])) {
+                Stalk::stalkSystem("has logged in", null);
+
+                if (Auth::user()->department == "purchasing") {
+                    return Redirect::to('purchasing');
+                } elseif (Auth::user()->department == "delivery") {
+                    return Redirect::to('delivery');
+                } elseif (Auth::user()->department == "production") {
+                    return Redirect::to('production');
+                } elseif (Auth::user()->department == "sales") {
+                    return Redirect::to('sales');
+                } elseif (Auth::user()->department == "admin") {
+                    return Redirect::to('admin');
+                }
+            }
+            else
+                return Redirect::to('login');
+        });
 
 
 
@@ -59,7 +55,6 @@ Route::post('login', function(){
 
 
 //Start of controllers here
-
 //
 //
 //Route::resource('departments', 'DepartmentsController');
@@ -100,6 +95,7 @@ Route::controller('production', 'Production');
 Route::controller('delivery', 'Delivery');
 Route::controller('billing', 'Billing');
 Route::controller('admin', 'Admin');
+Route::controller('stalk', 'Stalk');
 
 
 
