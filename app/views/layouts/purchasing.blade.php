@@ -189,50 +189,52 @@
             $('#toggleNotif').click(function() {
                 $('#notification').toggleClass('hidden');
             });
-            
+
 
             $.timer(function() {
                 var notifs, reminders, memos, rolls;
-                var remList ="";var memList ="";var rolList="";
+                var remList = "";
+                var memList = "";
+                var rolList = "";
                 $.get("{{URL::to('purchasing/notif')}}", function(data) {
                     notifs = JSON.parse(data);
                     reminders = JSON.parse(notifs.reminders);
                     memos = JSON.parse(notifs.memos);
                     rolls = JSON.parse(notifs.rolls);
-                    _.each(reminders, function(r){
-                        remList += "<li class='nav-header'> "+r.created_by+"</li><li><a href='{{URL::to('purchasing/reminders')}}'>"+r.reminder+"</a></li><li class='divider'></i>";
+                    _.each(reminders, function(r) {
+                        remList += "<li class='nav-header'> " + r.created_by + "</li><li><a href='{{URL::to('purchasing/reminders')}}'>" + r.reminder + "</a></li><li class='divider'></i>";
                     });
-                    _.each(memos, function(r){
-                        memList += "<li class='nav-header'> "+r.created_by+"</li><li><a href='{{URL::to('purchasing/memos')}}'>"+r.memo+"</a></li><li class='divider'></i>";
+                    _.each(memos, function(r) {
+                        memList += "<li class='nav-header'> " + r.created_by + "</li><li><a href='{{URL::to('purchasing/memos')}}'>" + r.memo + "</a></li><li class='divider'></i>";
                     });
-                    _.each(rolls, function(r){
-                        rolList += "<li class='nav-header'> roll "+r.id+"</li><li ><a href='{{URL::to('purchasing/view-rolls')}}'>has only "+r.quantity+" left</a></li><li class='divider'></i>";
+                    _.each(rolls, function(r) {
+                        rolList += "<li class='nav-header'> roll " + r.id + "</li><li ><a href='{{URL::to('purchasing/view-rolls')}}'>has only " + r.quantity + " left</a></li><li class='divider'></i>";
                     });
                     $("#notifReminders").html(remList);
                     $("#notifMemos").html(memList);
                     $("#notifRolls").html(rolList);
-                    if(_.size(reminders) <1){
+                    if (_.size(reminders) < 1) {
                         $("#boxReminders").hide();
-                    }else{
+                    } else {
                         $("#numReminders").text(_.size(reminders).toString());
                         $("#boxReminders").show();
                     }
-                    if(_.size(memos) <1){
+                    if (_.size(memos) < 1) {
                         $("#boxMemos").hide();
-                    }else{
+                    } else {
                         $("#numMemos").text(_.size(memos).toString());
                         $("#boxMemos").show();
                     }
-                    if(_.size(rolls) <1){
+                    if (_.size(rolls) < 1) {
                         $("#boxRolls").hide();
-                    }else{
+                    } else {
                         $("#numRolls").text(_.size(rolls).toString());
                         $("#boxRolls").show();
                     }
-                    
+
 //                    console.log(remlist);
                 });
-            }, 8000, true);
+            }, 5000, true);
         </script>
     </body>
 </html>

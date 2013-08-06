@@ -35,7 +35,7 @@
         <p>109304 - billing</p>
         <p>109305 - delivery</p>
         <p>109306 - admin</p>
-        <p>109307 - warehousing (not yet working dont try)</p>
+        <p>109307 - warehousing</p>
         <p>109308 - management</p>
         <p>password is "pawie2062"</p>
     </div>

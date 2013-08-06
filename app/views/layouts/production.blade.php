@@ -13,17 +13,16 @@
         <!-- Le styles -->
 
         {{HTML::style('css/dataTables.css')}}
-        {{HTML::style('css/flatstrap-bootstrap.css')}}
+        <!--{{HTML::style('css/flatstrap-bootstrap.css')}}-->
 
-
-        <!--{{HTML::style('css/bootstrap.min.css')}}-->    
+        {{HTML::style('css/bootstrapx.css')}}    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         <!--{{HTML::style('css/bootstrap-responsive.min.css')}}-->
         {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::style('css/wilhelmpaulm.css')}}
         {{HTML::style('css/parsley.css')}}
         {{HTML::style('css/ladda.css')}}
-        {{HTML::style('css/select2.css')}}
+        <!--{{HTML::style('css/select2.css')}}-->
 
 
         {{HTML::script('js/jquery.js')}}
@@ -33,9 +32,10 @@
         {{HTML::script('js/notify.min.js')}}
         {{HTML::script('js/pulsate.min.js')}}
         {{HTML::script('js/timer.js')}}
+        {{HTML::script('js/underscore.js')}}
         <!--    {{HTML::script('js/spin.min.js')}}-->
         {{HTML::script('js/ladda.js')}}
-        {{HTML::script('js/select2.min.js')}}
+        <!--{{HTML::script('js/select2.min.js')}}-->
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -96,7 +96,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="{{URL::to('purchasing/')}}">Production Department</a>
+                    <a class="brand" href="{{URL::to('production/')}}">Production Department</a>
                     <div class="nav-collapse collapse pull-right">
                         <ul class="nav">
                             <li class="dropdown hide" id="boxProducts">
@@ -241,7 +241,7 @@
                     
 //                    console.log(remlist);
                 });
-            }, 8000, true);
+            }, 5000, true);
         </script>
     </body>
 
