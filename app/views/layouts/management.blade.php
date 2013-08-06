@@ -39,7 +39,7 @@
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
-                background: url('{{URL::asset("bg/triangles.png")}}');
+                background: url('{{URL::asset("bg/paper_3.png")}}');
 
             }
             .hero-unit {

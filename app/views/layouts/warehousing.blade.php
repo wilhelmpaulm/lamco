@@ -5,7 +5,7 @@
     <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->
     <head>
         <meta charset="utf-8">
-        <title>Lamco Purchasing</title>
+        <title>Lamco Warehousing</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -22,7 +22,7 @@
         {{HTML::style('css/wilhelmpaulm.css')}}
         {{HTML::style('css/parsley.css')}}
         {{HTML::style('css/ladda.css')}}
-        <!--{{HTML::style('css/select2.css')}}-->
+        {{HTML::style('css/select2.css')}}
 
 
         {{HTML::script('js/jquery.js')}}
@@ -31,11 +31,9 @@
         {{HTML::script('js/dataTables.min.js')}}
         {{HTML::script('js/notify.min.js')}}
         {{HTML::script('js/pulsate.min.js')}}
-        {{HTML::script('js/timer.js')}}
         <!--    {{HTML::script('js/spin.min.js')}}-->
         {{HTML::script('js/ladda.js')}}
-        <!--{{HTML::script('js/select2.min.js')}}-->
-
+        {{HTML::script('js/select2.min.js')}}
 
         <style type="text/css">
             body {
@@ -45,8 +43,8 @@
 
             }
             .hero-unit {
+                /*background: url('{{URL::asset("bg/paper_3.png")}}');*/
 
-                /*background: url('{{URL::asset("bg/paper_3.png")}}')*/
             }
 
             .balon{
@@ -84,9 +82,10 @@
         <link rel="shortcut icon"  href='{{URL::asset("ico/favicon.ico")}}'>
     </head>
 
-    <body style="">
 
-        <div class="navbar navbar-fixed-top">
+    <body>
+
+        <div class="navbar  navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -94,24 +93,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="{{URL::to('purchasing/')}}">Purchasing Department</a>
+                    <a class="brand" href="{{URL::to('warehousing/')}}">Warehousing Department</a>
                     <div class="nav-collapse collapse">
-
-                        <div class="navbar-text pull-right">
-                            Logged in as {{Auth::user()->first_name}} |
-
-                            <a id="toggleNotif" class="navbar-link">Notification</a> |
-
-                            <a href="{{URL::to('logout')}}" class="navbar-link ">Logout</a>
-                        </div>
-                        <div class="navbar-text">
-                            <div id="notification" >
-                                <span id="lownotif" ><a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none" ><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num" > {{Roll::where('quantity','<','50')->count();}}</span></p></a></span>
-                            </div>
-                        </div>
-                        <!--                            @if(Roll::where('quantity','<=','100')->count() != 0)
-                                                    <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-warning " ><i class="icon-flag"></i>  {{Roll::where('quantity','<=','100')->count();}}</p></a>
-                                                    @endif-->
+                        <p class="navbar-text pull-right">
+                            Logged in as {{Auth::user()->first_name}} | <a href="{{URL::to('logout')}}" class="navbar-link">Logout</a>
+                        </p>
                         <ul class="nav">
                             <!--              <li class="active"><a href="#">Home</a></li>
                                           <li><a href="#about">About</a></li>
@@ -129,22 +115,21 @@
                     <div class="well sidebar-nav ">
                         <ul class="nav nav-list">
                             <li class="nav-header"><i class="icon-home"></i> Home</li>
-                            <li><a href="{{URL::to('purchasing/memos')}}">Memos</a></li>
-                            <li><a href="{{URL::to('purchasing/reminders')}}">Reminders</a></li>
+                            <li><a href="{{URL::to('warehousing/memos')}}">Memos</a></li>
+                            <li><a href="{{URL::to('warehousing/reminders')}}">Reminders</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-money"></i> Purchasing</li>
-                            <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Purchase Order</a></li>
-                            <li><a href="{{URL::to('purchasing/view-purchase-orders')}}">View Purchase Orders</a></li>
-                            <!--<li><a href="{{URL::to('purchasing/view-receiving-reports')}}">View Receiving Reports</a></li>-->
+                            <li><a href="{{URL::to('warehousing/view-purchase-orders')}}">View Purchase Orders</a></li>
+                            <li><a href="{{URL::to('warehousing/view-receiving-reports')}}">View Receiving Reports</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
-                            <li><a href="{{URL::to('purchasing/view-rolls')}}">View Rolls</a></li>
-                            <li><a href="{{URL::to('purchasing/view-products')}}">View Products</a></li>
+                            <li><a href="{{URL::to('warehousing/view-rolls')}}">View Rolls</a></li>
+                            <li><a href="{{URL::to('warehousing/view-products')}}">View Products</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-suitcase"></i> Suppliers</li>
-                            <li><a href="{{URL::to('purchasing/view-suppliers')}}">View Suppliers</a></li>
-                            <li><a href="{{URL::to('purchasing/view-add-supplier')}}">Add Suppliers</a></li>
-                            <!--<li><a href="{{URL::to('purchasing/view-roll-prices')}}">View Roll Prices</a></li>-->
+                            <li><a href="{{URL::to('warehousing/view-suppliers')}}">View Suppliers</a></li>
+                            <li><a href="{{URL::to('warehousing/view-add-supplier')}}">Add Suppliers</a></li>
+                            
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->
@@ -170,55 +155,6 @@
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script>
-            $('#toggleNotif').click(function() {
-                $('#notification').toggleClass('hidden');
-            });
-
-
-
-            var war = 5;
-//            $('.notif').pulsate();
-            $('.notif').pulsate({
-//                color: '#000', // set the color of the pulse
-                reach: 20, // how far the pulse goes in px
-                speed: 1000, // how long one pulse takes in ms
-                pause: 0, // how long the pause between pulses is in ms
-                glow: true, // if the glow should be shown too
-                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
-                onHover: false                          // if true only pulsate if user hovers over the element
-            });
-
-//            alert();
-            var num;
-//            alert($('#num').text());    
-            if ($('#num').text() == 0) {
-                $('#lownotif').hide();
-            }
-//            $('#lownotif').hide();
-            $.timer(function() {
-
-                $.get("{{URL::to('purchasing/notif')}}", function(data) {
-                    num = JSON.parse(data);
-                    $('#num').text(" " + num.length);
-//                    console.log(num.length);
-
-                    if (num.length != 0) {
-                        $('#lownotif').show();
-                    } else {
-                        $('#lownotif').hide();
-                    }
-//                    num
-//                    console.log($('#num').text());
-                });
-
-            }, 7000, true);
-//          
-
-
-        </script>
-
-
 
     </body>
 

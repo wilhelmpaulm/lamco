@@ -11,9 +11,10 @@ class DepartmentsTableSeeder extends Seeder {
             ['code' => 'SAL','department' => 'Sales' ],
             ['code' => 'BIL','department' => 'Billing' ],
             ['code' => 'PRD','department' => 'Production' ],
-            ['code' => 'WRH','department' => 'Purchasing' ],
-            ['code' => 'MGT','department' => 'Delivery' ],
-            ['code' => 'ADM','department' => 'Admin' ]
+            ['code' => 'PUR','department' => 'Purchasing' ],
+            ['code' => 'DLV','department' => 'Delivery' ],
+            ['code' => 'ADM','department' => 'Admin' ],
+            ['code' => 'WAR','department' => 'Warehousing' ]
         );
 
         // Uncomment the below to run the seeder

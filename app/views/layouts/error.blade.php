@@ -28,12 +28,12 @@
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
-                background: url('{{URL::asset("bg/triangles.png")}}');
+                background: url('{{URL::asset("bg/paper_3.png")}}');
 
                 /*background: url('{{URL::asset("bg/diagmonds.png")}}')*/
             }
             .hero-unit {
-                background: url('{{URL::asset("bg/project_papper.png")}}');
+                /*background: url('{{URL::asset("bg/project_papper.png")}}');*/
             }
             .sidebar-nav {
                 padding: 9px 0;

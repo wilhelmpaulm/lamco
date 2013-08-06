@@ -130,6 +130,7 @@ Route::controller('billing', 'Billing');
 Route::controller('admin', 'Admin');
 Route::controller('stalk', 'Stalk');
 Route::controller('management', 'Management');
+Route::controller('warehousing', 'Warehousing');
 
 
 
