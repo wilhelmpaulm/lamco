@@ -37,6 +37,10 @@ Route::filter('auth', function()
 {
 	if (Auth::guest()) return Redirect::guest('login');
 });
+Route::filter('kick', function()
+{
+	if (!Auth::check()) return Redirect::to('login');
+});
 
 Route::filter('admin', function(){
         if(Auth::user()->department != "admin"){

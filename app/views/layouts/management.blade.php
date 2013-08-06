@@ -245,7 +245,7 @@
                     
 //                    console.log(remlist);
                 });
-            }, 5000, true);
+            }, 8000, true);
         </script>
     </body>
 
