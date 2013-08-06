@@ -15,7 +15,7 @@
         {{HTML::style('css/flatstrap-bootstrap.css')}}
 
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
-        {{HTML::style('css/bootstrap-responsive.min.css')}}
+        <!--{{HTML::style('css/bootstrap-responsive.min.css')}}-->
         {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::style('css/wilhelmpaulm.css')}}
         {{HTML::style('css/parsley.css')}}
@@ -28,7 +28,9 @@
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
-                background: url('{{URL::asset("bg/paper_3.png")}}');
+                /*background: url('{{URL::asset("bg/paper_3.png")}}');*/
+                /*background: url('{{URL::asset("bg/escheresque_ste.png")}}');*/
+                background: url('{{URL::asset("bg/triangles.png")}}');
 
                 /*background: url('{{URL::asset("bg/diagmonds.png")}}')*/
             }

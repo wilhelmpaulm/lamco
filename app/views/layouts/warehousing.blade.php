@@ -15,9 +15,10 @@
         {{HTML::style('css/dataTables.css')}}
         {{HTML::style('css/flatstrap-bootstrap.css')}}
 
+        <!--{{HTML::style('css/bootstrapx.css')}}-->    
         <!--{{HTML::style('css/bootstrap.min.css')}}-->    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
-        {{HTML::style('css/bootstrap-responsive.min.css')}}
+        <!--{{HTML::style('css/bootstrap-responsive.min.css')}}-->
         {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::style('css/wilhelmpaulm.css')}}
         {{HTML::style('css/parsley.css')}}
@@ -39,7 +40,9 @@
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
-                background: url('{{URL::asset("bg/paper_3.png")}}');
+                /*background: url('{{URL::asset("bg/paper_3.png")}}');*/
+                /*background: url('{{URL::asset("bg/escheresque_ste.png")}}');*/
+                background: url('{{URL::asset("bg/triangles.png")}}');
 
             }
             .hero-unit {
@@ -83,7 +86,7 @@
     </head>
 
 
-    <body>
+    <body style="">
 
         <div class="navbar  navbar-fixed-top">
             <div class="navbar-inner">
@@ -118,8 +121,7 @@
                             <li><a href="{{URL::to('warehousing/memos')}}">Memos</a></li>
                             <li><a href="{{URL::to('warehousing/reminders')}}">Reminders</a></li>
                             <li><hr></li>
-                            <li class="nav-header"><i class="icon-money"></i> Purchasing</li>
-                            <li><a href="{{URL::to('warehousing/view-purchase-orders')}}">View Purchase Orders</a></li>
+                            <li class="nav-header"><i class="icon-building"></i> Warehousing</li>
                             <li><a href="{{URL::to('warehousing/view-receiving-reports')}}">View Receiving Reports</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
@@ -128,7 +130,7 @@
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-suitcase"></i> Suppliers</li>
                             <li><a href="{{URL::to('warehousing/view-suppliers')}}">View Suppliers</a></li>
-                            <li><a href="{{URL::to('warehousing/view-add-supplier')}}">Add Suppliers</a></li>
+                            <!--<li><a href="{{URL::to('warehousing/view-add-supplier')}}">Add Suppliers</a></li>-->
                             
                         </ul>
                     </div><!--/.well -->

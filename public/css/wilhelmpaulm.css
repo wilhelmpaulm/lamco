@@ -13,6 +13,7 @@ root {
 }
 
 body{
+    min-width: 1300px; min-height: 800px;
     /*font-family: 'suil', "Segoe UI";*/
     /*font-family: "Segoe UI";*/
     /*font-family: "Segoe UI";*/
