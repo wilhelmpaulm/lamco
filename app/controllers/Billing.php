@@ -1,6 +1,18 @@
 <?php
 
 class Billing extends BaseController {
+    
+    public function getNotif() {
+//        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
+        
+        $data = [
+          'rolls' =>  Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
+          'products' =>  Product::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
+            'reminders' => Reminder::where("created_for", "=", Auth::user()->id)->get()->toJson(),
+            'memos' => Memo::where("department", "=", Auth::user()->department)->get()->toJson()
+        ];
+        return json_encode($data);
+    }
 
     public function getViewSalesInvoices() {
         $si_p = Sales_invoice::where('status', '=', 'pending')->get();

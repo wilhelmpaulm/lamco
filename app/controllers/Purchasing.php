@@ -7,7 +7,25 @@ class Purchasing extends BaseController {
     }
 
     public function getNotif() {
-        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
+//        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
+        
+        $data = [
+          'rolls' =>  Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
+          'products' =>  Product::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
+            'reminders' => Reminder::where("created_for", "=", Auth::user()->id)->get()->toJson(),
+            'memos' => Memo::where("department", "=", Auth::user()->department)->get()->toJson()
+        ];
+        return json_encode($data);
+    }
+    
+    public function getNotifReminders(){
+        return Reminder::where("created_for", "=", Auth::user()->id)->get()->toJson();
+    }
+    public function getNotifMemos(){
+        return Memo::where("department", "=", Auth::user()->department)->get();
+    }
+    public function getNotifRoll(){
+        return Reminder::where("created_for", "=", Auth::user()->id)->get();
     }
 
     public function getIndex() {

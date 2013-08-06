@@ -10,13 +10,27 @@ class Management extends BaseController {
             $so->save();
         }
     }
+    
+    public function getNotif() {
+//        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
+        
+        $data = [
+          'rolls' =>  Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
+          'products' =>  Product::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
+            'reminders' => Reminder::where("created_for", "=", Auth::user()->id)->get()->toJson(),
+            'memos' => Memo::where("department", "=", Auth::user()->department)->get()->toJson()
+        ];
+        return json_encode($data);
+    }
 
     public static function processSalesInvoice($id) {
-        $si = Sales_invoice::where("so_no", "=", $id)->first();
+//        $si = Sales_invoice::where("so_no", "=", $id)->first();
         if (Sales_order::find($id)->status == "completed") {
+            $si = Sales_invoice::where("so_no", "=", $id)->first();
             $si->status = "pending";
             $si->save();
         } else {
+            $si = Sales_invoice::where("so_no", "=", $id)->first();
             $si->status = "on hold";
             $si->save();
         }

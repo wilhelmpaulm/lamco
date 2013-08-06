@@ -13,9 +13,9 @@
         <!-- Le styles -->
 
         {{HTML::style('css/dataTables.css')}}
-        {{HTML::style('css/flatstrap-bootstrap.css')}}
+        <!--{{HTML::style('css/flatstrap-bootstrap.css')}}-->
 
-        <!--{{HTML::style('css/bootstrap.min.css')}}-->    
+        {{HTML::style('css/bootstrapx.css')}}    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         <!--{{HTML::style('css/bootstrap-responsive.min.css')}}-->
         {{HTML::style('css/font-awesome.min.css')}}
@@ -32,6 +32,7 @@
         {{HTML::script('js/notify.min.js')}}
         {{HTML::script('js/pulsate.min.js')}}
         {{HTML::script('js/timer.js')}}
+        {{HTML::script('js/underscore.js')}}
         <!--    {{HTML::script('js/spin.min.js')}}-->
         {{HTML::script('js/ladda.js')}}
         <!--{{HTML::script('js/select2.min.js')}}-->
@@ -88,8 +89,7 @@
     </head>
 
     <body style="">
-
-        <div class="navbar navbar-fixed-top">
+        <div class="navbar  navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -98,28 +98,31 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="brand" href="{{URL::to('purchasing/')}}">Purchasing Department</a>
-                    <div class="nav-collapse collapse">
-
-                        <div class="navbar-text pull-right">
-                            Logged in as {{Auth::user()->first_name}} |
-
-                            <a id="toggleNotif" class="navbar-link">Notification</a> |
-
-                            <a href="{{URL::to('logout')}}" class="navbar-link ">Logout</a>
-                        </div>
-                        <div class="navbar-text">
-                            <div id="notification" >
-                                <span id="lownotif" ><a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none" ><p class="btn btn-danger notif" ><i class="icon-flag"></i><span id="num" > {{Roll::where('quantity','<','50')->count();}}</span></p></a></span>
-                            </div>
-                        </div>
-                        <!--                            @if(Roll::where('quantity','<=','100')->count() != 0)
-                                                    <a href="{{URL::to('purchasing/view-rolls')}}"  style="color: white ; text-decoration: none"><p class="btn btn-warning " ><i class="icon-flag"></i>  {{Roll::where('quantity','<=','100')->count();}}</p></a>
-                                                    @endif-->
+                    <div class="nav-collapse collapse pull-right">
                         <ul class="nav">
-                            <!--              <li class="active"><a href="#">Home</a></li>
-                                          <li><a href="#about">About</a></li>
-                                          <li><a href="#contact">Contact</a></li>-->
+                            <li class="dropdown hide" id="boxRolls">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-flag"></i> <span id="numRolls"></span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="notifRolls">
+                                </ul>
+                            </li>
+                            <li class="dropdown hide" id="boxMemos">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-bullhorn"></i> <span id="numMemos"></span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="notifMemos">
+                                </ul>
+                            </li>
+                            <li class="dropdown hide" id="boxReminders">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-calendar"></i> <span id="numReminders"></span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="notifReminders">
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {{Auth::user()->first_name}} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{URL::to('logout')}}">Log out</a></li>
+                                </ul>
+                            </li>
                         </ul>
+
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
@@ -170,6 +173,15 @@
 
         </div><!--/.fluid-container-->
 
+        <div class="hidden">
+            <ul>
+                <li></li>
+            </ul>
+
+
+        </div>
+
+
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -177,53 +189,50 @@
             $('#toggleNotif').click(function() {
                 $('#notification').toggleClass('hidden');
             });
+            
 
-
-
-            var war = 5;
-//            $('.notif').pulsate();
-            $('.notif').pulsate({
-//                color: '#000', // set the color of the pulse
-                reach: 20, // how far the pulse goes in px
-                speed: 1000, // how long one pulse takes in ms
-                pause: 0, // how long the pause between pulses is in ms
-                glow: true, // if the glow should be shown too
-                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
-                onHover: false                          // if true only pulsate if user hovers over the element
-            });
-
-//            alert();
-            var num;
-//            alert($('#num').text());    
-            if ($('#num').text() == 0) {
-                $('#lownotif').hide();
-            }
-//            $('#lownotif').hide();
             $.timer(function() {
-
+                var notifs, reminders, memos, rolls;
+                var remList ="";var memList ="";var rolList="";
                 $.get("{{URL::to('purchasing/notif')}}", function(data) {
-                    num = JSON.parse(data);
-                    $('#num').text(" " + num.length);
-//                    console.log(num.length);
-
-                    if (num.length != 0) {
-                        $('#lownotif').show();
-                    } else {
-                        $('#lownotif').hide();
+                    notifs = JSON.parse(data);
+                    reminders = JSON.parse(notifs.reminders);
+                    memos = JSON.parse(notifs.memos);
+                    rolls = JSON.parse(notifs.rolls);
+                    _.each(reminders, function(r){
+                        remList += "<li class='nav-header'> "+r.created_by+"</li><li><a href='{{URL::to('purchasing/reminders')}}'>"+r.reminder+"</a></li><li class='divider'></i>";
+                    });
+                    _.each(memos, function(r){
+                        memList += "<li class='nav-header'> "+r.created_by+"</li><li><a href='{{URL::to('purchasing/memos')}}'>"+r.memo+"</a></li><li class='divider'></i>";
+                    });
+                    _.each(rolls, function(r){
+                        rolList += "<li class='nav-header'> roll "+r.id+"</li><li ><a href='{{URL::to('purchasing/view-rolls')}}'>has only "+r.quantity+" left</a></li><li class='divider'></i>";
+                    });
+                    $("#notifReminders").html(remList);
+                    $("#notifMemos").html(memList);
+                    $("#notifRolls").html(rolList);
+                    if(_.size(reminders) <1){
+                        $("#boxReminders").hide();
+                    }else{
+                        $("#numReminders").text(_.size(reminders).toString());
+                        $("#boxReminders").show();
                     }
-//                    num
-//                    console.log($('#num').text());
+                    if(_.size(memos) <1){
+                        $("#boxMemos").hide();
+                    }else{
+                        $("#numMemos").text(_.size(memos).toString());
+                        $("#boxMemos").show();
+                    }
+                    if(_.size(rolls) <1){
+                        $("#boxRolls").hide();
+                    }else{
+                        $("#numRolls").text(_.size(rolls).toString());
+                        $("#boxRolls").show();
+                    }
+                    
+//                    console.log(remlist);
                 });
-
-            }, 7000, true);
-//          
-
-
+            }, 5000, true);
         </script>
-
-
-
     </body>
-
-    <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->
 </html>

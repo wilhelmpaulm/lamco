@@ -144,7 +144,6 @@
         </div>
     </div>
 
-    
 @if($so->status == "pending")
     <form action="{{URL::to('management/approve-sales-order')}}" method="POST">
         <input class="" type="hidden" name="id" value="{{$so->id}}" />

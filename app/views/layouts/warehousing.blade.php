@@ -96,16 +96,37 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="{{URL::to('warehousing/')}}">Warehousing Department</a>
-                    <div class="nav-collapse collapse">
-                        <p class="navbar-text pull-right">
-                            Logged in as {{Auth::user()->first_name}} | <a href="{{URL::to('logout')}}" class="navbar-link">Logout</a>
-                        </p>
+                    <a class="brand" href="{{URL::to('purchasing/')}}">Warehousing Department</a>
+                    <div class="nav-collapse collapse pull-right">
                         <ul class="nav">
-                            <!--              <li class="active"><a href="#">Home</a></li>
-                                          <li><a href="#about">About</a></li>
-                                          <li><a href="#contact">Contact</a></li>-->
+                            <li class="dropdown hide" id="boxProducts">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-file"></i> <span id="numProducts"></span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="notifProducts">
+                                </ul>
+                            </li>
+                            <li class="dropdown hide" id="boxRolls">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-flag"></i> <span id="numRolls"></span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="notifRolls">
+                                </ul>
+                            </li>
+                            <li class="dropdown hide" id="boxMemos">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-bullhorn"></i> <span id="numMemos"></span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="notifMemos">
+                                </ul>
+                            </li>
+                            <li class="dropdown hide" id="boxReminders">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-calendar"></i> <span id="numReminders"></span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="notifReminders">
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {{Auth::user()->first_name}} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{URL::to('logout')}}">Log out</a></li>
+                                </ul>
+                            </li>
                         </ul>
+
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
@@ -157,7 +178,67 @@
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
+        <script>
+            $('#toggleNotif').click(function() {
+                $('#notification').toggleClass('hidden');
+            });
+            
 
+            $.timer(function() {
+                var notifs, reminders, memos, rolls, products;
+                var remList ="";var memList ="";var rolList="";var proList="";
+                $.get("{{URL::to('warehousing/notif')}}", function(data) {
+                    notifs = JSON.parse(data);
+                    reminders = JSON.parse(notifs.reminders);
+                    memos = JSON.parse(notifs.memos);
+                    products = JSON.parse(notifs.products);
+                    rolls = JSON.parse(notifs.rolls);
+                    _.each(reminders, function(r){
+                        remList += "<li class='nav-header'> "+r.created_by+"</li><li><a href='{{URL::to('warehousing/reminders')}}'>"+r.reminder+"</a></li><li class='divider'></i>";
+                    });
+                   
+                    _.each(memos, function(r){
+                        memList += "<li class='nav-header'> "+r.created_by+"</li><li><a href='{{URL::to('warehousgin/memos')}}'>"+r.memo+"</a></li><li class='divider'></i>";
+                    });
+                    _.each(rolls, function(r){
+                        rolList += "<li class='nav-header'> roll "+r.id+"</li><li ><a href='{{URL::to('warehousing/view-rolls')}}'>has only "+r.quantity+" left</a></li><li class='divider'></i>";
+                    });
+                    _.each(products, function(r){
+                        proList += "<li class='nav-header'> roll "+r.id+"</li><li ><a href='{{URL::to('warehousing/view-products')}}'>has only "+r.quantity+" left</a></li><li class='divider'></i>";
+                    });
+                    $("#notifReminders").html(remList);
+                    $("#notifMemos").html(memList);
+                    $("#notifRolls").html(rolList);
+                    $("#notifProducts").html(rolList);
+                    if(_.size(reminders) <1){
+                        $("#boxReminders").hide();
+                    }else{
+                        $("#numReminders").text(_.size(reminders).toString());
+                        $("#boxReminders").show();
+                    }
+                    if(_.size(memos) <1){
+                        $("#boxMemos").hide();
+                    }else{
+                        $("#numMemos").text(_.size(memos).toString());
+                        $("#boxMemos").show();
+                    }
+                    if(_.size(rolls) <1){
+                        $("#boxRolls").hide();
+                    }else{
+                        $("#numRolls").text(_.size(rolls).toString());
+                        $("#boxRolls").show();
+                    }
+                    if(_.size(products) <1){
+                        $("#boxProducts").hide();
+                    }else{
+                        $("#numProducts").text(_.size(products).toString());
+                        $("#boxProducts").show();
+                    }
+                    
+//                    console.log(remlist);
+                });
+            }, 5000, true);
+        </script>
     </body>
 
     <!-- Mirrored from twitter.github.io/bootstrap/examples/fluid.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 23 May 2013 18:29:58 GMT -->
