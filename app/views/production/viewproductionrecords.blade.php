@@ -20,10 +20,10 @@
                         <a href="#po-pending" data-toggle="tab">Pending Production Records ({{$pr_p->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-inproduction" data-toggle="tab">Processed Production Records ({{$pr_a->count()}})</a>
+                        <a href="#po-inproduction" data-toggle="tab">Processed Production Records ({{$pr_i->count()}})</a>
                     </li>
                     <li>
-                        <a href="#po-completed" data-toggle="tab">Completed Production Records ({{$pr_i->count()}})</a>
+                        <a href="#po-completed" data-toggle="tab">Completed Production Records ({{$pr_a->count()}})</a>
                     </li>
                     
                 </ul>

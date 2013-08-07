@@ -143,7 +143,7 @@
                             <li><a href="{{URL::to('purchasing/view-purchase-orders')}}">View Purchase Orders</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-file"></i> Reports</li>
-                            <li><a href="{{URL::to('purchasing/view-monthly-purchase-report')}}">Monthly Purchase Report</a></li>
+                            <li><a id="modal-711257" href="#modal-container-711257"  data-toggle="modal">Monthly Purchase Report</a></li>
                             <li><a href="{{URL::to('purchasing/view-annual-purchase-report')}}">Annual Purchase Report</a></li>
                             <!--<li><a href="{{URL::to('purchasing/view-receiving-reports')}}">View Receiving Reports</a></li>-->
                             <li><hr></li>
@@ -184,6 +184,42 @@
 
 
         </div>
+
+
+        <div id="modal-container-711257" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Generate Monthly Purchasing Report</h3>
+            </div>
+            <div class="modal-body">
+                <form action="{{URL::to('purchasing/view-monthly-purchase-report')}}" method="post">
+                    <select name="month">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select name="year">
+                        <option >2011</option>
+                        <option >2012</option>
+                        <option >2013</option>
+                        <option >2014</option>
+                    </select>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" type="button" data-dismiss="modal" aria-hidden="true">Close</button> <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+
 
 
         <!-- Le javascript
@@ -236,7 +272,7 @@
                         $("#boxRolls").show();
                     }
 
-//                    console.log(remlist);
+    //                    console.log(remlist);
                 });
             }, 5000, true);
         </script>

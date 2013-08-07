@@ -6,10 +6,9 @@ class Purchasing extends BaseController {
         var_dump($_COOKIE);
     }
 
-    public function getViewMonthlyPurchaseReport() {
-        $month = "8";
-        $year = "2013";
-
+    public function postViewMonthlyPurchaseReport() {
+        $month = Input::get('month');
+        $year = Input::get('year');
         $po = DB::select("select * from purchase_orders where month(created_at) = ? and year(created_at) = ?", [$month, $year]);
         $po_d = DB::select("select * from po_details where month(created_at) = ? and year(created_at) = ?", [$month, $year]);
         $data = [
@@ -20,6 +19,7 @@ class Purchasing extends BaseController {
         ];
         return View::make("purchasing.monthly_local_purchase_report", $data);
     }
+    
 
     public function getNotif() {
 //        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
