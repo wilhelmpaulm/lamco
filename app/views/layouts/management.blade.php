@@ -96,7 +96,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="{{URL::to('purchasing/')}}">Warehousing Department</a>
+                    <a class="brand" href="{{URL::to('purchasing/')}}">Management Department</a>
                     <div class="nav-collapse collapse pull-right">
                         <ul class="nav">
                             <li class="dropdown hide" id="boxProducts">

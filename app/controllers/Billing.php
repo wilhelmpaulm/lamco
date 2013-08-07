@@ -134,7 +134,7 @@ class Billing extends BaseController {
             'users' => $users
         ];
         Stalk::stalkSystem("view reminders", null);
-        return View::make('admin.reminders', $data);
+        return View::make('billing.reminders', $data);
     }
     
     public static function postDeleteReminder() {

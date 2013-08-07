@@ -61,7 +61,7 @@
                                     </thead>
                                     <tbody >
                                          @foreach($lamco_rolls as $roll)
-                                         <tr @if($roll->quantity < 50) class='error' @elseif($roll->quantity < 100  ) class='warning' @elseif($roll->quantity < 150  ) class='info' @elseif($roll->quantity < 200  ) class='success' @elseif($roll->quantity < 250  ) class='inverse' @endif>
+                                         <tr @if($roll->quantity < 50) class='error' @elseif($roll->quantity < 100  ) class='warning' @elseif($roll->quantity < 150  ) class='info' @elseif($roll->quantity < 200  ) class='success' @elseif($roll->quantity > 200  ) class='inverse' @endif>
                                             <td>
                                                 {{$roll->id}}
                                             </td>

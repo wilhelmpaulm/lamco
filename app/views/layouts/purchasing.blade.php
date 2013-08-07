@@ -141,6 +141,10 @@
                             <li class="nav-header"><i class="icon-money"></i> Purchasing</li>
                             <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Purchase Order</a></li>
                             <li><a href="{{URL::to('purchasing/view-purchase-orders')}}">View Purchase Orders</a></li>
+                            <li><hr></li>
+                            <li class="nav-header"><i class="icon-file"></i> Reports</li>
+                            <li><a href="{{URL::to('purchasing/view-monthly-purchase-report')}}">Monthly Purchase Report</a></li>
+                            <li><a href="{{URL::to('purchasing/view-annual-purchase-report')}}">Annual Purchase Report</a></li>
                             <!--<li><a href="{{URL::to('purchasing/view-receiving-reports')}}">View Receiving Reports</a></li>-->
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>

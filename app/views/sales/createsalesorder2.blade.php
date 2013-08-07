@@ -43,7 +43,7 @@
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Subtotal</th>
-                            <th><button class="btn btn-success" type="button" id="add_ordinary"><i class="icon icon-plus-sign-alt"></i></button></th>
+                            <th width="5%"><button class="btn btn-success" type="button" id="add_ordinary"><i class="icon icon-plus-sign-alt"></i></button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,7 +74,7 @@
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Subtotal</th>
-                            <th><button class="btn btn-success" type="button" id="add_special"><i class="icon icon-plus-sign-alt"></i></button></th>
+                            <th width="5%"><button class="btn btn-success" type="button" id="add_special"><i class="icon icon-plus-sign-alt"></i></button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,7 +99,7 @@
                             <th>Quantity</th>
                             <!--<th>Price</th>-->
                             <!--<th>Subtotal</th>-->
-                            <th><button class="btn btn-success" type="button" id="add_reserve"><i class="icon icon-plus-sign-alt"></i></button></th>
+                            <th width="5%"><button class="btn btn-success" type="button" id="add_reserve"><i class="icon icon-plus-sign-alt"></i></button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -196,17 +196,18 @@
             <input id=""  class="" type="hidden"  name="production_type[]" placeholder="000.00"/>
 
             <td>
-                <select id="product" class="input-block-level sel2" name="product[]">
+                <select id="product" class="input-block-level " name="product[]">
                     @foreach($products as $product)
-                    <option value="{{$product->id}}">{{$product->paper_type}} {{$product->unit}} {{$product->calliper}} {{$product->dimension}} {{$product->weight}} {{$product->paper_type}}</option>
+                    <option value="{{$product->id}}" data-price="{{$product->price}}" data-quantity="{{$product->quantity}}">{{$product->paper_type}} {{$product->unit}} {{$product->calliper}} {{$product->dimension}} {{$product->weight}} {{$product->paper_type}}</option>
                     @endforeach
                 </select>
             </td>
             <td>
-                <input id="quantity" class="input-medium" type="number" name="quantity[]" required="" placeholder="000"/>
+                <input id="quantity" min="1" max="" class="input-medium" type="number" name="quantity[]" required="" placeholder="000"/>
             </td>
             <td>
-                <input id="price" class="input-medium" type="number" name="price[]" required="" placeholder="000"/>
+                <input id="price" min="1" max="" class="input-medium" type="hidden" name="price[]" required="" placeholder="000"/>
+                <input id="dummyPrice" min="1" max="" class="input-medium" type="text" disabled="" name="" required="" placeholder="000"/>
             </td>
             <td>
                 <input id="subtotal" class="input-medium" type="hidden" name="subtotal[]" required="" placeholder="000"/>
@@ -237,14 +238,14 @@
             <input id=""  class="" type="hidden"  name="subtotal[]" placeholder="000.00"/>
 
             <td>
-                <select id="" class="input-block-level sel2" name="roll[]">
+                <select id="roll" class="input-block-level sel2" name="roll[]">
                     @foreach($rolls as $roll)
-                    <option value="{{$roll->id}}">{{$roll->paper_type}} {{$roll->unit}} {{$roll->calliper}} {{$roll->dimension}} {{$roll->weight}} {{$roll->paper_type}}</option>
+                    <option value="{{$roll->id}}" data-quantity="{{$roll->quantity}}">{{$roll->paper_type}} {{$roll->unit}} {{$roll->calliper}} {{$roll->dimension}} {{$roll->weight}} {{$roll->paper_type}}</option>
                     @endforeach
                 </select>
             </td>
             <td>
-                <input id="quantity" class="input-medium" type="number" name="quantity[]" required="" placeholder="000"/>
+                <input id="quantity" min="1" class="input-medium" type="number" name="quantity[]" required="" placeholder="000"/>
             </td>
 
             <td>
@@ -262,8 +263,8 @@
 
 </div>
 <script>
-    $('body').on('change', '#formrow select', function() {
-        var max = $(this).find('option:selected').data('max');
+    $('body').on('change', '#product', function() {
+        var max = $(this).find('option:selected').data('quantity');
 //        $('#formrow  .quantity').attr('max',max);
         $(this).parent().siblings('div').children('#quantity').attr('max', max);
 //       console.log($(this).find('option:selected').data('max'));
@@ -271,7 +272,7 @@
     
     var l = Ladda.create(document.querySelector('.ladda-button'));
     $('form').submit(function() {
-        $.notify('Creating a new sales order pleasse wait...', 'info');
+        $.notify('Creating a new sales order please wait...', 'info');
         l.start();
     });
     
@@ -302,6 +303,17 @@
         return sum;
     };
 
+    $('body').on('change', 'select#product', function() {
+       var quantity = $(this).find("option:selected").data("quantity");
+       var price = $(this).find("option:selected").data("price");
+       $(this).parent().siblings().find('#quantity').attr('max', quantity);
+       $(this).parent().siblings().find('#price').val(price);
+       $(this).parent().siblings().find('#dummyPrice').val(price);
+    });
+    $('body').on('change', 'select#roll', function() {
+       var quantity = $(this).find("option:selected").data("quantity");
+       $(this).parent().siblings().find('#quantity').attr('max', quantity);
+    });
     $('body').on('keyup', '#quantity', function() {
         pri = $(this).parent().siblings().find('input#price').val();
         qua = $(this).val();

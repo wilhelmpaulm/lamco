@@ -312,7 +312,9 @@ class Management extends BaseController {
     public function postApproveSalesOrder() {
         $id = Input::get('id');
         $so = Sales_order::find($id);
-
+        $so->status = "approved";
+        $so->approved_by = Auth::user()->id;
+        $so->save();
 
         $so_ds = So_detail::where('so_no', '=', $id)->get();
         foreach ($so_ds as $so_d) {
@@ -371,11 +373,12 @@ class Management extends BaseController {
                 ]);
             }
         }
+//        Sales::processSalesOrder($id);
+//        Sales::createSalesInvoice($id);
+        Management::processSalesOrder($id);
         Management::createSalesInvoice($id);
-        Management::processSalesInvoice($id);
-        $so->status = "approved";
-        $so->approved_by = Auth::user()->id;
-        $so->save();
+        
+        
         Stalk::stalkSystem("created sales invoice", $id);
         Stalk::stalkSystem("created sales order", $id);
         return Redirect::to('management/view-sales-orders');

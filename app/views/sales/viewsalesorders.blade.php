@@ -50,8 +50,8 @@
                                                 Date Updated
                                             </th>
 
-<!--                                            <th>
-                                            </th>-->
+                                            <th>
+                                            </th>
                                             <th>
                                             </th>
                                             <th>
@@ -74,12 +74,12 @@
                                             <td>
                                                 {{$so->updated_at}}
                                             </td>
-<!--                                            <td>
+                                            <td>
                                                 <form action="{{URL::to('sales/approve-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="Approve Order" />
                                                 </form>
-                                            </td>-->
+                                            </td>
 
                                             <td>
                                                 <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">

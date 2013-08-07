@@ -6,32 +6,48 @@ class Purchasing extends BaseController {
         var_dump($_COOKIE);
     }
 
+    public function getViewMonthlyPurchaseReport() {
+        $month = "8";
+        $year = "2013";
+
+        $po = DB::select("select * from purchase_orders where month(created_at) = ? and year(created_at) = ?", [$month, $year]);
+        $po_d = DB::select("select * from po_details where month(created_at) = ? and year(created_at) = ?", [$month, $year]);
+        $data = [
+            'pos' => $po,
+            'po_d' => $po_d,
+            'month' => $month,
+            'year' => $year
+        ];
+        return View::make("purchasing.monthly_local_purchase_report", $data);
+    }
+
     public function getNotif() {
 //        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
-        
+
         $data = [
-          'rolls' =>  Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
-          'products' =>  Product::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
+            'rolls' => Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(),
+            'products' => Product::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(),
             'reminders' => Reminder::where("created_for", "=", Auth::user()->id)->get()->toJson(),
             'memos' => Memo::where("department", "=", Auth::user()->department)->get()->toJson()
         ];
         return json_encode($data);
     }
-    
-    public function getNotifReminders(){
+
+    public function getNotifReminders() {
         return Reminder::where("created_for", "=", Auth::user()->id)->get()->toJson();
     }
-    public function getNotifMemos(){
+
+    public function getNotifMemos() {
         return Memo::where("department", "=", Auth::user()->department)->get();
     }
-    public function getNotifRoll(){
+
+    public function getNotifRoll() {
         return Reminder::where("created_for", "=", Auth::user()->id)->get();
     }
 
     public function getIndex() {
         Stalk::stalkSystem("view main page of purchasing", null);
         return View::make('purchasing.index');
-        
     }
 
     public function getCreatePurchaseOrder() {
@@ -178,7 +194,7 @@ class Purchasing extends BaseController {
         $rr->supplier = Input::get('vendor');
         $rr->created_by = Auth::user()->id;
         $rr->save();
-        
+
         $po = Purchase_order::find($rr->po_no);
         $po->status = "completed";
         $po->save();
@@ -231,7 +247,7 @@ class Purchasing extends BaseController {
         $id = Input::get('id');
         Purchase_order::find($id)->delete();
         Po_detail::where('po_no', '=', $id)->delete();
-               
+
         Stalk::stalkSystem("deleted purchase order", $id);
         return Redirect::to('purchasing/view-purchase-orders');
     }
@@ -371,9 +387,9 @@ class Purchasing extends BaseController {
 
     public function postAddSupplier() {
         $s = Supplier::create([
-            'name' => Input::get('name'),
-            'contacts' => Input::get('contacts'),
-            'address' => Input::get('address')
+                    'name' => Input::get('name'),
+                    'contacts' => Input::get('contacts'),
+                    'address' => Input::get('address')
         ]);
         Stalk::stalkSystem("created new supplier", $s->id);
         return Redirect::to('purchasing/view-suppliers');
@@ -446,7 +462,6 @@ class Purchasing extends BaseController {
         return View::make('purchasing.manageproducts', $data);
     }
 
-
     public function getMemos() {
         $memos = Memo::where('department', '=', Auth::user()->department)->get();
         $departments = Department::all();
@@ -466,11 +481,11 @@ class Purchasing extends BaseController {
 
     public static function postAddMemo() {
         $m = Memo::create([
-            "created_by" => Auth::user()->id,
-            "deadline" => Input::get("deadline"),
-            "department" => Input::get("department"),
-            "importance" => Input::get("importance"),
-            "memo" => Input::get("memo")
+                    "created_by" => Auth::user()->id,
+                    "deadline" => Input::get("deadline"),
+                    "department" => Input::get("department"),
+                    "importance" => Input::get("importance"),
+                    "memo" => Input::get("memo")
         ]);
         Stalk::stalkSystem("created memo", $m->id);
         return Redirect::to('purchasing/memos');
@@ -495,11 +510,11 @@ class Purchasing extends BaseController {
 
     public static function postAddReminder() {
         $r = Reminder::create([
-            "created_by" => Auth::user()->id,
-            "deadline" => Input::get("deadline"),
-            "created_for" => Input::get("created_for"),
-            "importance" => Input::get("importance"),
-            "reminder" => Input::get("reminder")
+                    "created_by" => Auth::user()->id,
+                    "deadline" => Input::get("deadline"),
+                    "created_for" => Input::get("created_for"),
+                    "importance" => Input::get("importance"),
+                    "reminder" => Input::get("reminder")
         ]);
         Stalk::stalkSystem("created reminder", $r->id);
         return Redirect::to('purchasing/reminders');
