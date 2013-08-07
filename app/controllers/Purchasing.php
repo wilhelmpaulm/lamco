@@ -9,7 +9,7 @@ class Purchasing extends BaseController {
     public function postViewMonthlyPurchaseReport() {
         $month = Input::get('month');
         $year = Input::get('year');
-        $po = DB::select("select * from purchase_orders where month(created_at) = ? and year(created_at) = ?", [$month, $year]);
+        $po = DB::select("select * from purchase_orders where month(created_at) = ? and year(created_at) = ? and status = 'approved'", [$month, $year]);
         $po_d = DB::select("select * from po_details where month(created_at) = ? and year(created_at) = ?", [$month, $year]);
         $data = [
             'pos' => $po,
@@ -18,6 +18,19 @@ class Purchasing extends BaseController {
             'year' => $year
         ];
         return View::make("purchasing.monthly_local_purchase_report", $data);
+    }
+    
+    public function postViewAnnualPurchaseReport() {
+        $year = Input::get('year');
+        $po = DB::select("select * from purchase_orders where  year(created_at) = ? and status = 'approved'", [ $year]);
+        $po_d = DB::select("select * from po_details where year(created_at) = ?", [ $year]);
+        $data = [
+            'pos' => $po,
+            'po_d' => $po_d,
+//            'month' => $month,
+            'year' => $year
+        ];
+        return View::make("purchasing.annual_local_purchase_report", $data);
     }
     
 
@@ -327,6 +340,8 @@ class Purchasing extends BaseController {
                 ]);
             }
         }
+        
+        $po = 
 
         Stalk::stalkSystem("approved receiving report", $id);
         return Redirect::to('purchasing/view-receiving-reports');

@@ -435,6 +435,7 @@ class Management extends BaseController {
                 'unit' => $po_d->unit
             ]);
         }
+        
         Stalk::stalkSystem("approved purchase order", $id);
         return Redirect::to('management/view-purchase-orders');
     }

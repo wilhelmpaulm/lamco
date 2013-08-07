@@ -143,8 +143,9 @@
                             <li><a href="{{URL::to('purchasing/view-purchase-orders')}}">View Purchase Orders</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-file"></i> Reports</li>
-                            <li><a id="modal-711257" href="#modal-container-711257"  data-toggle="modal">Monthly Purchase Report</a></li>
-                            <li><a href="{{URL::to('purchasing/view-annual-purchase-report')}}">Annual Purchase Report</a></li>
+                            <li><a id="" href="#monthlyReport"  data-toggle="modal">Monthly Purchase Report</a></li>
+                            <li><a id="" href="#annualReport"  data-toggle="modal">Annual Purchase Report</a></li>
+                            <!--<li><a href="{{URL::to('purchasing/view-annual-purchase-report')}}">Annual Purchase Report</a></li>-->
                             <!--<li><a href="{{URL::to('purchasing/view-receiving-reports')}}">View Receiving Reports</a></li>-->
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
@@ -186,10 +187,30 @@
         </div>
 
 
-        <div id="modal-container-711257" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="annualReport" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Generate Monthly Purchasing Report</h3>
+                <h3 id="myModalLabel">Generate Annual Purchasing Report</h3>
+            </div>
+            <div class="modal-body">
+                <form action="{{URL::to('purchasing/view-annual-purchase-report')}}" method="post">
+                    
+                    <select name="year">
+                        <option >2011</option>
+                        <option >2012</option>
+                        <option >2013</option>
+                        <option >2014</option>
+                    </select>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" type="button" data-dismiss="modal" aria-hidden="true">Close</button> <button type="submit" class="btn btn-primary">Generate</button>
+                </form>
+            </div>
+        </div>
+        <div id="monthlyReport" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Generate Annual Purchasing Report</h3>
             </div>
             <div class="modal-body">
                 <form action="{{URL::to('purchasing/view-monthly-purchase-report')}}" method="post">
@@ -215,10 +236,12 @@
                     </select>
             </div>
             <div class="modal-footer">
-                <button class="btn" type="button" data-dismiss="modal" aria-hidden="true">Close</button> <button type="submit" class="btn btn-primary">Save changes</button>
+                <button class="btn" type="button" data-dismiss="modal" aria-hidden="true">Close</button> <button type="submit" class="btn btn-primary">Generate</button>
                 </form>
             </div>
         </div>
+        
+        
 
 
 
