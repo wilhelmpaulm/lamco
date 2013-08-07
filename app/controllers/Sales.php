@@ -14,18 +14,33 @@ class Sales extends BaseController {
 //    
     public function getNotif() {
 //        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
-        
+
         $data = [
-          'rolls' =>  Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
-          'products' =>  Product::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(), 
+            'rolls' => Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(),
+            'products' => Product::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(),
             'reminders' => Reminder::where("created_for", "=", Auth::user()->id)->get()->toJson(),
             'memos' => Memo::where("department", "=", Auth::user()->department)->get()->toJson()
         ];
         return json_encode($data);
     }
-    
-    
-    public function postViewMonthlyPurchaseReport() {
+
+    public function postViewDailySalesReport() {
+        $day = Input::get('day');
+        $month = Input::get('month');
+        $year = Input::get('year');
+        $po = DB::select("select * from purchase_orders where month(created_at) = ? and year(created_at) = ? and status = 'approved'", [$month, $year]);
+        $po_d = DB::select("select * from po_details where month(created_at) = ? and year(created_at) = ?", [$month, $year]);
+        $data = [
+            'pos' => $po,
+            'po_d' => $po_d,
+            'day' => $day,
+            'month' => $month,
+            'year' => $year
+        ];
+        return View::make("sales.daily_sales_report", $data);
+    }
+
+    public function postViewMonthlySalesReport() {
         $month = Input::get('month');
         $year = Input::get('year');
         $po = DB::select("select * from purchase_orders where month(created_at) = ? and year(created_at) = ? and status = 'approved'", [$month, $year]);
@@ -38,7 +53,7 @@ class Sales extends BaseController {
         ];
         return View::make("purchasing.monthly_local_purchase_report", $data);
     }
-    
+
     public function postViewAnnualPurchaseReport() {
         $year = Input::get('year');
         $po = DB::select("select * from purchase_orders where  year(created_at) = ? and status = 'approved'", [ $year]);
@@ -469,7 +484,7 @@ class Sales extends BaseController {
         }
         Sales::processSalesOrder($id);
         Sales::createSalesInvoice($id);
-        
+
         Stalk::stalkSystem("created sales invoice", $id);
         Stalk::stalkSystem("created sales order", $id);
         return Redirect::to('sales/view-sales-orders');
@@ -517,11 +532,11 @@ class Sales extends BaseController {
 
     public static function postAddMemo() {
         $m = Memo::create([
-            "created_by" => Auth::user()->id,
-            "deadline" => Input::get("deadline"),
-            "department" => Input::get("department"),
-            "importance" => Input::get("importance"),
-            "memo" => Input::get("memo")
+                    "created_by" => Auth::user()->id,
+                    "deadline" => Input::get("deadline"),
+                    "department" => Input::get("department"),
+                    "importance" => Input::get("importance"),
+                    "memo" => Input::get("memo")
         ]);
         Stalk::stalkSystem("created memo", $m->id);
         return Redirect::to('sales/memos');
@@ -546,11 +561,11 @@ class Sales extends BaseController {
 
     public static function postAddReminder() {
         $r = Reminder::create([
-            "created_by" => Auth::user()->id,
-            "deadline" => Input::get("deadline"),
-            "created_for" => Input::get("created_for"),
-            "importance" => Input::get("importance"),
-            "reminder" => Input::get("reminder")
+                    "created_by" => Auth::user()->id,
+                    "deadline" => Input::get("deadline"),
+                    "created_for" => Input::get("created_for"),
+                    "importance" => Input::get("importance"),
+                    "reminder" => Input::get("reminder")
         ]);
         Stalk::stalkSystem("created reminder", $r->id);
         return Redirect::to('sales/reminders');

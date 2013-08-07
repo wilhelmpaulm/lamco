@@ -143,11 +143,9 @@
                                                 {{$rr->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('warehousing/view-purchase-order')}}" method="POST">
+                                                <form action="{{URL::to('warehousing/view-receiving-report')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
-                                                    <!--<input class="btn btn-info" type="submit" value="View" />                                                                                                        <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>-->
                                                     <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
-
 
                                                 </form>
                                             </td>
@@ -201,8 +199,8 @@
                                             <td>
                                                 {{$rr->updated_at}}
                                             </td>
-                                            <td>
-                                                <form action="{{URL::to('warehousing/view-purchase-order')}}" method="POST">
+                                           <td>
+                                                <form action="{{URL::to('warehousing/view-receiving-report')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
                                                     <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
 
