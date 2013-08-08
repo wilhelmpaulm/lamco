@@ -3,18 +3,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <ul class="breadcrumb balon">
-                <li>
-                    <a href="#">Home</a> <span class="divider">/</span>
-                </li>
-                <li>
-                    <a href="#">Purchasing</a> <span class="divider">/</span>
-                </li>
-
-                <li class="active">
-                    View Purchase Orders
-                </li>
-            </ul>
+            
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -183,7 +172,7 @@
                                                 {{$so->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('management/view-sales-order')}}" method="POST">
+                                                <form action="{{URL::to('management/view-approve-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="View" />
                                                 </form>

@@ -2,17 +2,6 @@
 @section('main')
 
 
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Create Purchase Order
-    </li>
-</ul>
 <form id="mamamia"  class="" action="{{URL::to('sales/validate')}}" method="post">
     <div class="row-fluid">
         <div class="span3">
@@ -27,7 +16,7 @@
                 @endforeach
             </select>
             <br><br>
-            <button id="addordinary" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i> Add Ordinary </button>
+            <button id="addordinary" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i> Add Standard </button>
             <button id="addspecial" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i>   Add Special </button>
             <button id="addreserve" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i> Reserve Roll</button>
             <button id="removerow" class="btn btn-danger btn-block pull-left" type="button"><i class="icon-minus-sign-alt"></i></button>

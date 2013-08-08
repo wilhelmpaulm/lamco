@@ -15,6 +15,8 @@ class CreateMachineQueuesTable extends Migration {
         Schema::create('machine_queues', function(Blueprint $table) {
             $table->increments('id');
 //            $table->integer('pq_no')->nullable();
+			$table->integer('si_d')->nullable();
+			$table->integer('so_d')->nullable();
 			$table->integer('so_no')->nullable();
 			$table->integer('machine')->nullable();
 			$table->integer('created_by')->nullable();

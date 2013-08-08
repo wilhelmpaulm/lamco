@@ -1,16 +1,5 @@
 @extends('layouts.production')
 @section('main')
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Production</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        View Production Record
-    </li>
-</ul>
 
 
 <form id="mamamia"  class="" action="{{URL::to('production/approve-production-record')}}" method="post">
@@ -154,7 +143,7 @@
     </div>
 
 
-    <input type="submit" value="Approve Production Record" />
+    <input type="submit" class="btn btn-warning" value="Approve Production Record" />
 </form>
 
 <div class="hidden">

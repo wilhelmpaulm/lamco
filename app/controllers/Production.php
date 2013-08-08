@@ -74,7 +74,8 @@ class Production extends BaseController {
             'pr_d' => $pr_d
         ];
         Stalk::stalkSystem("view production record", $id);
-        return View::make('production.viewproductionrecord', $data);
+        return View::make('production.production_record', $data);
+//        return View::make('production.viewproductionrecord', $data);
     }
 
     public function postViewApproveProductionRecord() {
@@ -109,7 +110,8 @@ class Production extends BaseController {
             'pr_d' => $pr_d
         ];
         Stalk::stalkSystem("view approve production record", $id);
-        return View::make('production.approveproductionrecord', $data);
+        return View::make('production.production_record', $data);
+//        return View::make('production.approveproductionrecord', $data);
     }
 
     public function postEditProductionRecord() {
@@ -304,11 +306,9 @@ class Production extends BaseController {
         $pr = Production_record::find($id);
         $pr_d = Pr_detail::where('pr_no', '=', $id)->get();
 
-
-
         foreach ($pr_d as $pr_d) {
             if ($pr_d->transaction_type == "product") {
-                Product::create([
+               $p =  Product::create([
                     'paper_type' => $pr_d->paper_type,
                     'quantity' => $pr_d->quantity,
                     'unit' => $pr_d->unit,
@@ -320,6 +320,12 @@ class Production extends BaseController {
                     'location' => $pr_d->location,
                     'owner' => $pr_d->owner
                 ]);
+               
+               $mq = Machine_queue::find($pr->mq_no);
+               $sod = So_detail::find($mq->so_d);
+               $sod->product = $p->id;
+               $sod->save();
+               
             }
             if ($pr_d->transaction_type == "balance") {
                 Roll::create([

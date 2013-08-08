@@ -306,7 +306,8 @@ class Management extends BaseController {
             'so_d' => $so_d
         ];
         Stalk::stalkSystem("view approve sales order", $id);
-        return View::make('management.viewsalesorder', $data);
+        return View::make('management.sales_order_form', $data);
+//        return View::make('management.viewsalesorder', $data);
     }
 
     public function postApproveSalesOrder() {
@@ -355,6 +356,7 @@ class Management extends BaseController {
             } elseif ($so_d->transaction_type == 'special') {
                 $mq = Machine_queue::create([
                             'so_no' => $so->id,
+                            'so_d' => $so_d->id,
                             'status' => 'pending',
                             'production_type' => $so_d->production_type,
                             'created_by' => Auth::user()->id
@@ -462,7 +464,8 @@ class Management extends BaseController {
             'po_d' => $po_d,
         ];
         Stalk::stalkSystem("viewed purchase order", $id);
-        return View::make('management.viewpurchaseorder', $data);
+        return View::make('management.purchase_order_form', $data);
+//        return View::make('management.viewpurchaseorder', $data);
     }
     
     public function postViewSalesOrder() {

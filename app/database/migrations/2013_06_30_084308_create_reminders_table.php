@@ -15,7 +15,7 @@ class CreateRemindersTable extends Migration {
                     $table->increments('id');
                     $table->integer('created_by');
                     $table->integer('created_for');
-                    $table->date('deadline')->nullable();
+                    $table->string('deadline')->nullable();
                     $table->text('reminder')->nullable();
                     $table->string('importance')->nullable();
                     $table->timestamps();

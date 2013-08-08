@@ -14,7 +14,7 @@ class CreateMemosTable extends Migration {
         Schema::create('memos', function(Blueprint $table) {
                     $table->increments('id');
                     $table->integer('created_by');
-                    $table->date('deadline')->nullable();
+                    $table->string('deadline')->nullable();
                     $table->text('memo')->nullable();
                     $table->string('importance')->nullable();
                     $table->string('department')->nullable();

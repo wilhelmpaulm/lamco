@@ -1,19 +1,6 @@
 @extends('layouts.purchasing')
 @section('main')
 
-
-
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Create Purchase Order
-    </li>
-</ul>
 <form id="mamamia"  class="" data-validate="parsley" action="{{URL::to('purchasing/add-purchase-order')}}" method="post">
     <div class="row-fluid">
         <div class="span3">

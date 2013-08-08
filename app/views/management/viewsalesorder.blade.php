@@ -3,156 +3,143 @@
 
 
 
+<div class="row-fluid">
+    <div class="span12">
+        <h2 >Client: {{Client::find($so->client)->name}}</h2>
+        <h2 >Terms: {{$so->terms}}</h2>
+    </div>
+</div>
+<div class="row-fluid">
 
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Create Purchase Order
-    </li>
-</ul>
 
-    <div class="row-fluid">
-        <div class="span12">
-            <h2 >Client: {{Client::find($so->client)->name}}</h2>
-            <h2 >Terms: {{$so->terms}}</h2>
+    <div class="span12">
+        <h3>Ordinary Order Form</h3>
+        <!--<hr>-->
+        <div>
+            <table border="2" class="table table-bordered table-condensed" id="ordinary_form">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($so_d as $sod)
+                    @if($sod->transaction_type == "ordinary")
+                    <tr>
+
+                        <td>
+                            <?php $product = Product::find($sod->product) ?>
+                            {{$product->paper_type}} {{$product->unit}} {{$product->calliper}} {{$product->dimension}} {{$product->weight}} {{$product->paper_type}}
+                        </td>
+                        <td>
+                            {{$sod->quantity}}
+                        </td>
+                        <td>
+                            {{$sod->price}}
+                        </td>
+                        <td>
+                            {{$sod->quantity*$sod->price}}
+                        </td>
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="row-fluid">
+
+</div>
 
 
-        <div class="span12">
-            <h3>Ordinary Order Form</h3>
-            <!--<hr>-->
-            <div>
-                <table border="2" class="table table-bordered table-condensed" id="ordinary_form">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($so_d as $sod)
-                        @if($sod->transaction_type == "ordinary")
-                        <tr>
+<div class="row-fluid">
+    <!--<div class="span2"></div>-->
+    <div class="span12">
+        <h3>Special Order Form</h3>
+        <!--<hr>-->
+        <div>
+            <table border="2" class="table table-bordered table-condensed" id="special_form">
+                <thead>
+                    <tr>
+                        <th>Paper Type</th>
+                        <th>Unit</th>
+                        <th>Calliper</th>
+                        <th>Weight</th>
+                        <th>Dimensions</th>
+                        <th>Production Type</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($so_d as $sod)
+                    @if($sod->transaction_type == "special")
+                    <tr>
+                        <td>{{$sod->paper_type}}</td>
+                        <td>{{$sod->unit}}</td>
+                        <td>{{$sod->calliper}}</td>
+                        <td>{{$sod->weight}}</td>
+                        <td>{{$sod->dimension}}</td>
+                        <td>{{$sod->production_type}}</td>
+                        <td>{{$sod->quantity}}</td>
+                        <td>{{$sod->price}}</td>
+                        <td>{{$sod->quantity*$sod->price}}</td>
 
-                            <td>
-                                <?php $product = Product::find($sod->product) ?>
-                                {{$product->paper_type}} {{$product->unit}} {{$product->calliper}} {{$product->dimension}} {{$product->weight}} {{$product->paper_type}}
-                            </td>
-                            <td>
-                                {{$sod->quantity}}
-                            </td>
-                            <td>
-                                {{$sod->price}}
-                            </td>
-                            <td>
-                                {{$sod->quantity*$sod->price}}
-                            </td>
-                        </tr>
-                        @endif
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </div>
-
-
-    <div class="row-fluid">
-        <!--<div class="span2"></div>-->
-        <div class="span12">
-            <h3>Special Order Form</h3>
-            <!--<hr>-->
-            <div>
-                <table border="2" class="table table-bordered table-condensed" id="special_form">
-                    <thead>
-                        <tr>
-                            <th>Paper Type</th>
-                            <th>Unit</th>
-                            <th>Calliper</th>
-                            <th>Weight</th>
-                            <th>Dimensions</th>
-                            <th>Production Type</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($so_d as $sod)
-                        @if($sod->transaction_type == "special")
-                        <tr>
-                            <td>{{$sod->paper_type}}</td>
-                            <td>{{$sod->unit}}</td>
-                            <td>{{$sod->calliper}}</td>
-                            <td>{{$sod->weight}}</td>
-                            <td>{{$sod->dimension}}</td>
-                            <td>{{$sod->production_type}}</td>
-                            <td>{{$sod->quantity}}</td>
-                            <td>{{$sod->price}}</td>
-                            <td>{{$sod->quantity*$sod->price}}</td>
-
-                        </tr>
-                        @endif
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!--<div class="span2"></div>-->
-    </div>
-
-    <div class="row-fluid">
-        <div class="span8 ">
-            <h3>Reserve Roll</h3>
-            <!--<hr>-->
-            <div>
-                <table border="2" class="table table-bordered table-condensed" id="reserve_form">
-                    <thead>
-                        <tr>
-                            <th>Roll</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($so_d as $sod)
-                        @if($sod->transaction_type == "reserve")
-                        <tr>
-
-                            <td>
-                                <?php $roll = Roll::find($sod->roll) ?>
-                                {{$roll->paper_type}} {{$roll->unit}} {{$roll->calliper}} {{$roll->dimension}} {{$roll->weight}} {{$roll->paper_type}}
-                            </td>
-                            <td>{{$sod->quantity}}</td>
-
-                        </tr>
-                        @endif
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
+
+    <!--<div class="span2"></div>-->
+</div>
+
+<div class="row-fluid">
+    <div class="span8 ">
+        <h3>Reserve Roll</h3>
+        <!--<hr>-->
+        <div>
+            <table border="2" class="table table-bordered table-condensed" id="reserve_form">
+                <thead>
+                    <tr>
+                        <th>Roll</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($so_d as $sod)
+                    @if($sod->transaction_type == "reserve")
+                    <tr>
+
+                        <td>
+                            <?php $roll = Roll::find($sod->roll) ?>
+                            {{$roll->paper_type}} {{$roll->unit}} {{$roll->calliper}} {{$roll->dimension}} {{$roll->weight}} {{$roll->paper_type}}
+                        </td>
+                        <td>{{$sod->quantity}}</td>
+
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 @if($so->status == "pending")
-    <form action="{{URL::to('management/approve-sales-order')}}" method="POST">
-        <input class="" type="hidden" name="id" value="{{$so->id}}" />
-        <input class="btn btn-success " type="submit" value="Approve Sales Order" />
-    </form>
-    <form action="{{URL::to('management/reject-sales-order')}}" method="POST">
-        <input class="" type="hidden" name="id" value="{{$so->id}}" />
-        <input class="btn btn-danger " type="submit" value="Reject Sales Order" />
-    </form>
+<form action="{{URL::to('management/approve-sales-order')}}" method="POST">
+    <input class="" type="hidden" name="id" value="{{$so->id}}" />
+    <input class="btn btn-success " type="submit" value="Approve Sales Order" />
+</form>
+<form action="{{URL::to('management/reject-sales-order')}}" method="POST">
+    <input class="" type="hidden" name="id" value="{{$so->id}}" />
+    <input class="btn btn-danger " type="submit" value="Reject Sales Order" />
+</form>
 @endif
 
 

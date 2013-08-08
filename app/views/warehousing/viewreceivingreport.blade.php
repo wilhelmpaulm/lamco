@@ -1,21 +1,6 @@
 @extends('layouts.warehousing')
 @section('main')
 
-
-<ul class="breadcrumb balon">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">View Purchase Order</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        RR# {{$rr->id}}
-    </li>
-</ul>
 <div class="row-fluid">
     <div class="span3">
         <label>RR number</label> 
@@ -87,12 +72,14 @@
             </div>
             <div class="span3">
                 <a  class="btn btn-info btn-block"  href="{{URL::to('warehousing/view-receiving-reports')}}">Back</a>
+                <hr>
+                @if($rr->status == 'pending' || $rr->status == 'Pending')
                 <form action="{{URL::to('warehousing/approve-receiving-report')}}" method="POST">
                     <input class="" type="hidden" name="id" value="{{$rr->id}}" />
                     <button class="ladda-button btn btn-success expand-right " type="submit"><span class="ladda-label">Approve</span><span class="ladda-spinner"></span></button>
 
                 </form>
-
+                @endif
             </div>
         </div>
     </div>

@@ -3,18 +3,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <ul class="breadcrumb balon">
-                <li>
-                    <a href="#">Home</a> <span class="divider">/</span>
-                </li>
-                <li>
-                    <a href="#">Purchasing</a> <span class="divider">/</span>
-                </li>
-
-                <li class="active">
-                    View Purchase Orders
-                </li>
-            </ul>
+           
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -50,8 +39,8 @@
                                                 Date Updated
                                             </th>
 
-                                            <th>
-                                            </th>
+<!--                                            <th>
+                                            </th>-->
                                             <th>
                                             </th>
                                             <th>
@@ -74,12 +63,12 @@
                                             <td>
                                                 {{$so->updated_at}}
                                             </td>
-                                            <td>
+<!--                                            <td>
                                                 <form action="{{URL::to('sales/approve-sales-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$so->id}}" />
                                                     <input class="btn btn-info" type="submit" value="Approve Order" />
                                                 </form>
-                                            </td>
+                                            </td>-->
 
                                             <td>
                                                 <form action="{{URL::to('sales/edit-sales-order')}}" method="POST">

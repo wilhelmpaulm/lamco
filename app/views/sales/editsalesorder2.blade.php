@@ -3,18 +3,6 @@
 
 
 
-
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Create Purchase Order
-    </li>
-</ul>
 <form id="mamamia"  class="" action="{{URL::to('sales/apply-edit-sales-order')}}" method="post">
     <input type="hidden" name="id" value="{{$so->id}}" />
 

@@ -43,28 +43,19 @@ class Sales extends BaseController {
     public function postViewMonthlySalesReport() {
         $month = Input::get('month');
         $year = Input::get('year');
-        $po = DB::select("select * from purchase_orders where month(created_at) = ? and year(created_at) = ? and status = 'approved'", [$month, $year]);
-        $po_d = DB::select("select * from po_details where month(created_at) = ? and year(created_at) = ?", [$month, $year]);
         $data = [
-            'pos' => $po,
-            'po_d' => $po_d,
             'month' => $month,
             'year' => $year
         ];
-        return View::make("purchasing.monthly_local_purchase_report", $data);
+        return View::make("sales.monthly_sales_report", $data);
     }
 
-    public function postViewAnnualPurchaseReport() {
+    public function postViewAnnualSalesReport() {
         $year = Input::get('year');
-        $po = DB::select("select * from purchase_orders where  year(created_at) = ? and status = 'approved'", [ $year]);
-        $po_d = DB::select("select * from po_details where year(created_at) = ?", [ $year]);
         $data = [
-            'pos' => $po,
-            'po_d' => $po_d,
-//            'month' => $month,
             'year' => $year
         ];
-        return View::make("purchasing.annual_local_purchase_report", $data);
+        return View::make("sales.annual_sales_report", $data);
     }
 
     public static function postValidate() {
@@ -134,6 +125,8 @@ class Sales extends BaseController {
     }
 
     public static function createSalesInvoice($id) {
+        var_dump($_POST);
+        
         $so = Sales_order::find($id);
         $so_d = So_detail::where("so_no", "=", $id)->get();
         $si = Sales_invoice::create([
@@ -145,6 +138,7 @@ class Sales extends BaseController {
         ]);
 
         foreach ($so_d as $sd) {
+           
             Si_detail::create([
                 'si_no' => $si->id,
                 'quantity' => $sd->quantity,
@@ -194,9 +188,9 @@ class Sales extends BaseController {
         $dimensions = Dimension::all();
         $weights = Weight::all();
         $callipers = Calliper::all();
-        $products = Product::all();
+        $products = Product::where("owner","=","lamco")->get();
         $production_types = Production_type::all();
-        $rolls = Roll::all();
+        $rolls = Roll::where("owner","=","lamco")->get();
         $units = Unit::all();
         $data = [
             'clients' => $clients,
@@ -382,7 +376,8 @@ class Sales extends BaseController {
             'so_d' => $so_d
         ];
         Stalk::stalkSystem("view sales order", $id);
-        return View::make('sales.viewsalesorder2', $data);
+        return View::make('sales.sales_order_form', $data);
+//        return View::make('sales.viewsalesorder2', $data);
     }
 
     public function postViewApproveSalesOrder() {
@@ -587,7 +582,7 @@ class Sales extends BaseController {
     public function getViewProducts() {
         $lamco_products = Product::where('owner', '=', 'lamco')->get();
         $low_products = Product::where('quantity', '<', 50)->where('owner', '=', 'lamco')->get();
-        $client_products = Product::where('owner', '!=', 'lamco')->get();
+        $client_products = Product::where('owner', '!=', 'lamco')->where('owner', '!=', 'sold')->get();
         $data = [
             'lamco_products' => $lamco_products,
             'low_products' => $low_products,

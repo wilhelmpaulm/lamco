@@ -2,17 +2,6 @@
 @section('main')
 
 
-<ul class="breadcrumb balon">
-                <li>
-                    <a href="#">Home</a> <span class="divider">/</span>
-                </li>
-                <li>
-                    <a href="#">Purchasing</a> <span class="divider">/</span>
-                </li>
-                <li class="active">
-                    Create Purchase Order
-                </li>
-            </ul>
 <form id="mamamia"  class="" action="" method="get">
     <div class="row-fluid">
         

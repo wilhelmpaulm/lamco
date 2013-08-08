@@ -7,6 +7,10 @@ class Delivery extends BaseController {
         return View::make('delivery.index');
     }
     
+    public function postValidate(){
+        var_dump($_POST);
+    }
+    
     public function getNotif() {
 //        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
         
@@ -142,13 +146,27 @@ class Delivery extends BaseController {
 
             if (Input::get("status")[$index] == 'completed') {
                 $si_d = Si_detail::where("si_no", "=", $si->id)->get();
+                $so_d = So_detail::where("so_no", "=", $si->id)->get();
                 foreach ($si_d as $sid) {
-                    if ($sid->transaction_type == "ordinary" || $sid->transaction_type == "special") {
-                        Product::find($sid->product)->delete();
+                    if ($sid->transaction_type == "ordinary") {
+                       $p =  Product::find($sid->product);
+                       $p->owner = "sold";
+                       $p->save();
+                       
+                    }
+                }
+                foreach ($so_d as $sid) {
+                    if ($sid->transaction_type == "special") {
+                       $p =  Product::find($sid->product);
+                       $p->owner = "sold";
+                       $p->save();
+                       
                     }
                 }
                 $si->status = "completed";
                 $si->save();
+                $dq_d->status = "completed";
+                $dq_d->save();
             }
             if (Input::get("status")[$index] == 'rejected') {
                 $si_d = Si_detail::where("si_no", "=", $si->id)->get();
@@ -163,10 +181,14 @@ class Delivery extends BaseController {
                 $si->status = "rejected";
                 $so->save();
                 $si->save();
+                $dq_d->status = "rejected";
+                $dq_d->save();
             }
             if (Input::get("status")[$index] == 'reschedule') {
                 $si->status = "approved";
                 $si->save();
+                $dq_d->status = "reschedule";
+                $dq_d->save();
             }
         }
 

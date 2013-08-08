@@ -2,20 +2,6 @@
 @section('main')
 
 
-<ul class="breadcrumb balon">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">View Purchase Order</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        PO# {{$po->id}}
-    </li>
-</ul>
 
     <div class="row-fluid">
         <div class="span3">

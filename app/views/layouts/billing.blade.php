@@ -138,15 +138,15 @@
                             <!--<li><a href="{{URL::to('billing/create-sales-invoice')}}">Create Sales Invoice</a></li>-->
                             <li><a href="{{URL::to('billing/view-sales-invoices')}}">View Sales Invoices</a></li>
                             <li><hr></li>
-                            <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
+<!--                            <li class="nav-header"><i class="icon-bookmark"></i> Inventory</li>
                             <li><a href="{{URL::to('billing/view-rolls')}}">View Rolls</a></li>
-                            <!--<li><a href="#">Rolls Summary</a></li>-->
+                            <li><a href="#">Rolls Summary</a></li>
                             <li><a href="{{URL::to('billing/view-products')}}">View Products</a></li>
-                            <!--<li><a href="#">Products Summary</a></li>-->
+                            <li><a href="#">Products Summary</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
                             <li><a href="{{URL::to('billing/view-clients')}}">View Clients</a></li>
-                            <li><a href="{{URL::to('billing/view-add-client')}}">Add Client</a></li>
+                            <li><a href="{{URL::to('billing/view-add-client')}}">Add Client</a></li>-->
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->

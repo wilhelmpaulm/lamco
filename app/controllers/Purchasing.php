@@ -158,7 +158,8 @@ class Purchasing extends BaseController {
             'po_d' => $po_d,
         ];
         Stalk::stalkSystem("viewed purchase order", $id);
-        return View::make('purchasing.viewpurchaseorder', $data);
+        return View::make('purchasing.purchase_order_form', $data);
+//        return View::make('purchasing.viewpurchaseorder', $data);
     }
 
     public function postViewReceivingReport() {
@@ -236,7 +237,7 @@ class Purchasing extends BaseController {
         $po = Purchase_order::create([
                     'supplier' => Input::get('vendor'),
                     'created_by' => Auth::user()->id,
-                    'status' => 'Pending'
+                    'status' => 'pending'
         ]);
         for ($index = 0; $index < count(Input::get('paper_type')); $index++) {
             $po_d = Po_detail::create([
@@ -276,14 +277,14 @@ class Purchasing extends BaseController {
     public function postApprovePurchaseOrder() {
         $id = Input::get('id');
         $po = Purchase_order::find($id);
-        $po->status = "Approved";
+        $po->status = "approved";
         $po->approved_by = Auth::user()->id;
         $po->save();
         $rr = Receiving_report::create([
                     'po_no' => $id,
                     'supplier' => $po->supplier,
                     'created_by' => Auth::user()->id,
-                    'status' => 'Pending'
+                    'status' => 'pending'
         ]);
         $po_d = Po_detail::where('po_no', '=', $id)->get();
         foreach ($po_d as $po_d) {
@@ -305,7 +306,7 @@ class Purchasing extends BaseController {
     public function postApproveReceivingReport() {
         $id = Input::get('id');
         $rr = Receiving_report::find($id);
-        $rr->status = "Approved";
+        $rr->status = "approved";
         $rr->approved_by = Auth::user()->id;
         $rr->save();
 //

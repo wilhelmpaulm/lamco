@@ -1,18 +1,6 @@
 @extends('layouts.sales')
 @section('main')
 
-
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Create Purchase Order
-    </li>
-</ul>
 <form id="mamamia"  class="" action="{{URL::to('sales/validate')}}" method="post">
     <div class="row-fluid">
         <div class="span3">
@@ -185,7 +173,7 @@
 
                 </div>
                 <div class="span3">
-                     <button class="ladda-button btn btn-info expand-right" type="submit"><span class="ladda-label">Submit</span><span class="ladda-spinner"></span></button>
+                     <button class="ladda-button btn btn-info expand-right" type="submit"><span class="ladda-label">Submit Changes</span><span class="ladda-spinner"></span></button>
                     <!--<input  class="btn btn-info btn-block" type="submit" value="Submit" />-->
                 </div>
             </div>

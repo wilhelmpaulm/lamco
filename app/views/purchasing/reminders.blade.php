@@ -3,17 +3,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <ul class="breadcrumb balon">
-                <li>
-                    <a href="#">Home</a> <span class="divider">/</span>
-                </li>
-                <li>
-                    <a href="#">Library</a> <span class="divider">/</span>
-                </li>
-                <li class="active">
-                    Data
-                </li>
-            </ul>
+
             <div class="tabbable" >
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -53,7 +43,7 @@
                                             <td>{{$reminder->deadline}}</td>
                                             <td>{{$reminder->reminder}}</td>
                                             <td>
-                                                 <form action="{{URL::to('purchasing/delete-reminder')}}" method="post">
+                                                <form action="{{URL::to('purchasing/delete-reminder')}}" method="post">
                                                     <input type="hidden" name="id" value="{{$reminder->id}}" />
                                                     <input type="submit" class="btn btn-danger" value="Delete" />
                                                 </form>
@@ -71,22 +61,22 @@
                             <div class="row-fluid">
                                 <div class="span3">
                                     <label for="deadline">Deadline</label>
-                                        <input id="deadline" class="input-block-level" type="date" name="deadline" value="" />
-                                        <br>
-                                        <br>
-                                        <label for="created_for">Reminder For</label>
-                                        <select id="created_for"  name="created_for" class="input-block-level sel2">
-                                            @foreach($users as $user)
-                                            <option value="{{$user->id}}" >{{$user->department}} | {{$user->last_name}}, {{$user->first_name}} | {{$user->job_title}}</option>
-                                            @endforeach
-                                        </select>
-                                        <br>
-                                        <label for="importance">Importance</label>
-                                        <select id="importance" name="importance" class="input-block-level">
-                                            <option>low</option>
-                                            <option>mid</option>
-                                            <option>high</option>
-                                        </select>
+                                    <input id="deadline" class="input-block-level" type="date" name="deadline" value="" />
+                                    <br>
+                                    <br>
+                                    <label for="created_for">Reminder For</label>
+                                    <select id="created_for"  name="created_for" class="input-block-level sel2">
+                                        @foreach($users as $user)
+                                        <option value="{{$user->id}}" >{{$user->department}} | {{$user->last_name}}, {{$user->first_name}} | {{$user->job_title}}</option>
+                                        @endforeach
+                                    </select>
+                                    <br>
+                                    <label for="importance">Importance</label>
+                                    <select id="importance" name="importance" class="input-block-level">
+                                        <option>low</option>
+                                        <option>mid</option>
+                                        <option>high</option>
+                                    </select>
                                 </div>
                                 <div class="span6">
                                     <label for="reminder">Reminder</label>
@@ -114,8 +104,8 @@
 <script >
 //    $('#example').dataTable();
 //    $(document).ready(function() {
-        $('.dtable').dataTable();
-        $('.sel2').select2();
+    $('.dtable').dataTable();
+    $('.sel2').select2();
 //    });
 </script>
 

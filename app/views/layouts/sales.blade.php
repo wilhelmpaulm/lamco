@@ -189,10 +189,10 @@
         <div id="annualReport" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Generate Annual Purchasing Report</h3>
+                <h3 id="myModalLabel">Generate Annual Sales Report</h3>
             </div>
             <div class="modal-body">
-                <form action="{{URL::to('purchasing/view-annual-purchase-report')}}" method="post">
+                <form action="{{URL::to('sales/view-annual-sales-report')}}" method="post">
                     
                     <select name="year">
                         <option >2011</option>
@@ -209,10 +209,10 @@
         <div id="monthlyReport" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Generate Annual Purchasing Report</h3>
+                <h3 id="myModalLabel">Generate Annual Sales Report</h3>
             </div>
             <div class="modal-body">
-                <form action="{{URL::to('purchasing/view-monthly-purchase-report')}}" method="post">
+                <form action="{{URL::to('sales/view-monthly-sales-report')}}" method="post">
                     <select name="month">
                         <option value="1">January</option>
                         <option value="2">February</option>
@@ -242,7 +242,7 @@
         <div id="dailyReport" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Generate Annual Purchasing Report</h3>
+                <h3 id="myModalLabel">Generate Annual Sales Report</h3>
             </div>
             <div class="modal-body">
                 <form action="{{URL::to('sales/view-daily-sales-report')}}" method="post">
@@ -319,7 +319,7 @@
                     $("#notifReminders").html(remList);
                     $("#notifMemos").html(memList);
                     $("#notifRolls").html(rolList);
-                    $("#notifProducts").html(rolList);
+                    $("#notifProducts").html(proList);
                     if (_.size(reminders) < 1) {
                         $("#boxReminders").hide();
                     } else {

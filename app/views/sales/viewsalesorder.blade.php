@@ -2,20 +2,6 @@
 @section('main')
 
 
-
-
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Create Purchase Order
-    </li>
-</ul>
-
     <div class="row-fluid">
         <div class="span12">
             <h2 >Client: {{Client::find($so->client)->name}}</h2>
@@ -26,7 +12,7 @@
 
 
         <div class="span12">
-            <h3>Ordinary Order Form</h3>
+            <h3>Standard Order Form</h3>
             <!--<hr>-->
             <div>
                 <table border="2" class="table table-bordered table-condensed" id="ordinary_form">

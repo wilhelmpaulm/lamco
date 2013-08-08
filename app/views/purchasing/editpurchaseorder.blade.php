@@ -1,21 +1,6 @@
 @extends('layouts.purchasing')
 @section('main')
 
-
-<ul class="breadcrumb balon">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Edit Purchase Order</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Purchase Order #{{$po->id}}
-    </li>
-</ul>
 <form id="mamamia"  class="" action="{{URL::to('purchasing/apply-edit-purchase-order')}}" method="post">
     <div class="row-fluid">
         <div class="span3">

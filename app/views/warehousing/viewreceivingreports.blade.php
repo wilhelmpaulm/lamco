@@ -3,18 +3,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <ul class="breadcrumb balon">
-                <li>
-                    <a href="#">Home</a> <span class="divider">/</span>
-                </li>
-                <li>
-                    <a href="#">Purchasing</a> <span class="divider">/</span>
-                </li>
-
-                <li class="active">
-                    View Purchase Orders
-                </li>
-            </ul>
+            
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -24,7 +13,7 @@
                         <a href="#po-approved" data-toggle="tab">Approved Receiving Reports</a>
                     </li>
                     <li>
-                        <a href="#po-accomplished" data-toggle="tab">Accomplished Receiving Reports</a>
+                        <a href="#po-accomplished" data-toggle="tab">Completed Receiving Reports</a>
                     </li>
                 </ul>
                 <div class="tab-content">

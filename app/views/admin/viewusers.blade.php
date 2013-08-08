@@ -1,21 +1,7 @@
 @extends('layouts.admin')
 @section('main')
 <div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12">
-            <ul class="breadcrumb balon">
-                <li>
-                    <a href="#">Home</a> <span class="divider">/</span>
-                </li>
-                <li>
-                    <a href="#">Library</a> <span class="divider">/</span>
-                </li>
-                <li class="active">
-                    Data
-                </li>
-            </ul>
-        </div>
-    </div>
+    
     <div class="row-fluid">
         <div class="span12" style="">
             <table class="table table-condensed table-bordered table-striped table-hover dtable" >

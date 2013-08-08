@@ -147,11 +147,11 @@
                             <li><a href="{{URL::to('delivery/view-rolls')}}">View Rolls</a></li>
                             <li><a href="{{URL::to('delivery/view-products')}}">View Products</a></li>
                             <li><hr></li>
-                            <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
+<!--                            <li class="nav-header"><i class="icon-suitcase"></i> Clients</li>
                             <li><a href="{{URL::to('delivery/view-clients')}}">View Clients</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-suitcase"></i> Suppliers</li>
-                            <li><a href="{{URL::to('delivery/view-suppliers')}}">View Suppliers</a></li>
+                            <li><a href="{{URL::to('delivery/view-suppliers')}}">View Suppliers</a></li>-->
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->
@@ -208,7 +208,7 @@
                     $("#notifReminders").html(remList);
                     $("#notifMemos").html(memList);
                     $("#notifRolls").html(rolList);
-                    $("#notifProducts").html(rolList);
+                    $("#notifProducts").html(proList);
                     if(_.size(reminders) <1){
                         $("#boxReminders").hide();
                     }else{

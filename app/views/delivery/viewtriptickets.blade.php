@@ -3,18 +3,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <ul class="breadcrumb balon">
-                <li>
-                    <a href="#">Home</a> <span class="divider">/</span>
-                </li>
-                <li>
-                    <a href="#">Delivery</a> <span class="divider">/</span>
-                </li>
-
-                <li class="active">
-                    View Trip Tickets
-                </li>
-            </ul>
+            
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -79,7 +68,7 @@
                                             </td>
 
                                             <td>
-                                                <form action="{{URL::to('billing/delete-trip-ticket')}}" method="POST">
+                                                <form action="{{URL::to('delivery/delete-trip-ticket')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$dq->id}}" />
                                                     <input class="btn btn-danger" type="submit" value="Delete" />
                                                 </form>
@@ -194,9 +183,9 @@
                                                 {{$dq->updated_at}}
                                             </td>
                                             <td>
-                                                <form action="{{URL::to('billing/view-sales-invoice')}}" method="POST">
+                                                <form action="{{URL::to('delivery/view-manage-trip-ticket')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$dq->id}}" />
-                                                    <input class="btn btn-info" type="submit" value="View / Approve Sales Invoice" />
+                                                    <input class="btn btn-info" type="submit" value="View " />
                                                 </form>
                                             </td>
 

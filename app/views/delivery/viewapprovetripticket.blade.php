@@ -1,16 +1,6 @@
 @extends('layouts.delivery')
 @section('main')
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Production</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        View Production Record
-    </li>
-</ul>
+
 
 
 <form id="mamamia"  class="" action="{{URL::to('delivery/apply-approve-trip-ticket')}}" method="post">
@@ -31,7 +21,7 @@
 
     <div class="row-fluid " >
         <div class="span12" >
-            <h4>Balance Rolls</h4>
+           
             <table  id="balance_form" width="100%" class="table table-condensed table-bordered table-striped table-hover" >
                 <thead>
                     <tr>
@@ -53,8 +43,8 @@
         </div>
     </div>
 
+    <input type="submit" class="btn btn-warning" value="Approve Trip Ticket" />
 
-    <input type="submit" class="btn" value="Approve Trip Ticket" />
 </form>
 
 

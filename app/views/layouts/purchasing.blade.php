@@ -141,6 +141,7 @@
                             <li class="nav-header"><i class="icon-money"></i> Purchasing</li>
                             <li><a href="{{URL::to('purchasing/create-purchase-order')}}">Create Purchase Order</a></li>
                             <li><a href="{{URL::to('purchasing/view-purchase-orders')}}">View Purchase Orders</a></li>
+                            <!--<li><a href="{{URL::to('purchasing/view-receiving-reports')}}">View Purchase Orders</a></li>-->
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-file"></i> Reports</li>
                             <li><a id="" href="#monthlyReport"  data-toggle="modal">Monthly Purchase Report</a></li>
@@ -210,7 +211,7 @@
         <div id="monthlyReport" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Generate Annual Purchasing Report</h3>
+                <h3 id="myModalLabel">Generate Monthly Purchasing Report</h3>
             </div>
             <div class="modal-body">
                 <form action="{{URL::to('purchasing/view-monthly-purchase-report')}}" method="post">

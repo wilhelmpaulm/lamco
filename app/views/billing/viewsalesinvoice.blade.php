@@ -1,16 +1,6 @@
 @extends('layouts.billing')
 @section('main')
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Production</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Edit Sales Invoice
-    </li>
-</ul>
+
 
 
 <form id="mamamia"  class="" action="{{URL::to('billing/apply-edit-sales-invoice')}}" method="post">

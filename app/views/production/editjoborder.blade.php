@@ -2,17 +2,6 @@
 @section('main')
 
 
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Create Purchase Order
-    </li>
-</ul>
 <form id="mamamia"  class="" action="{{URL::to('production/apply-edit-job-order')}}" method="post">
     <div class="row-fluid">
         <div class="span3">
@@ -35,7 +24,7 @@
             <br><br>
 <!--            <button id="addordinary" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i> Add Ordinary </button>
             <button id="addspecial" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i>   Add Special </button>-->
-            <button id="addreserve" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i> Reserve Roll</button>
+            <button id="addreserve" class="btn btn-success btn-block pull-right" type="button" ><i class="icon-plus-sign-alt"></i> Assign Roll</button>
             <button id="removerow" class="btn btn-danger btn-block pull-left" type="button"><i class="icon-minus-sign-alt"></i></button>
 
         </div>
@@ -139,8 +128,11 @@
 
                 </div>
                 <div class="span3">
-                    <button class="ladda-button btn btn-info expand-right" type="submit"><span class="ladda-label">Create Job Order</span><span class="ladda-spinner"></span></button>
-                   <!--<input  class="btn btn-info btn-block" type="submit" value="Submit" />-->
+                   
+                    <button class="ladda-button btn btn-info expand-right" type="submit"><span class="ladda-label">Submit</span><span class="ladda-spinner"></span></button>
+                  
+
+<!--<input  class="btn btn-info btn-block" type="submit" value="Submit" />-->
                 </div>
             </div>
         </div>

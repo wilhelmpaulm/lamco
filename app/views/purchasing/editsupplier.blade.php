@@ -2,18 +2,6 @@
 @section('main')
 
 
-
-<ul class="breadcrumb ">
-    <li>
-        <a href="#">Home</a> <span class="divider">/</span>
-    </li>
-    <li>
-        <a href="#">Purchasing</a> <span class="divider">/</span>
-    </li>
-    <li class="active">
-        Edit Supplier
-    </li>
-</ul>
 <form  class="" data-validate="parsley" action="{{URL::to('purchasing/apply-edit-supplier')}}" method="post">
     <input id="id" class="input-block-level" type="hidden" name="id" value="{{$supplier->id}}" />
     <div class="row-fluid">

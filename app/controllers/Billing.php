@@ -42,7 +42,9 @@ class Billing extends BaseController {
             'si_d' => $si_d
         ];
         Stalk::stalkSystem("view sales invoice", $id);
-        return View::make('billing.viewsalesinvoice', $data);
+        
+        return View::make('billing.sales_invoice_form', $data);
+//        return View::make('billing.viewsalesinvoice', $data);
     }
 
     public function postViewEditSalesInvoice() {

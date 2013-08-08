@@ -3,17 +3,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <ul class="breadcrumb balon">
-                <li>
-                    <a href="#">Home</a> <span class="divider">/</span>
-                </li>
-                <li>
-                    <a href="#">Production</a> <span class="divider">/</span>
-                </li>
-                <li class="active">
-                Job Orders
-                </li>
-            </ul>
+         
             <div class="tabbable" id="tabs-299920">
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -152,7 +142,7 @@
                                                 {{$mq->updated_at}}
                                             </td>
                                             <td>
-                                                 <form action="{{URL::to('production/view-purchase-order')}}" method="POST">
+                                                 <form action="{{URL::to('production/view-approve-job-order')}}" method="POST">
                                                     <input class="" type="hidden" name="id" value="{{$mq->id}}" />
                                                                                                          <button class="ladda-button btn btn-info expand-right " type="submit"><span class="ladda-label">View</span><span class="ladda-spinner"></span></button>
 
