@@ -566,7 +566,7 @@ class Sales extends BaseController {
         return Redirect::to('sales/reminders');
     }
 
-    public function getViewRolls() {
+   public function getViewRolls() {
         $lamco_rolls = Roll::where('owner', '=', 'lamco')->get();
         $low_rolls = Roll::where('quantity', '<', 50)->where('owner', '=', 'lamco')->get();
         $client_rolls = Roll::where('owner', '!=', 'lamco')->get();
@@ -575,20 +575,20 @@ class Sales extends BaseController {
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
-        Stalk::stalkSystem("view rolls", null);
+        Stalk::stalkSystem("approved viewed rolls", null);
         return View::make('sales.viewrolls', $data);
     }
 
     public function getViewProducts() {
         $lamco_products = Product::where('owner', '=', 'lamco')->get();
         $low_products = Product::where('quantity', '<', 50)->where('owner', '=', 'lamco')->get();
-        $client_products = Product::where('owner', '!=', 'lamco')->where('owner', '!=', 'sold')->get();
+        $client_products = Product::where('owner', '!=', 'lamco')->get();
         $data = [
             'lamco_products' => $lamco_products,
             'low_products' => $low_products,
             'client_products' => $client_products
         ];
-        Stalk::stalkSystem("view products", null);
+        Stalk::stalkSystem("viewed products", null);
         return View::make('sales.viewproducts', $data);
     }
 

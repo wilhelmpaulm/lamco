@@ -536,4 +536,9 @@ class Purchasing extends BaseController {
         return Redirect::to('purchasing/reminders');
     }
 
+    
+    public static function getAldwin(){
+        
+        return "GAY";
+    }
 }
