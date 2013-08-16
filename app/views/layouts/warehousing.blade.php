@@ -13,28 +13,28 @@
         <!-- Le styles -->
 
         {{HTML::style('css/dataTables.css')}}
-        <!--{{HTML::style('css/flatstrap-bootstrap.css')}}-->
-        {{HTML::style('css/bootstrapx.css')}} 
+        {{HTML::style('css/flatstrap-bootstrap.css')}}
+        <!--{{HTML::style('css/bootstrapx.css')}}--> 
         <!--{{HTML::style('css/bootstrapx.css')}}-->    
         <!--{{HTML::style('css/bootstrap.min.css')}}-->    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         <!--{{HTML::style('css/bootstrap-responsive.min.css')}}-->
         {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::style('css/wilhelmpaulm.css')}}
-        {{HTML::style('css/parsley.css')}}
+        <!--{{HTML::style('css/parsley.css')}}-->
         {{HTML::style('css/ladda.css')}}
-        {{HTML::style('css/select2.css')}}
+        <!--{{HTML::style('css/select2.css')}}-->
 
 
         {{HTML::script('js/jquery.js')}}
         {{HTML::script('js/bootstrap.min.js')}}
-        {{HTML::script('js/parsley.min.js')}}
+        <!--{{HTML::script('js/parsley.min.js')}}-->
         {{HTML::script('js/dataTables.min.js')}}
         {{HTML::script('js/notify.min.js')}}
-        {{HTML::script('js/pulsate.min.js')}}
+        <!--{{HTML::script('js/pulsate.min.js')}}-->
         <!--    {{HTML::script('js/spin.min.js')}}-->
         {{HTML::script('js/ladda.js')}}
-        {{HTML::script('js/select2.min.js')}}
+        <!--{{HTML::script('js/select2.min.js')}}-->
         {{HTML::script('js/underscore.js')}}
 
         <style type="text/css">
@@ -43,7 +43,7 @@
                 padding-bottom: 40px;
                 /*background: url('{{URL::asset("bg/paper_3.png")}}');*/
                 /*background: url('{{URL::asset("bg/escheresque_ste.png")}}');*/
-                background: url('{{URL::asset("bg/triangles.png")}}');
+                /*background: url('{{URL::asset("bg/triangles.png")}}');*/
 
             }
             .hero-unit {
@@ -136,8 +136,8 @@
         <div class="container-fluid">
             <div class="row-fluid">
 
-                <div class="span2 ">
-                    <div class="well sidebar-nav ">
+                <div class="span2 f-osb">
+                    <div class="well sidebar-nav bg-white">
                         <ul class="nav nav-list">
                             <li class="nav-header"><i class="icon-home"></i> Home</li>
                             <li><a href="{{URL::to('warehousing/memos')}}">Memos</a></li>
@@ -161,7 +161,7 @@
                 <!--this is the margin--> 
 
 
-                <div class="span10 well">
+                <div class="span10 well bg-white">
 
                     @yield('main')
 

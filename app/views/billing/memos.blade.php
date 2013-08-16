@@ -43,7 +43,7 @@
                                             <td>{{$memo->deadline}}</td>
                                             <td>{{$memo->memo}}</td>
                                             <td>
-                                                <form action="billing/delete-memo" method="post">
+                                                <form action="{{URL::to('billing/delete-memo')}}" method="post">
                                                     <input type="hidden" name="id" value="{{$memo->id}}" />
                                                     <input type="submit" class="btn btn-danger" value="Delete" />
                                                 </form>

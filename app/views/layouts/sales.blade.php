@@ -13,24 +13,24 @@
         <!-- Le styles -->
 
         {{HTML::style('css/dataTables.css')}}
-        <!--{{HTML::style('css/flatstrap-bootstrap.css')}}-->
+        {{HTML::style('css/flatstrap-bootstrap.css')}}
 
-        {{HTML::style('css/bootstrapx.css')}}    
+        <!--{{HTML::style('css/bootstrapx.css')}}-->    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         <!--{{HTML::style('css/bootstrap-responsive.min.css')}}-->
         {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::style('css/wilhelmpaulm.css')}}
-        {{HTML::style('css/parsley.css')}}
+        <!--{{HTML::style('css/parsley.css')}}-->
         {{HTML::style('css/ladda.css')}}
         <!--{{HTML::style('css/select2.css')}}-->
 
 
         {{HTML::script('js/jquery.js')}}
         {{HTML::script('js/bootstrap.min.js')}}
-        {{HTML::script('js/parsley.min.js')}}
+        <!--{{HTML::script('js/parsley.min.js')}}-->
         {{HTML::script('js/dataTables.min.js')}}
         {{HTML::script('js/notify.min.js')}}
-        {{HTML::script('js/pulsate.min.js')}}
+        <!--{{HTML::script('js/pulsate.min.js')}}-->
         {{HTML::script('js/timer.js')}}
         {{HTML::script('js/underscore.js')}}
         <!--    {{HTML::script('js/spin.min.js')}}-->
@@ -42,7 +42,8 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
                 /*background: url('{{URL::asset("bg/paper_3.png")}}');*/
-                /*background: url('{{URL::asset("bg/escheresque_ste.png")}}');*/background: url('{{URL::asset("bg/triangles.png")}}');
+                /*background: url('{{URL::asset("bg/escheresque_ste.png")}}');*/
+                /*background: url('{{URL::asset("bg/triangles.png")}}');*/
 
 
             }
@@ -133,14 +134,14 @@
             </div>
         </div>
 
-        <div class="container-fluid">
-            <div class="row-fluid">
+        <div class="container-fluid ">
+            <div class="row-fluid ">
 
-                <div class="span2 ">
-                    <div class="well sidebar-nav ">
+                <div class="span2 f-osb " >
+                    <div class="sidebar-nav well bg-white">
                         <ul class="nav nav-list">
                             <li class="nav-header"><i class="icon-home"></i> Home</li>
-                            <li><a href="{{URL::to('sales/memos')}}">Memos</a></li>
+                            <li><a href="{{URL::to('sales/memos')}}" >Memos</a></li>
                             <li><a href="{{URL::to('sales/reminders')}}">Reminders</a></li>
                             <li><hr></li>
                             <li class="nav-header"><i class="icon-tags"></i> Sales</li>
@@ -170,7 +171,7 @@
                 <!--this is the margin--> 
 
 
-                <div class="span10 well">
+                <div class="span10 well bg-white">
 
                     @yield('main')
 
@@ -209,7 +210,7 @@
         <div id="monthlyReport" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Generate Annual Sales Report</h3>
+                <h3 id="myModalLabel">Generate Monthly Sales Report</h3>
             </div>
             <div class="modal-body">
                 <form action="{{URL::to('sales/view-monthly-sales-report')}}" method="post">
@@ -242,7 +243,7 @@
         <div id="dailyReport" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Generate Annual Sales Report</h3>
+                <h3 id="myModalLabel">Generate Daily Sales Report</h3>
             </div>
             <div class="modal-body">
                 <form action="{{URL::to('sales/view-daily-sales-report')}}" method="post">

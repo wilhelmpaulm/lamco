@@ -1,6 +1,19 @@
 <?php
 
 class Management extends BaseController {
+    
+    public static function addReminder($created_for,$reminder) {
+        $r = Reminder::create([
+                    "created_by" => Auth::user()->id,
+                    "deadline" => "",
+                    "created_for" => $created_for,
+                    "importance" => "mid",
+                    "reminder" => $reminder
+        ]);
+//        Stalk::stalkSystem("created reminder", $r->id);
+//        return Redirect::to('management/reminders');
+    }
+    
 
     public static function processSalesOrder($id) {
         $mqs = Machine_queue::where("so_no", "=", $id)->where("status", "!=", "approved")->get();
@@ -129,6 +142,8 @@ class Management extends BaseController {
         Stalk::stalkSystem("view reminders", null);
         return View::make('management.reminders', $data);
     }
+    
+    
 
     public static function postDeleteReminder() {
         Reminder::find(Input::get('id'))->delete();
@@ -259,7 +274,7 @@ class Management extends BaseController {
             'low_rolls' => $low_rolls,
             'client_rolls' => $client_rolls
         ];
-        Stalk::stalkSystem("approved viewed rolls", null);
+        Stalk::stalkSystem(" viewed rolls", null);
         return View::make('management.viewrolls', $data);
     }
 
@@ -383,6 +398,7 @@ class Management extends BaseController {
         
         Stalk::stalkSystem("created sales invoice", $id);
         Stalk::stalkSystem("created sales order", $id);
+        Management::addReminder($so->created_by, "order ".$so->id."has been approved");
         return Redirect::to('management/view-sales-orders');
     }
 
@@ -393,6 +409,7 @@ class Management extends BaseController {
         $so->save();
 //        $so_d = So_detail::where('so_no', '=', $id)->get();
         Stalk::stalkSystem("rejected sales order", $id);
+        Management::addReminder($so->created_by, "order ".$so->id." has been rejected");
         return Redirect::to('management/view-sales-orders');
     }
 
@@ -439,6 +456,7 @@ class Management extends BaseController {
         }
         
         Stalk::stalkSystem("approved purchase order", $id);
+        Management::addReminder($po->created_by, "order ".$po->id." has been approved");
         return Redirect::to('management/view-purchase-orders');
     }
 

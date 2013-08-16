@@ -84,7 +84,7 @@ class Production extends BaseController {
         $mq = Machine_queue::find($pr->mq_no);
         $pr_d = Pr_detail::where('pr_no', '=', $id)->get();
         $so = Sales_order::find($pr->so_no);
-        $rolls = Roll::where('owner', '=', $so->client)->get();
+        $rolls = Roll::where('owner', '=', $so->client)->where('owner', '=', "lamco")->get();
         $machines = Machine::where('type', '=', $pr->production_type)->get();
 
         $warehouses = Warehouse::all();

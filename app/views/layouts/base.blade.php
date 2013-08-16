@@ -11,18 +11,17 @@
         <meta name="author" content="">
 
         {{HTML::style('css/dataTables.css')}}
-        <!--{{HTML::style('css/flatstrap-bootstrap.css')}}-->
+        {{HTML::style('css/flatstrap-bootstrap.css')}}
 
-        {{HTML::style('css/bootstrapx.css')}}    
+        <!--{{HTML::style('css/bootstrapx.css')}}-->    
         <!--{{HTML::style('css/cosmo-bootstrap.css')}}-->
         <!--{{HTML::style('css/bootstrap-responsive.min.css')}}-->
         {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::style('css/wilhelmpaulm.css')}}
-        {{HTML::style('css/parsley.css')}}
+        <!--{{HTML::style('css/parsley.css')}}-->
         {{HTML::style('css/ladda.css')}}
         <!--{{HTML::style('css/select2.css')}}-->
-
-
+        
         {{HTML::script('js/jquery.js')}}
         {{HTML::script('js/bootstrap.min.js')}}
 <!--        {{HTML::script('js/parsley.min.js')}}
@@ -40,12 +39,12 @@
                 padding-bottom: 40px;
                 /*background: url('{{URL::asset("bg/paper_3.png")}}');*/
                 /*background: url('{{URL::asset("bg/escheresque_ste.png")}}');*/
-                background: url('{{URL::asset("bg/triangles.png")}}');
+                /*background: url('{{URL::asset("bg/triangles.png")}}');*/
 
                 /*background: url('{{URL::asset("bg/diagmonds.png")}}')*/
             }
             .hero-unit {
-                background: url('{{URL::asset("bg/project_papper.png")}}');
+                /*background: url('{{URL::asset("bg/project_papper.png")}}');*/
             }
             .sidebar-nav {
                 padding: 9px 0;
@@ -75,7 +74,7 @@
         <link rel="apple-touch-icon-precomposed" href='{{URL::asset("ico/apple-touch-icon-144")}}'>
         <link rel="shortcut icon"  href='{{URL::asset("ico/favicon.ico")}}'>
     </head>
-    <body>
+    <body class="bg-clouds" style="">
         <div class="container">
             <div class="row">
                 @yield('main')

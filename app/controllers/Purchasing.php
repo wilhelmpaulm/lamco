@@ -36,7 +36,7 @@ class Purchasing extends BaseController {
 
     public function getNotif() {
 //        return Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson();
-
+        
         $data = [
             'rolls' => Roll::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(),
             'products' => Product::where('quantity', '<', '50')->where('owner', '=', 'lamco')->get()->toJson(),
